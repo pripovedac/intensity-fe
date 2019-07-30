@@ -1,0 +1,32 @@
+@import '../../styles/colors';
+
+.labeled-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 70%;
+  margin-bottom: 1em;
+  border: none;
+
+  font-family: inherit;
+
+  span {
+    text-align: left;
+    margin-bottom: 0.5em;
+    font-size: 1.2em;
+  }
+}
+
+input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid $browngreen;
+  outline: none;
+  font-family: inherit;
+  font-size: 1.1em;
+}
+
+input:focus {
+  //border: none;
+  border-bottom: 2px solid $darkgreen;
+}

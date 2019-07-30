@@ -4,7 +4,7 @@ import './Button.scss'
 function Button(props) {
 
     function handleClick() {
-        console.log('hello, button')
+        console.log('hello, Button')
     }
 
     return (
