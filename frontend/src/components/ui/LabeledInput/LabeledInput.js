@@ -6,15 +6,15 @@ function LabeledInput(props) {
         console.log('input changed: ', e.target.value)
     }
 
-    return(
+    return (
         <div className="labeled-input">
-            <span>
+            <label>
                 {props.label}
-            </span>
-            <input
-                type={props.type}
-                onInput={handleInput}
-            />
+                <input
+                    type={props.type}
+                    onInput={handleInput}
+                />
+            </label>
         </div>
     )
 }
