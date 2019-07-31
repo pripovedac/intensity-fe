@@ -2,12 +2,14 @@
 
 .labeled-input {
   display: flex;
+  //margin: 0 auto;
   flex-direction: column;
   justify-content: flex-start;
   width: 70%;
   margin-bottom: 1em;
   border: none;
   font-family: inherit;
+  box-sizing: border-box;
 
   label {
     margin-bottom: 0.5em;
@@ -17,6 +19,7 @@
 
 input {
   background: transparent;
+  width: 100%;
   border: none;
   border-bottom: 2px solid $browngreen;
   outline: none;

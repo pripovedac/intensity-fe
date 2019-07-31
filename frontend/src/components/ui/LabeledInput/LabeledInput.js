@@ -2,8 +2,11 @@ import React from 'react'
 import './LabeledInput.scss'
 
 function LabeledInput(props) {
-    function handleInput(e) {
-        console.log('input changed: ', e.target.value)
+
+    function handleInput(event) {
+        console.log('input changed: ', event.target.value)
+        const text = event.target.value
+        props.handleInput(text)
     }
 
     return (
@@ -11,8 +14,9 @@ function LabeledInput(props) {
             <label>
                 {props.label}
                 <input
+                    value={props.value}
                     type={props.type}
-                    onInput={handleInput}
+                    onChange={handleInput}
                 />
             </label>
         </div>
