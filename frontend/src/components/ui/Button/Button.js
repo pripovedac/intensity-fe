@@ -2,13 +2,10 @@ import React from 'react'
 import './Button.scss'
 
 function Button(props) {
-
-    function handleClick() {
-        console.log('hello, Button')
-    }
-
     return (
-        <button onClick={handleClick}>
+        <button
+            type={props.type}
+        >
             {props.children}
         </button>
     )
