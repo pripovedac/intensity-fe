@@ -39,7 +39,22 @@
       <change beforePath="$PROJECT_DIR$/../frontend/src/serviceWorker.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/services/fetch.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/yarn.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../intensity-be/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../intensity-be/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/.prettierrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/nest-cli.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/src/app.controller.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/src/app.controller.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/src/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/src/app.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/test/app.e2e-spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/test/jest-e2e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/tsconfig.build.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../intensity-be/tslint.json" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -288,18 +303,17 @@
       <updated>1564421534705</updated>
       <workItem from="1564421538739" duration="1645000" />
       <workItem from="1564473815344" duration="36751000" />
-      <workItem from="1564643371296" duration="910000" />
+      <workItem from="1564643371296" duration="1430000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39306000" />
+    <option name="totallyTimeSpent" value="39826000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18005952" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18005952" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -313,7 +327,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.4729951" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.4729951" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
