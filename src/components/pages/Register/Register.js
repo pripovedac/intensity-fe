@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import '../public-styles/PublicStyles.scss'
+import '../../styles/public-styles/PublicStyles.scss'
 import Card from '../../ui/Card/Card'
 import LabeledInput from '../../ui/LabeledInput/LabeledInput'
 import Button from '../../ui/Button/Button'
@@ -12,13 +12,24 @@ function RegisterPage(props) {
     const [email, setEmail] = useState('johndoe@gmail.com')
     const [password, setPassword] = useState('john123')
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault()
 
-        console.log('name: ', name)
-        console.log('lastname: ', lastname)
-        console.log('email: ', email)
-        console.log('pass: ', password)
+        const newUser = {
+            firstname: name,
+            lastname,
+            email,
+            password
+        }
+
+        const response = await fetch('http://localhost:3000/users', {
+            method: 'POST',
+            body: JSON.stringify(newUser),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        console.log('response: ', response)
     }
 
     return (

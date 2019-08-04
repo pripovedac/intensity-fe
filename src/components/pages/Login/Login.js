@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import '../public-styles/PublicStyles.scss'
+import '../../styles/public-styles/PublicStyles.scss'
 import Card from '../../ui/Card/Card'
 import LabeledInput from '../../ui/LabeledInput/LabeledInput'
 import Button from '../../ui/Button/Button'
