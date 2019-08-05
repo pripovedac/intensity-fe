@@ -1,9 +1,9 @@
 import React from 'react'
-import './Button.scss'
+import './PublicButton.scss'
 
-function Button(props) {
+function PublicButton(props) {
     return (
-        <button
+        <button className="public-button"
             type={props.type}
         >
             {props.children}
@@ -11,4 +11,4 @@ function Button(props) {
     )
 }
 
-export default Button
+export default PublicButton

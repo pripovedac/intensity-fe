@@ -1,6 +1,6 @@
 @import '../../styles/colors';
 
-button {
+.public-button {
   border: none;
   color: white;
   font-size: 1.2em;
@@ -10,13 +10,13 @@ button {
   font-weight: bold;
   font-family: inherit;
   opacity: 0.8;
-  background: $darkocher;
+  background: $lightocher;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   cursor: pointer;
   outline: none;
 }
 
-button[disabled] {
+.public-button[disabled] {
   opacity: 0.5;
   cursor: not-allowed;
 }

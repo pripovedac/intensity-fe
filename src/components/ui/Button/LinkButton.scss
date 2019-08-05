@@ -1,0 +1,27 @@
+@import '../../styles/colors';
+
+.link-button {
+  display: inline-block;
+  padding: 1em;
+  width: 100%;
+  background: #000;
+  color: #fff;
+  border: none;
+  font-family: inherit;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+
+  > span {
+    color: #fff;
+  }
+}
+
+.link-button:hover {
+  background: #fff;
+
+  > span {
+    color: #000;
+  }
+}

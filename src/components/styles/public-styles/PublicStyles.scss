@@ -56,12 +56,12 @@ button + p {
   margin-top: 1.2em;
 }
 
-a {
-  color: $darkocher;
+p > a {
+  color: $lightocher;
   text-decoration: none;
 }
 
-a:hover {
+p > a:hover {
   color: $browngreen;
 }
 

@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import '../../styles/public-styles/PublicStyles.scss'
 import Card from '../../ui/Card/Card'
 import LabeledInput from '../../ui/LabeledInput/LabeledInput'
-import Button from '../../ui/Button/Button'
+import PublicButton from '../../ui/Button/PublicButton'
 import {Link} from 'react-router-dom'
 
 function RegisterPage(props) {
@@ -73,9 +73,9 @@ function RegisterPage(props) {
                         handleInput={setPassword}
                     />
 
-                    <Button>
+                    <PublicButton>
                         Submit
-                    </Button>
+                    </PublicButton>
 
                 </form>
                 <p>
