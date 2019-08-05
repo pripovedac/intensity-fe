@@ -1,0 +1,80 @@
+@import '../../styles/colors';
+
+.table-calendar {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  font-size: 1.1em;
+  border: none;
+  overflow: hidden;
+}
+
+.table-calendar tbody, .table-calendar thead {
+  display: block;
+  width: 100%;
+}
+
+.table-calendar > caption {
+  display: inline-block;
+  width: 100%;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.5em;
+}
+
+.table-calendar tr {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.table-calendar tr:last-child {
+  border-bottom: none;
+}
+
+.table-calendar th {
+  width: 100%;
+  padding-top: 1.2em;
+  padding-bottom: 1.2em;
+  overflow: hidden;
+}
+
+.table-calendar td {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  > a {
+    display: inline-block;
+    padding-top: 1.2em;
+    padding-bottom: 1.2em;
+    width: 100%;
+    color: #000;
+    text-decoration: none;
+  }
+}
+
+.table-calendar td:hover {
+  color: #fff;
+  animation: fadein 0.8s;
+  animation-fill-mode: forwards;
+
+  > a {
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    background-color: #fff;
+  }
+
+  100% {
+    background-color: #000;
+  }
+}
