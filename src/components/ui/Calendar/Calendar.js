@@ -1,18 +1,15 @@
 import React, {useState} from 'react'
 import moment from 'moment'
 import {Link} from 'react-router-dom'
-import {toDateFormat} from '../../../services/dates'
+import {calculateWeek} from '../../../services/dates'
 import './Calendar.scss'
 
 function Calendar(props) {
     const [weekDays] = useState(moment.weekdaysShort())
 
-    function calculateWeek() {
-        const today = moment()
-        const monday = today.startOf('week')
-        const sunday = today.endOf('week')
+    function displayWeek() {
 
-        return `${toDateFormat(monday)} - ${toDateFormat(sunday)}`
+        return calculateWeek()
     }
 
     function getDays() {
@@ -89,7 +86,7 @@ function Calendar(props) {
 
     return (
         <table className="table-calendar">
-            <caption>Intensity week {calculateWeek()}</caption>
+            <caption>Intensity week {displayWeek()}</caption>
             <thead>
             {getDays()}
             </thead>
