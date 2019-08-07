@@ -4,17 +4,23 @@ import Card from '../../ui/Card/Card'
 import LabeledInput from '../../ui/LabeledInput/LabeledInput'
 import PublicButton from '../../ui/Button/PublicButton'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {loginUser} from '../../../store/actions'
 
 function LoginPage(props) {
 
-    const [email, setEmail] = useState('johndoe@gmail.com')
-    const [password, setPassword] = useState('john123')
+    const [email, setEmail] = useState('wile.e.coyote@acme.com')
+    const [password, setPassword] = useState('wilespassword')
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault()
 
+        const user = {email, password}
+        props.loginUser(user)
         console.log('email: ', email)
         console.log('pass: ', password)
+
+
     }
 
     return (
@@ -62,4 +68,7 @@ function LoginPage(props) {
     )
 }
 
-export default LoginPage
+export default connect(
+    null,
+    {loginUser}
+)(LoginPage)

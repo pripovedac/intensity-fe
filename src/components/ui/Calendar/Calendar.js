@@ -8,7 +8,6 @@ function Calendar(props) {
     const [weekDays] = useState(moment.weekdaysShort())
 
     function displayWeek() {
-
         return calculateWeek()
     }
 
