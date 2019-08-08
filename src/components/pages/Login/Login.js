@@ -5,7 +5,7 @@ import LabeledInput from '../../ui/LabeledInput/LabeledInput'
 import PublicButton from '../../ui/Button/PublicButton'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {loginUser} from '../../../store/actions'
+import {loginUser} from '../../../store/actions/auth.action'
 
 function LoginPage(props) {
 
@@ -15,13 +15,9 @@ function LoginPage(props) {
     async function handleSubmit(event) {
         event.preventDefault()
 
-        // console.log(props.history)
-        // props.history.push('/home/')
         if (checkForm()) {
             const user = {email, password}
             props.loginUser(user)
-
-
         } else {
             alert('Please, fill in the data.')
         }

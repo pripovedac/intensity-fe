@@ -4,6 +4,8 @@ import Card from '../../ui/Card/Card'
 import LabeledInput from '../../ui/LabeledInput/LabeledInput'
 import PublicButton from '../../ui/Button/PublicButton'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {registerUser} from '../../../store/actions/auth.action'
 
 function RegisterPage(props) {
 
@@ -15,21 +17,26 @@ function RegisterPage(props) {
     async function handleSubmit(event) {
         event.preventDefault()
 
-        const newUser = {
-            firstname: name,
-            lastname,
-            email,
-            password
-        }
-
-        const response = await fetch('http://localhost:3000/users', {
-            method: 'POST',
-            body: JSON.stringify(newUser),
-            headers: {
-                'Content-Type': 'application/json'
+        if (checkForm()) {
+            const newUser = {
+                name,
+                lastname,
+                email,
+                password
             }
-        })
-        console.log('response: ', response)
+            props.registerUser(newUser)
+        } else {
+            alert('Please, fill in the data.')
+        }
+    }
+
+    function checkForm() {
+        return (
+            name.length &&
+            lastname.length &&
+            email.length &&
+            password.length
+        )
     }
 
     return (
@@ -88,4 +95,7 @@ function RegisterPage(props) {
     )
 }
 
-export default RegisterPage
+export default connect(
+    null,
+    {registerUser}
+)(RegisterPage)

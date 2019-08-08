@@ -1,4 +1,4 @@
-import * as actions from '../actions/index'
+import * as actions from '../actions/auth.action'
 
 export default function (state = null, action) {
     switch (action.type) {
@@ -12,6 +12,21 @@ export default function (state = null, action) {
 
         case actions.LOGIN_ABORT: {
             alert(action.payload.message)
+            return state
+        }
+
+        case actions.USER_REGISTER: {
+            return state
+        }
+
+        case actions.REGISTRATION_ACCOMPLISH: {
+            const message = 'You have successfully created an acount.\n' +
+                'Please wait for admin approval to login.'
+            alert(message)
+            return state
+        }
+
+        case actions.REGISTRATION_ABORT: {
             return state
         }
 

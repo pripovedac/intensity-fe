@@ -5,10 +5,14 @@ function apiFetchFactory({fetch}) {
         responseType = 'json'
     } = {}) {
 
+        //todo: read accessToken from the store
+        const accessToken = ''
+
         const res = await fetch(url, {
             method,
             body: JSON.stringify(body),
             headers: {
+                ...(hasAuthHeader ? {'authorization':  'Bearer ' + accessToken} : {}),
                 'content-type': contentType,
             },
         })
