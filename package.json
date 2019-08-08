@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "connected-react-router": "^6.5.2",
     "eslint-plugin-react-hooks": "^1.6.1",
     "history": "^4.9.0",
     "moment": "^2.24.0",

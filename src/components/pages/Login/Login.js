@@ -15,9 +15,13 @@ function LoginPage(props) {
     async function handleSubmit(event) {
         event.preventDefault()
 
+        // console.log(props.history)
+        // props.history.push('/home/')
         if (checkForm()) {
             const user = {email, password}
             props.loginUser(user)
+
+
         } else {
             alert('Please, fill in the data.')
         }
