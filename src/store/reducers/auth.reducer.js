@@ -2,20 +2,12 @@ import * as actions from '../actions/auth.action'
 
 export default function (state = null, action) {
     switch (action.type) {
-        case actions.USER_LOGIN: {
-            return action.payload
-        }
-
         case actions.LOGIN_ACCOMPLISH: {
             return action.payload
         }
 
         case actions.LOGIN_ABORT: {
             alert(action.payload.message)
-            return state
-        }
-
-        case actions.USER_REGISTER: {
             return state
         }
 

@@ -16,7 +16,6 @@ export function* loginSaga(action) {
 }
 
 export function* registerSaga(action) {
-    console.log('registerSaga: ', action.payload)
     const response = yield call(register, action.payload)
     if (response.ok) {
         yield put(actions.accomplishRegistration())

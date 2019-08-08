@@ -4,7 +4,6 @@ import './LabeledInput.scss'
 function LabeledInput(props) {
 
     function handleInput(event) {
-        console.log('input changed: ', event.target.value)
         const text = event.target.value
         props.handleInput(text)
     }
