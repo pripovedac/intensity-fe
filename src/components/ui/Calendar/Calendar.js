@@ -62,10 +62,9 @@ function Calendar(props) {
     }
 
     function handleClick(e) {
-        console.log('clicked: ',props)
+        console.log('clicked: ', props)
 
     }
-
 
     function insertTableData(hour, trainingType) {
         return (weekDays.map(day => {
@@ -74,7 +73,12 @@ function Calendar(props) {
                         <td key={`${hour}-${day}`}
                             onClick={handleClick}
                         >
-                            <Link to="/wod">{trainingType}</Link>
+                            <Link
+                                to={{
+                                    pathname: '/wod',
+                                    search: `?hour=${hour}&day=${day}&week=0`
+                                }}
+                            >{trainingType}</Link>
                         </td>
                     )
                 } else
@@ -84,15 +88,18 @@ function Calendar(props) {
     }
 
     return (
-        <table className="table-calendar">
-            <caption>Intensity week {displayWeek()}</caption>
-            <thead>
-            {getDays()}
-            </thead>
-            <tbody>
-            {createRows()}
-            </tbody>
-        </table>
+        <div>
+            <table className="table-calendar">
+                <caption>Intensity week {displayWeek()}</caption>
+                <thead>
+                {getDays()}
+                </thead>
+                <tbody>
+                {createRows()}
+                </tbody>
+            </table>
+        </div>
+
     )
 
 }

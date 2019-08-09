@@ -1,6 +1,6 @@
 const path = process.env.REACT_APP_BE_URL
 
-function giveInstructions(user) {
+function provideData(user) {
     return {
         method: 'POST',
         headers: {
@@ -11,10 +11,10 @@ function giveInstructions(user) {
 }
 
 export async function login(user) {
-    return await fetch(`${path}/login`, giveInstructions(user))
+    return await fetch(`${path}/login`, provideData(user))
 }
 
 export async function register(user) {
-    return await fetch(`${path}/register`, giveInstructions(user))
+    return await fetch(`${path}/register`, provideData(user))
 }
 
