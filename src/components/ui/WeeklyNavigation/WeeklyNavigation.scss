@@ -1,0 +1,23 @@
+@import '../../styles/colors';
+
+.weekly-navigation {
+  display: flex;
+  justify-content: center;
+}
+
+.weekly-navigation > button {
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  background-color: #fff;
+  font-size: 1.5em;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.weekly-navigation > button:hover {
+  color: $darkgreen;
+}

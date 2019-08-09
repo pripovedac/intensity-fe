@@ -2,13 +2,12 @@ import * as actions from '../actions/auth.action'
 
 const initialState = {
     user: {},
-    week: 0
 }
 
 export default function (state = initialState, action) {
     switch (action.type) {
         case actions.LOGIN_ACCOMPLISH: {
-            return {user: action.payload, week: state.week}
+            return action.payload
         }
 
         case actions.LOGIN_ABORT: {
