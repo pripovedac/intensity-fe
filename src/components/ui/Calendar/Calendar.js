@@ -2,13 +2,14 @@ import React, {useState} from 'react'
 import moment from 'moment'
 import {Link} from 'react-router-dom'
 import {calculateWeek} from '../../../services/dates'
+import {connect} from 'react-redux'
 import './Calendar.scss'
 
 function Calendar(props) {
     const [weekDays] = useState(moment.weekdaysShort())
 
     function displayWeek() {
-        return calculateWeek()
+        return calculateWeek(props.week)
     }
 
     function getDays() {
@@ -104,4 +105,18 @@ function Calendar(props) {
 
 }
 
-export default Calendar
+// export default Calendar
+
+function mapStateToProps({global}) {
+    return {
+        week: global
+    }
+}
+
+// function mapDispatchToProps(dispatch) {
+//     return bindActionCreators({loginUser}, dispatch)
+// }
+//
+export default connect(
+    mapStateToProps
+)(Calendar)

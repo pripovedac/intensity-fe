@@ -1,10 +1,12 @@
 import moment from 'moment'
 
-export function calculateWeek() {
-    const monday = moment().startOf('isoweek')
-    const sunday = moment().endOf('week')
-
-    return `${toString(monday)} - ${toString(sunday)}`
+export function calculateWeek(weekNumber) {
+    const startDate = moment().add(weekNumber, 'weeks')
+    const monday = startDate.isoWeekday('Monday')
+    const mondayString = toString(monday)
+    const sunday = startDate.isoWeekday('Sunday')
+    const sundayString = toString(sunday)
+    return `${mondayString} - ${sundayString}`
 }
 
 function toString(date) {
