@@ -4,7 +4,7 @@ import {createStore, applyMiddleware} from 'redux'
 import {PersistGate} from 'redux-persist/integration/react'
 import {persistStore, persistReducer} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import {routerMiddleware, ConnectedRouter} from 'connected-react-router'
+import {routerMiddleware} from 'react-router-redux'
 import rootReducer from './store/reducers/index.reducer'
 import {Provider} from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
@@ -46,11 +46,9 @@ function IntensityApp() {
     return (
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
-                <ConnectedRouter history={history}>
                     <Router history={history}>
                         <Routes/>
                     </Router>
-                </ConnectedRouter>
             </PersistGate>
         </Provider>
     )
