@@ -6,6 +6,7 @@ import PublicButton from '../../ui/Button/PublicButton'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {loginUser} from '../../../store/actions/auth.action'
+import {bindActionCreators} from 'redux'
 
 function LoginPage(props) {
 
@@ -72,7 +73,11 @@ function LoginPage(props) {
     )
 }
 
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({loginUser}, dispatch)
+}
+
 export default connect(
     null,
-    {loginUser}
+    mapDispatchToProps
 )(LoginPage)
