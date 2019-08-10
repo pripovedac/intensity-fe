@@ -1,4 +1,3 @@
-import storage from 'redux-persist/lib/storage'
 import * as actions from '../actions/auth.action'
 
 const initialState = {

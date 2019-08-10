@@ -3,6 +3,7 @@ import LinkButton from '../Button/LinkButton'
 import {logoutUser} from '../../../store/actions/auth.action'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
+import {selectUsername} from '../../../store/selectors/auth.selector'
 import './Navigation.scss'
 
 function Navigation(props) {
@@ -11,7 +12,7 @@ function Navigation(props) {
             <LinkButton path="/home" pathname="Home"/>
             <LinkButton path="/wod" pathname="WOD"/>
             <LinkButton path="/members" pathname="Members"/>
-            <LinkButton path="/profile" pathname="Darko Stevanovic"/>
+            <LinkButton path="/profile" pathname={props.username}/>
             <button
                 className="link-button"
                 onClick={props.logoutUser}>
@@ -21,8 +22,10 @@ function Navigation(props) {
     )
 }
 
-function mapStateToProps() {
-    return null
+function mapStateToProps(state) {
+    return {
+        username: selectUsername(state)
+    }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -30,6 +33,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(Navigation)

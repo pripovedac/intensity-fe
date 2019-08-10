@@ -16,7 +16,7 @@ const appReducer = combineReducers({
 })
 
 const rootReducer = function (state, action) {
-    if (action.type == actions.LOGOUT_ACCOMPLISH) {
+    if (action.type === actions.LOGOUT_ACCOMPLISH) {
         storage.removeItem(`persist:${persistConfig.key}`)
         // It's not mutation. It's changing the reference.
         state = undefined
