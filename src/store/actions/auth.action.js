@@ -1,6 +1,8 @@
 export const USER_LOGIN = 'USER_LOGIN'
 export const LOGIN_ACCOMPLISH = 'LOGIN_ACCOMPLISH'
 export const LOGIN_ABORT = 'LOGIN_ABORT'
+export const USER_LOGOUT = 'USER_LOGOUT'
+export const LOGOUT_ACCOMPLISH = 'LOGOUT_ACCOMPLISH'
 export const USER_REGISTER = 'USER_REGISTER'
 export const REGISTRATION_ACCOMPLISH = 'REGISTRATION_ACCOMPLISH'
 export const REGISTRATION_ABORT = 'REGISTRATION_ABORT'
@@ -26,10 +28,23 @@ export function abortLogin(message) {
     }
 }
 
+export function accomplishLogout(message) {
+    return {
+        type: LOGOUT_ACCOMPLISH,
+    }
+}
+
 export function registerUser(user) {
     return {
         type: USER_REGISTER,
         payload: user
+    }
+
+}
+
+export function logoutUser() {
+    return {
+        type: USER_LOGOUT
     }
 }
 

@@ -3,7 +3,7 @@ import {FaArrowAltCircleLeft, FaArrowAltCircleRight} from 'react-icons/fa'
 import {IoIosRefresh} from 'react-icons/io'
 import './WeeklyNavigation.scss'
 import {bindActionCreators} from "redux";
-import {substractWeek, addWeek, resetWeek} from '../../../store/actions/global.action'
+import {subtractWeek, addWeek, resetWeek} from '../../../store/actions/global.action'
 import {connect} from 'react-redux'
 
 function WeeklyNavigation(props) {
@@ -11,7 +11,7 @@ function WeeklyNavigation(props) {
         <div className="weekly-navigation">
 
             <button
-                onClick={props.substractWeek}>
+                onClick={props.subtractWeek}>
                 <FaArrowAltCircleLeft/>
             </button>
             <button
@@ -29,7 +29,7 @@ function WeeklyNavigation(props) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
-            substractWeek,
+            subtractWeek,
             resetWeek,
             addWeek
         }, dispatch)

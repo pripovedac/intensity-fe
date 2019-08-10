@@ -6,16 +6,18 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case actions.WEEK_SUBSTRACT: {
-            return --state
+        case actions.WEEK_SUBTRACT: {
+            const decrement = state.week - 1
+            return {...state, week: decrement}
         }
 
         case actions.WEEK_ADD: {
-            return ++state
+            const increment = state.week + 1
+            return {...state, week: increment}
         }
 
         case actions.WEEK_RESET: {
-            return 0
+            return {...state, week: 0}
         }
 
         default: {

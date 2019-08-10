@@ -1,10 +1,10 @@
-export const WEEK_SUBSTRACT = 'WEEK_SUBSTRACT'
+export const WEEK_SUBTRACT = 'WEEK_SUBTRACT'
 export const WEEK_ADD = 'WEEK_ADD'
 export const WEEK_RESET = 'WEEK_RESET'
 
-export function substractWeek(user) {
+export function subtractWeek(user) {
     return {
-        type: WEEK_SUBSTRACT
+        type: WEEK_SUBTRACT
     }
 }
 

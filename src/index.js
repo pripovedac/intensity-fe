@@ -2,10 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore, applyMiddleware} from 'redux'
 import {PersistGate} from 'redux-persist/integration/react'
-import {persistStore, persistReducer} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+import {persistStore} from 'redux-persist'
 import {routerMiddleware} from 'react-router-redux'
-import rootReducer from './store/reducers/index.reducer'
+import persistedReducer from './store/reducers/index.reducer'
 import {Provider} from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './store/sagas/index.saga'
@@ -17,13 +16,6 @@ import * as serviceWorker from './serviceWorker'
 import './index.css';
 
 const history = createBrowserHistory()
-
-const persistConfig = {
-    key: 'root',
-    storage
-}
-
-const persistedReducer = persistReducer(persistConfig, rootReducer(history))
 
 const sagaMiddleware = createSagaMiddleware()
 

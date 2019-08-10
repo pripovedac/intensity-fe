@@ -15,6 +15,11 @@ export function* loginSaga(action) {
     }
 }
 
+export function* logoutSaga(action) {
+    yield put(actions.accomplishLogout())
+    yield put(push('/login'))
+}
+
 export function* registerSaga(action) {
     const response = yield call(register, action.payload)
     if (response.ok) {
@@ -30,6 +35,11 @@ export function* watchLoginSaga() {
     yield takeLatest(actions.USER_LOGIN, loginSaga)
 }
 
+export function* watchLogoutSaga() {
+    yield takeLatest(actions.USER_LOGOUT, logoutSaga)
+}
+
 export function* watchRegisterSaga() {
     yield takeLatest(actions.USER_REGISTER, registerSaga)
 }
+
