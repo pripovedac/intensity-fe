@@ -1,9 +1,11 @@
 @import '../../styles/colors';
 
 .wod-page {
-
+  .wod-container {
+    display: flex;
+  }
+  
   .training-form {
     width: 40%;
   }
-
 }
