@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import '../../styles/public-styles/PublicStyles.scss'
 import Card from '../../ui/Card/Card'
-import LabeledInput from '../../ui/LabeledInput/LabeledInput'
+import LabeledInput from '../../ui/Input/LabeledInput'
 import PublicButton from '../../ui/Button/PublicButton'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
