@@ -16,18 +16,19 @@
     margin-bottom: 0.5em;
     font-size: 1.2em;
   }
-}
 
-input {
-  background: transparent;
-  width: 100%;
-  border: none;
-  border-bottom: 2px solid $browngreen;
-  outline: none;
-  font-family: inherit;
-  font-size: 1.1em;
-}
+  input {
+    background: transparent;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid $browngreen;
+    outline: none;
+    font-family: inherit;
+    font-size: 1.1em;
+  }
 
-input:focus {
-  border-bottom: 2px solid $lightocher;
+  input:focus {
+    border-bottom: 2px solid $lightocher;
+  }
+
 }
