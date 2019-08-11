@@ -1,5 +1,5 @@
 import React from 'react'
-import LinkButton from '../Button/LinkButton'
+import LinkButton from '../Button/LinkButton/LinkButton'
 import {logoutUser} from '../../../store/actions/auth.action'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'

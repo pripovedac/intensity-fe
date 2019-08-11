@@ -1,21 +1,15 @@
-@import '../../styles/colors';
+@import '../../../styles/colors';
 
 .labeled-input {
   display: flex;
-  //margin: 0 auto;
   flex-direction: column;
   justify-content: flex-start;
-  //width: 70%;
   width: 100%;
-  margin-bottom: 1em;
+  margin-bottom: 1.2em;
   border: none;
   font-family: inherit;
   box-sizing: border-box;
-
-  label {
-    margin-bottom: 0.5em;
-    font-size: 1.2em;
-  }
+  font-size: 1.2em;
 
   input {
     background: transparent;
@@ -30,5 +24,4 @@
   input:focus {
     border-bottom: 2px solid $lightocher;
   }
-
 }

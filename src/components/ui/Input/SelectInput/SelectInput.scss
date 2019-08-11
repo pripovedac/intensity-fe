@@ -1,0 +1,27 @@
+@import '../../../styles/colors';
+
+.select-input {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 1.2em;
+
+  select {
+    margin-left: 0.5em;
+    width: 60%;
+    border: none;
+    border-bottom: 2px solid #000;
+    text-align: center;
+    outline: none;
+    font-family: inherit;
+  }
+
+  option {
+    margin-left: 0.5em;
+    text-transform: uppercase;
+    width: 50%;
+    font-family: inherit;
+  }
+}
+
+

@@ -1,0 +1,61 @@
+@import '../../styles/colors';
+
+.training-form {
+  padding-top: 1em;
+
+  h1 {
+    text-align: center;
+  }
+
+  .labeled-input {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+
+    input {
+      max-width: 70%;
+      text-align: center;
+    }
+  }
+
+  .radio-container {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > p {
+      font-size: 1.2em;
+      text-transform: uppercase;
+    }
+  }
+
+  .select-input {
+    width: 80%;
+  }
+
+  button {
+    margin-top: 0.5em;
+    border-radius: 50%;
+    background-color: #fff;
+    font-size: 2em;
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+
+  .checkmark {
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 50%;
+    background-color: $lightocher;
+    color: #fff;
+  }
+
+  .checkmark:hover {
+    background-color: #000;
+    color: $lightocher;
+  }
+}
+
+

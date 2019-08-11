@@ -4,13 +4,13 @@ import './LabeledInput.scss'
 function LabeledInput(props) {
 
     function handleInput(event) {
-        const text = event.target.value
-        props.handleInput(text)
+        const value = event.target.value
+        props.handleInput(value)
     }
 
     return (
-        <div className="labeled-input">
-            <label>
+
+            <label className="labeled-input">
                 {props.label}
                 <input
                     value={props.value}
@@ -18,7 +18,7 @@ function LabeledInput(props) {
                     onChange={handleInput}
                 />
             </label>
-        </div>
+
     )
 }
 
