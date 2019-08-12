@@ -6,10 +6,11 @@ import {IoIosCheckmarkCircleOutline} from 'react-icons/io'
 import '../../styles/form-styles/FormStyles.scss'
 
 function TrainingForm() {
-
-    const customOptions = ['custom', 'emom', 'amrap',
-        'rft', 'chipper', 'ladder', 'tabata']
-    const [options, setOptions] = useState(customOptions)
+    const trainingOptions = ['custom', 'emom', 'amrap',
+            'rft', 'chipper', 'ladder', 'tabata']
+    const [trainingTypes, setTrainingTypes] = useState(trainingOptions)
+    const trainerOptions = ['Dusan Arandjelovic', 'Milan Spasic', 'Nemanja Sutanovac']
+    const [trainers, setTrainers] = useState(trainerOptions)
 
     function handleInput() {
         // todo
@@ -56,7 +57,11 @@ function TrainingForm() {
 
                 <SelectInput className="custom-input"
                              label="Training type"
-                             options={options}/>
+                             options={trainingTypes}/>
+
+                <SelectInput className="custom-input"
+                             label="Trainer"
+                             options={trainers}/>
 
                 <button type="submit">
                     <IoIosCheckmarkCircleOutline
