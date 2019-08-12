@@ -16,7 +16,6 @@ function ExerciseForm(props) {
         event.preventDefault()
 
         if (checkForm()) {
-            console.log('hello')
             const exercise = createExercise()
             props.addExercise(exercise)
             resetFields()

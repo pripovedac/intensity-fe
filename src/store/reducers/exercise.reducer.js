@@ -8,6 +8,11 @@ export default function (state = initialState, action) {
             return [...state, action.payload]
         }
 
+        case actions.EXERCISE_REMOVE: {
+            console.log('izbrisa ga')
+            return state.filter(exercise => exercise.name != action.payload)
+        }
+
         default: {
             return state
         }

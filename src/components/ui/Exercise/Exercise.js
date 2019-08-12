@@ -1,5 +1,8 @@
 import React from 'react'
-import {IoIosFlash} from 'react-icons/io'
+import {IoMdRemoveCircleOutline} from 'react-icons/io'
+import {bindActionCreators} from "redux";
+import {removeExercise} from "../../../store/actions/exercise.action";
+import {connect} from "react-redux";
 import './Exercise.scss'
 
 function Exercise(props) {
@@ -16,11 +19,26 @@ function Exercise(props) {
             return `${exercise.duration} mins of:\n ${exercise.name}`
     }
 
+    function handleClick() {
+        props.removeExercise(props.exercise.name)
+    }
+
     return (
         <li className="exercise">
             {displayName()}
+            <button onClick={handleClick}>
+                <IoMdRemoveCircleOutline
+                    className="remove-circle"/>
+            </button>
         </li>
     )
 }
 
-export default Exercise
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({removeExercise}, dispatch)
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(Exercise)

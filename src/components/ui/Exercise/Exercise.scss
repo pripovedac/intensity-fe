@@ -1,1 +1,30 @@
+@import '../../styles/colors';
 
+.exercise {
+  border: 1px solid deepskyblue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    border-radius: 50%;
+    background-color: #fff;
+    font-size: 2em;
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+
+  .remove-circle {
+    height: 0.6em;
+    width: 0.6em;
+    border-radius: 50%;
+    background-color: $lightocher;
+    color: #fff;
+  }
+
+  .remove-circle:hover {
+    background-color: #000;
+    color: $lightocher;
+  }
+}
