@@ -105,18 +105,12 @@ function Calendar(props) {
 
 }
 
-// export default Calendar
-
 function mapStateToProps({global}) {
     return {
         week: global
     }
 }
 
-// function mapDispatchToProps(dispatch) {
-//     return bindActionCreators({loginUser}, dispatch)
-// }
-//
 export default connect(
     mapStateToProps
 )(Calendar)

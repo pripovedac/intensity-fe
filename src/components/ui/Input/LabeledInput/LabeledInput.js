@@ -9,16 +9,15 @@ function LabeledInput(props) {
     }
 
     return (
-
-            <label className="labeled-input">
-                {props.label}
-                <input
-                    value={props.value}
-                    type={props.type}
-                    onChange={handleInput}
-                />
-            </label>
-
+        <label className="labeled-input">
+            {props.label}
+            <input
+                value={props.value}
+                type={props.type}
+                placeholder={props.placeholder}
+                onChange={handleInput}
+            />
+        </label>
     )
 }
 

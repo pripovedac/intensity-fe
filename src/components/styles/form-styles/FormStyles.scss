@@ -7,6 +7,10 @@
     text-align: center;
   }
 
+  form {
+    padding: 0;
+  }
+
   .labeled-input {
     flex-direction: row;
     justify-content: space-between;
@@ -42,6 +46,11 @@
     cursor: pointer;
     border: none;
     outline: none;
+  }
+
+  .exercise-button {
+    margin-top: 0em;
+    margin-bottom: 0.2em;
   }
 
   .checkmark {

@@ -1,40 +1,87 @@
-import React from 'react'
+import React, {useState} from 'react'
 import LabeledInput from '../Input/LabeledInput/LabeledInput'
 import {IoIosCheckmarkCircleOutline} from 'react-icons/io'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import {addExercise} from '../../../store/actions/exercise.action'
 import '../../styles/form-styles/FormStyles.scss'
 
-function ExerciseForm() {
+function ExerciseForm(props) {
+    const [name, setName] = useState('')
+    const [reps, setReps] = useState('')
+    const [weight, setWeight] = useState('')
+    const [duration, setDuration] = useState('')
 
-    function handleInput() {
-        // todo
+    function handleSubmit(event) {
+        event.preventDefault()
+
+        if (checkForm()) {
+            console.log('hello')
+            const exercise = createExercise()
+            props.addExercise(exercise)
+            resetFields()
+
+        } else {
+            alert('Exercise is not intense if it does not have a name.')
+        }
+    }
+
+    function checkForm() {
+        return name.trim().length
+    }
+
+    function createExercise() {
+        return {
+            name,
+            reps,
+            weight,
+            duration
+        }
+    }
+
+    function resetFields() {
+        setName('')
+        setReps('1')
+        setWeight('0')
+        setDuration('0')
+        console.log('reset')
     }
 
     return (
         <div className="training-form">
             <h1>Intense exercise</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <LabeledInput
                     label="Name"
                     type="text"
-                    handleInput={handleInput}
+                    value={name}
+                    placeholder="Simple name"
+                    handleInput={setName}
                 />
 
                 <LabeledInput
                     type="number"
                     label="Reps"
-                    handleInput={handleInput}/>
+                    value={reps}
+                    placeholder="1"
+                    handleInput={setReps}/>
 
                 <LabeledInput
                     type="number"
                     label="Weight"
-                    handleInput={handleInput}/>
+                    value={weight}
+                    placeholder="0"
+                    handleInput={setWeight}/>
 
                 <LabeledInput
                     type="number"
                     label="Duration"
-                    handleInput={handleInput}/>
+                    value={duration}
+                    placeholder="0"
+                    handleInput={setDuration}/>
 
-                <button type="submit">
+                <button className="exercise-button"
+                        type="submit">
                     <IoIosCheckmarkCircleOutline
                         className="checkmark"/>
                 </button>
@@ -43,4 +90,12 @@ function ExerciseForm() {
     )
 }
 
-export default ExerciseForm
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({addExercise}, dispatch)
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(ExerciseForm)

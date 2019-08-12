@@ -8,4 +8,14 @@
   .training-form {
     width: 40%;
   }
+
+  .exercise-container {
+    border: 2px solid deepskyblue;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .exercise-container > * {
+    width: 100%;
+  }
 }
