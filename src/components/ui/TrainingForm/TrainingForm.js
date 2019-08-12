@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import LabeledInput from '../Input/LabeledInput/LabeledInput'
 import RadioButton from '../Input/RadioButton/RadioButton'
 import SelectInput from '../Input/SelectInput/SelectInput'
@@ -6,6 +6,10 @@ import {IoIosCheckmarkCircleOutline} from 'react-icons/io'
 import '../../styles/form-styles/FormStyles.scss'
 
 function TrainingForm() {
+
+    const customOptions = ['custom', 'emom', 'amrap',
+        'rft', 'chipper', 'ladder', 'tabata']
+    const [options, setOptions] = useState(customOptions)
 
     function handleInput() {
         // todo
@@ -51,7 +55,8 @@ function TrainingForm() {
                     handleInput={handleInput}/>
 
                 <SelectInput className="custom-input"
-                             label="Training type"/>
+                             label="Training type"
+                             options={options}/>
 
                 <button type="submit">
                     <IoIosCheckmarkCircleOutline

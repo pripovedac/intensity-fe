@@ -2,24 +2,24 @@ import React from 'react'
 import './SelectInput.scss'
 
 function SelectInput(props) {
-
-    function handleInput(event) {
-        // const text = event.target.value
-        // props.handleInput(text)
+    function displayOptions() {
+        const options = props.options
+        return options.map(option => {
+            return (
+                <option value={option}
+                        key={option}>
+                    {option}
+                </option>
+            )
+        })
     }
 
     return (
         <label className="select-input">
             {props.label}
-           <select>
-               <option value="custom">custom</option>
-               <option value="amrap">amrap</option>
-               <option value="emom">emom</option>
-               <option value="rft">rft</option>
-               <option value="chipper">chipper</option>
-               <option value="ladder">ladder</option>
-               <option value="tabata">tabata</option>
-           </select>
+            <select>
+                {displayOptions()}
+            </select>
         </label>
     )
 }
