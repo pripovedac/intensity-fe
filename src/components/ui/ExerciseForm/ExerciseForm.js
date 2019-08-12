@@ -40,10 +40,9 @@ function ExerciseForm(props) {
 
     function resetFields() {
         setName('')
-        setReps('1')
-        setWeight('0')
-        setDuration('0')
-        console.log('reset')
+        setReps('')
+        setWeight('')
+        setDuration('')
     }
 
     return (
