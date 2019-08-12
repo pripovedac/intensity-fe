@@ -1,8 +1,6 @@
 import * as actions from '../actions/auth.action'
 
-const initialState = {
-    user: {},
-}
+const initialState = {}
 
 export default function (state = initialState, action) {
     switch (action.type) {

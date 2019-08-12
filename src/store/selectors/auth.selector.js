@@ -1,7 +1,7 @@
 export function selectUser(state) {
-    return state.auth
+    return state.user
 }
 
 export function selectUsername(state) {
-    return `${state.auth.name} ${state.auth.lastname}`
+    return `${state.user.name} ${state.user.lastname}`
 }
