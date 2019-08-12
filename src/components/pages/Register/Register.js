@@ -33,10 +33,10 @@ function RegisterPage(props) {
 
     function checkForm() {
         return (
-            name.length &&
-            lastname.length &&
-            email.length &&
-            password.length
+            name.trim().length &&
+            lastname.trim().length &&
+            email.trim().length &&
+            password.trim().length
         )
     }
 

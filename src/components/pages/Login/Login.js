@@ -25,7 +25,10 @@ function LoginPage(props) {
     }
 
     function checkForm() {
-        return (email.length && password.length)
+        return (
+            email.trim().length &&
+            password.trim().length
+        )
     }
 
     return (
