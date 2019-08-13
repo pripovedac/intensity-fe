@@ -5,3 +5,7 @@ export function selectUser(state) {
 export function selectUsername(state) {
     return `${state.user.name} ${state.user.lastname}`
 }
+
+export function selectName(state) {
+    return state.user.name
+}

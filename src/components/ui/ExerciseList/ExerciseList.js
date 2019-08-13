@@ -3,6 +3,7 @@ import Exercise from '../Exercise/Exercise'
 import {connect} from 'react-redux'
 import {selectExercises} from '../../../store/selectors/exercise.selector'
 import './ExerciseList.scss'
+import {selectName} from '../../../store/selectors/auth.selector'
 
 function ExerciseList(props) {
     function displayExercises() {
@@ -13,7 +14,7 @@ function ExerciseList(props) {
                     key={e.name}/>
             })
         } else {
-            return []
+            return <p>{`${props.name}, you haven't created any exercises.`}</p>
         }
     }
 
@@ -29,7 +30,8 @@ function ExerciseList(props) {
 
 function mapStateToProps(state) {
     return {
-        exercises: selectExercises(state)
+        exercises: selectExercises(state),
+        name: selectName(state)
     }
 }
 
