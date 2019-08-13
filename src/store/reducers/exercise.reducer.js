@@ -9,7 +9,6 @@ export default function (state = initialState, action) {
         }
 
         case actions.EXERCISE_REMOVE: {
-            console.log('izbrisa ga')
             return state.filter(exercise => exercise.name != action.payload)
         }
 

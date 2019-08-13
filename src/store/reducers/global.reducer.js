@@ -1,7 +1,8 @@
 import * as actions from '../actions/global.action'
 
 const initialState = {
-    week: 0
+    week: 0,
+    wodMode: 'regular'
 }
 
 export default function (state = initialState, action) {
@@ -18,6 +19,18 @@ export default function (state = initialState, action) {
 
         case actions.WEEK_RESET: {
             return {...state, week: 0}
+        }
+
+        case actions.WOD_MODE_SET: {
+            return {...state, wodMode: 'wod'}
+        }
+
+        case actions.EXERCISE_MODE_SET: {
+            return {...state, wodMode: 'exercise'}
+        }
+
+        case actions.REGULAR_MODE_SET: {
+            return {...state, wodMode: 'regular'}
         }
 
         default: {
