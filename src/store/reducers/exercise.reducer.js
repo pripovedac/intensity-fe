@@ -9,7 +9,7 @@ export default function (state = initialState, action) {
         }
 
         case actions.EXERCISE_REMOVE: {
-            return state.filter(exercise => exercise.name != action.payload)
+            return state.filter(exercise => exercise.name !== action.payload)
         }
 
         default: {

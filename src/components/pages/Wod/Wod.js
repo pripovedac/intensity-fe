@@ -11,9 +11,9 @@ import {selectMode} from "../../../store/selectors/global.selector";
 
 function WodPage(props) {
     function displayContent() {
-        if (props.mode == 'wod') {
+        if (props.mode === 'wod') {
             return <TrainingForm/>
-        } else if (props.mode == 'exercise') {
+        } else if (props.mode === 'exercise') {
             return (
                 <div className="exercise-container">
                     <ExerciseForm/>

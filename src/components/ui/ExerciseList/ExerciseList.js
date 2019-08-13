@@ -14,7 +14,8 @@ function ExerciseList(props) {
                     key={e.name}/>
             })
         } else {
-            return <p>{`${props.name}, you haven't created any exercises.`}</p>
+            return <p>{`${props.name}, you haven't added any exercises yet.
+            Fill in the intense form for today's wod.`}</p>
         }
     }
 

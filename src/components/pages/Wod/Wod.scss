@@ -6,13 +6,15 @@
     justify-content: flex-start;
 
     .hulk-container {
+      max-width: 20em;
+      height: 20em;
       display: flex;
       margin-top: 6em;
     }
 
     img {
       display: block;
-      height: 20em;
+      max-width: 100%;
       background: white;
     }
   }

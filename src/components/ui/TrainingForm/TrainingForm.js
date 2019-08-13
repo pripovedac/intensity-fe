@@ -42,10 +42,12 @@ function TrainingForm(props) {
 
     function createWod() {
         return {
+            globalType,
             name,
             date,
             duration,
             rounds,
+            trainer,
             trainingType,
         }
     }
