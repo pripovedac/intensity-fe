@@ -2,69 +2,109 @@ import React, {useState} from 'react'
 import LabeledInput from '../Input/LabeledInput/LabeledInput'
 import RadioButton from '../Input/RadioButton/RadioButton'
 import SelectInput from '../Input/SelectInput/SelectInput'
-import {IoIosCheckmarkCircleOutline} from 'react-icons/io'
+import {FaCheckCircle} from 'react-icons/fa'
 import '../../styles/form-styles/FormStyles.scss'
+import {bindActionCreators} from 'redux'
+import {addWod} from '../../../store/actions/wod.action'
+import {connect} from 'react-redux'
+import {setExerciseMode} from '../../../store/actions/global.action'
 
-function TrainingForm() {
+function TrainingForm(props) {
+    const [globalType, setGlobaltype] = useState('crossfit')
+    const [name, setName] = useState('')
+    const [date, setDate] = useState('')
+    const [duration, setDuration] = useState('')
+    const [rounds, setRounds] = useState('')
+
+    // todo: this should be taken from DB
     const trainingOptions = ['custom', 'emom', 'amrap',
-            'rft', 'chipper', 'ladder', 'tabata']
-    const [trainingTypes, setTrainingTypes] = useState(trainingOptions)
-    const trainerOptions = ['Dusan Arandjelovic', 'Milan Spasic', 'Nemanja Sutanovac']
-    const [trainers, setTrainers] = useState(trainerOptions)
+        'rft', 'chipper', 'ladder', 'tabata']
+    const [trainingType, setTrainingType] = useState('')
 
-    function handleInput() {
-        // todo
+    // todo: this should be taken from DB
+    const trainerOptions = ['Dusan Arandjelovic', 'Milan Spasic', 'Nemanja Sutanovac']
+    const [trainer, setTrainer] = useState('')
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        if (checkForm()) {
+            const wod = createWod()
+            props.addWod(wod)
+            props.setExerciseMode()
+        } else {
+            alert('WOD is not intense if it does not have a name.')
+        }
+    }
+
+    function checkForm() {
+        return name.trim().length
+    }
+
+    function createWod() {
+        return {
+            name,
+            date,
+            duration,
+            rounds,
+            trainingType,
+        }
     }
 
     return (
         <div className="training-form">
             <h1>Workout of the Day</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="radio-container">
                     <p>WOD</p>
                     <RadioButton
                         name="training-type"
                         value="type"
                         label="Crossfit"
+                        checked
+                        handleInput={setGlobaltype}
                     />
                     <RadioButton
                         name="training-type"
                         value="type"
                         label="Lightfit"
+                        checked={false}
+                        handleInput={setGlobaltype}
                     />
                 </div>
 
                 <LabeledInput
                     label="Name"
                     type="text"
-                    handleInput={handleInput}
+                    handleInput={setName}
                 />
 
                 <LabeledInput
                     type="date"
                     label="Date"
-                    handleInput={handleInput}/>
+                    handleInput={setDate}/>
 
                 <LabeledInput
                     type="number"
                     label="Duration"
-                    handleInput={handleInput}/>
+                    handleInput={setDuration}/>
 
                 <LabeledInput
                     type="number"
                     label="Rounds"
-                    handleInput={handleInput}/>
+                    handleInput={setRounds}/>
 
                 <SelectInput className="custom-input"
                              label="Training type"
-                             options={trainingTypes}/>
+                             options={trainingOptions}
+                             handleInput={setTrainingType}/>
 
                 <SelectInput className="custom-input"
                              label="Trainer"
-                             options={trainers}/>
+                             options={trainerOptions}
+                             handleInput={setTrainer}/>
 
                 <button type="submit">
-                    <IoIosCheckmarkCircleOutline
+                    <FaCheckCircle
                         className="checkmark"/>
                 </button>
             </form>
@@ -72,4 +112,15 @@ function TrainingForm() {
     )
 }
 
-export default TrainingForm
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(
+        {
+            addWod,
+            setExerciseMode
+        }, dispatch)
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(TrainingForm)

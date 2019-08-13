@@ -14,10 +14,15 @@ function SelectInput(props) {
         })
     }
 
+    function handleChange(event) {
+        const value = event.target.value
+        props.handleInput(value)
+    }
+
     return (
         <label className="select-input">
             {props.label}
-            <select>
+            <select onChange={handleChange}>
                 {displayOptions()}
             </select>
         </label>
