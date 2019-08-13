@@ -1,0 +1,13 @@
+@import '../../styles/colors';
+
+.button-container {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  > button {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

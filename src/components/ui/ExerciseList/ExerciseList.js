@@ -6,7 +6,6 @@ import './ExerciseList.scss'
 
 function ExerciseList(props) {
     function displayExercises() {
-        console.log('props.exercises: ', props.exercises)
         if (props.exercises.length) {
             return props.exercises.map(e => {
                 return <Exercise

@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
 import LabeledInput from '../Input/LabeledInput/LabeledInput'
-import {IoIosCheckmarkCircleOutline} from 'react-icons/io'
+import {FaArrowAltCircleLeft, FaCheckCircle} from 'react-icons/fa'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {addExercise} from '../../../store/actions/exercise.action'
+import {setWodMode} from '../../../store/actions/global.action'
 import '../../styles/form-styles/FormStyles.scss'
+import './ExerciseForm.scss'
 
 function ExerciseForm(props) {
     const [name, setName] = useState('')
@@ -78,11 +80,18 @@ function ExerciseForm(props) {
                     placeholder="0"
                     handleInput={setDuration}/>
 
-                <button className="exercise-button"
-                        type="submit">
-                    <IoIosCheckmarkCircleOutline
-                        className="checkmark"/>
-                </button>
+                <div className="button-container">
+                    <button onClick={props.setWodMode}>
+                        <FaArrowAltCircleLeft className="checkmark"/>
+                    </button>
+
+                    <button className="exercise-button"
+                            type="submit">
+                        <FaCheckCircle
+                            className="checkmark"/>
+                    </button>
+                </div>
+
             </form>
         </div>
     )
@@ -90,7 +99,11 @@ function ExerciseForm(props) {
 
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({addExercise}, dispatch)
+    return bindActionCreators(
+        {
+            addExercise,
+            setWodMode
+        }, dispatch)
 }
 
 export default connect(
