@@ -4,20 +4,49 @@ import Navigation from '../../ui/Navigation/Navigation.js'
 import ExerciseForm from '../../ui/ExerciseForm/ExerciseForm'
 import ExerciseList from '../../ui/ExerciseList/ExerciseList'
 import './Wod.scss'
+import {bindActionCreators} from 'redux'
+import {setWodMode} from '../../../store/actions/global.action'
+import {connect} from 'react-redux'
+import {selectMode} from "../../../store/selectors/global.selector";
 
-function WodPage() {
+function WodPage(props) {
+    function displayContent() {
+        if (props.mode == 'wod') {
+            return <TrainingForm/>
+        } else if (props.mode == 'exercise') {
+            return (
+                <div className="exercise-container">
+                    <ExerciseForm/>
+                    <ExerciseList/>
+                </div>
+            )
+        }
+    }
+
     return (
         <div className="wod-page">
             <Navigation/>
             <div className="wod-container">
-                <TrainingForm/>
-                <div className="exercise-container">
-                <ExerciseForm/>
-                <ExerciseList/>
+                <div className="hulk-container">
+                    <img src="./images/hulk.jpg" alt="Hulk" width={300}/>
                 </div>
+                    {displayContent()}
             </div>
         </div>
     )
 }
 
-export default WodPage
+function mapStateToProps(state) {
+    return {
+        mode: selectMode(state)
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({setWodMode}, dispatch)
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(WodPage)

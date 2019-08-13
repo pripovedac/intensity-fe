@@ -3,19 +3,43 @@
 .wod-page {
   .wod-container {
     display: flex;
+    justify-content: flex-start;
+
+    .hulk-container {
+      display: flex;
+      margin-top: 6em;
+    }
+
+    img {
+      display: block;
+      height: 20em;
+      background: white;
+    }
   }
   
+  .training-form, .exercise-container {
+    margin-top: 3vh;
+
+    h1 {
+      margin-bottom: 1em;
+    }
+  }
+
   .training-form {
-    width: 40%;
+    width: 60%;
   }
 
   .exercise-container {
-    border: 2px solid deepskyblue;
+    margin-top: 10vh;
+    width: 70%;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    > .exercise-list {
+      margin-top: 1.2em;
+      width: 40%;
+    }
   }
 
-  .exercise-container > * {
-    width: 100%;
-  }
 }
