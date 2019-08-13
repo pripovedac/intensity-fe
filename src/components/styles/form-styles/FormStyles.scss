@@ -1,7 +1,7 @@
 @import '../../styles/colors';
 
 .training-form {
-  padding-top: 1em;
+  margin-top: 1em;
 
   h1 {
     text-align: center;
@@ -40,7 +40,8 @@
   }
 
   button {
-    margin-top: 0.5em;
+    display: flex;
+    padding: 0;
     border-radius: 50%;
     background-color: #fff;
     font-size: 2em;
@@ -49,17 +50,11 @@
     outline: none;
   }
 
-  .exercise-button {
-    margin-top: 0em;
-    margin-bottom: 0.2em;
-  }
-
   .checkmark {
     height: 1.2em;
     width: 1.2em;
     border-radius: 50%;
-    background-color: $lightocher;
-    color: #fff;
+    background-color: $grassgreen;
   }
 
   .checkmark:hover {
