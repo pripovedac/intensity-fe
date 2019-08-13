@@ -75,6 +75,7 @@ function TrainingForm(props) {
                 <LabeledInput
                     label="Name"
                     type="text"
+                    placeholder="Dangerous name"
                     handleInput={setName}
                 />
 
@@ -86,11 +87,13 @@ function TrainingForm(props) {
                 <LabeledInput
                     type="number"
                     label="Duration"
+                    placeholder="0"
                     handleInput={setDuration}/>
 
                 <LabeledInput
                     type="number"
                     label="Rounds"
+                    placeholder="0"
                     handleInput={setRounds}/>
 
                 <SelectInput className="custom-input"
