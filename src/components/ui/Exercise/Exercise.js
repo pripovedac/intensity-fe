@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import './Exercise.scss'
 
 function Exercise(props) {
-    function displayName() {
+    function displayExerciseData() {
         const exercise = props.exercise
         //todo: see if this can be do better
         if (!exercise.duration && exercise.weight)
@@ -21,20 +21,29 @@ function Exercise(props) {
             return exercise.name
     }
 
+    function displayRemoveButton() {
+        if (props.mode != 'regular') {
+            return(
+                <button onClick={handleClick}>
+                    <IoMdRemoveCircleOutline
+                        className="remove-circle"/>
+                </button>
+            )
+        }
+    }
+
     function handleClick() {
         props.removeExercise(props.exercise.name)
     }
 
     return (
         <li className="exercise">
-            {displayName()}
-            <button onClick={handleClick}>
-                <IoMdRemoveCircleOutline
-                    className="remove-circle"/>
-            </button>
+            {displayExerciseData()}
+            {displayRemoveButton()}
         </li>
     )
 }
+
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({removeExercise}, dispatch)
