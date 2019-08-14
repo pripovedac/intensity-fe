@@ -10,7 +10,7 @@ import './ExerciseForm.scss'
 
 function ExerciseForm(props) {
     const [name, setName] = useState('')
-    const [reps, setReps] = useState('')
+    const [repsNumber, setReps] = useState('')
     const [weight, setWeight] = useState('')
     const [duration, setDuration] = useState('')
 
@@ -34,7 +34,7 @@ function ExerciseForm(props) {
     function createExercise() {
         return {
             name,
-            reps,
+            repsNumber,
             weight,
             duration
         }
@@ -62,7 +62,7 @@ function ExerciseForm(props) {
                 <LabeledInput
                     type="number"
                     label="Reps"
-                    value={reps}
+                    value={repsNumber}
                     placeholder="1"
                     handleInput={setReps}/>
 
