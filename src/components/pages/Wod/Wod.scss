@@ -18,7 +18,7 @@
       background: white;
     }
   }
-  
+
   .training-form, .exercise-container {
     margin-top: 3vh;
 
@@ -31,9 +31,38 @@
     width: 60%;
   }
 
+  .exercise-page {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+
+    > button {
+      display: block;
+      margin: 0 auto;
+      margin-top: 2.0em;
+      width: 30%;
+      padding: 0.2em;
+      background-color: #000;
+      color: $grassgreen;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    > button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+
   .exercise-container {
     margin-top: 10vh;
-    width: 70%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 
