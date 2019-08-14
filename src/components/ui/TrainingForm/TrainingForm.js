@@ -14,16 +14,16 @@ function TrainingForm(props) {
     const [name, setName] = useState('')
     const [date, setDate] = useState('')
     const [duration, setDuration] = useState('')
-    const [rounds, setRounds] = useState('')
+    const [roundNumber, setRounds] = useState('')
 
     // todo: this should be taken from DB
     const trainingOptions = ['custom', 'emom', 'amrap',
         'rft', 'chipper', 'ladder', 'tabata']
-    const [trainingType, setTrainingType] = useState('')
+    const [trainingType, setTrainingType] = useState(trainingOptions[0])
 
     // todo: this should be taken from DB
     const trainerOptions = ['Dusan Arandjelovic', 'Milan Spasic', 'Nemanja Sutanovac']
-    const [trainer, setTrainer] = useState('')
+    const [trainer, setTrainer] = useState(trainerOptions[0])
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -46,7 +46,7 @@ function TrainingForm(props) {
             name,
             date,
             duration,
-            rounds,
+            roundNumber,
             trainer,
             trainingType,
         }
