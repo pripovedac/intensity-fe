@@ -9,3 +9,7 @@ export function selectUsername(state) {
 export function selectName(state) {
     return state.user.name
 }
+
+export function selectUserRole(state) {
+    return state.user.role
+}

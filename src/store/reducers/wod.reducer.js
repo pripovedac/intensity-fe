@@ -8,6 +8,10 @@ export default function (state = initialState, action) {
             return action.payload
         }
 
+        case actions.WOD_SUBMIT_ABORT: {
+            return state
+        }
+
         default: {
             return state
         }
