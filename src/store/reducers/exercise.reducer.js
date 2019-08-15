@@ -15,7 +15,6 @@ export default function (state = initialState, action) {
         }
 
         case actions.NEW_EXERCISE_REMOVE: {
-            console.log('remove')
             const newExercises = state.new.filter(exercise => exercise.name !== action.payload)
             return {
                 ...state,
