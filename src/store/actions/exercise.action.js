@@ -1,16 +1,16 @@
-export const EXERCISE_ADD = 'EXERCISE_ADD'
-export const EXERCISE_REMOVE = 'EXERCISE_REMOVE'
+export const NEW_EXERCISE_ADD = 'NEW_EXERCISE_ADD'
+export const NEW_EXERCISE_REMOVE = 'NEW_EXERCISE_REMOVE'
 
-export function addExercise(exercise) {
+export function addNewExercise(exercise) {
     return {
-        type: EXERCISE_ADD,
+        type: NEW_EXERCISE_ADD,
         payload: exercise
     }
 }
 
-export function removeExercise(exerciseName) {
+export function removeNewExercise(exerciseName) {
     return {
-        type: EXERCISE_REMOVE,
+        type: NEW_EXERCISE_REMOVE,
         payload: exerciseName
     }
 }

@@ -10,7 +10,7 @@ import {setWodMode} from '../../../store/actions/global.action'
 import {submitWod} from '../../../store/actions/wod.action'
 import {connect} from 'react-redux'
 import {selectMode} from '../../../store/selectors/global.selector'
-import {selectWodWithExercises} from '../../../store/selectors/wod.selector'
+import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
 
 function WodPage(props) {
     function displayContent() {
@@ -57,7 +57,7 @@ function WodPage(props) {
 function mapStateToProps(state) {
     return {
         mode: selectMode(state),
-        wodWithExercises: selectWodWithExercises(state),
+        wodWithExercises: selectNewWodWithExercises(state),
     }
 }
 

@@ -3,7 +3,7 @@ import LabeledInput from '../Input/LabeledInput/LabeledInput'
 import {FaArrowAltCircleLeft, FaCheckCircle} from 'react-icons/fa'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {addExercise} from '../../../store/actions/exercise.action'
+import {addNewExercise} from '../../../store/actions/exercise.action'
 import {setWodMode} from '../../../store/actions/global.action'
 import '../../styles/form-styles/FormStyles.scss'
 import './ExerciseForm.scss'
@@ -20,7 +20,7 @@ function ExerciseForm(props) {
 
         if (checkForm()) {
             const exercise = createExercise()
-            props.addExercise(exercise)
+            props.addNewExercise(exercise)
             resetFields()
 
         } else {
@@ -105,7 +105,7 @@ function ExerciseForm(props) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
-            addExercise,
+            addNewExercise,
             setWodMode
         }, dispatch)
 }

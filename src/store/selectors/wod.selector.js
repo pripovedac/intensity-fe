@@ -1,6 +1,6 @@
-export function selectWodWithExercises(state) {
+export function selectNewWodWithExercises(state) {
     return {
         ...state.wod,
-        exercises: state.exercises
+        exercises: state.exercises.new
     }
 }

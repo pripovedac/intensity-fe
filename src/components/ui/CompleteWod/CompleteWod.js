@@ -1,7 +1,7 @@
 import React from 'react'
 import './CompleteWod.scss'
 import {selectMode} from "../../../store/selectors/global.selector";
-import {selectWodWithExercises} from "../../../store/selectors/wod.selector";
+import {selectNewWodWithExercises} from "../../../store/selectors/wod.selector";
 import {bindActionCreators} from "redux";
 import {setWodMode} from "../../../store/actions/global.action";
 import {submitWod} from "../../../store/actions/wod.action";
@@ -74,7 +74,7 @@ function CompleteWod(props) {
 function mapStateToProps(state) {
     return {
         mode: selectMode(state),
-        wod: selectWodWithExercises(state),
+        wod: selectNewWodWithExercises(state),
         user: selectUser(state)
     }
 }

@@ -1,3 +1,3 @@
-export function selectExercises(state) {
-    return state.exercises
+export function selectNewExercises(state) {
+    return state.exercises.new
 }
