@@ -1,10 +1,10 @@
 import React from 'react'
 import {FaArrowAltCircleLeft, FaArrowAltCircleRight} from 'react-icons/fa'
 import {IoIosRefresh} from 'react-icons/io'
-import './WeeklyNavigation.scss'
 import {bindActionCreators} from "redux";
 import {subtractWeek, addWeek, resetWeek} from '../../../store/actions/global.action'
 import {connect} from 'react-redux'
+import './WeeklyNavigation.scss'
 
 function WeeklyNavigation(props) {
     return (

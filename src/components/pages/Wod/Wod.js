@@ -4,16 +4,17 @@ import Navigation from '../../ui/Navigation/Navigation.js'
 import ExerciseForm from '../../ui/ExerciseForm/ExerciseForm'
 import ExerciseList from '../../ui/ExerciseList/ExerciseList'
 import CompleteWod from '../../ui/CompleteWod/CompleteWod'
-import './Wod.scss'
 import {bindActionCreators} from 'redux'
 import {setWodMode} from '../../../store/actions/global.action'
 import {submitWod} from '../../../store/actions/wod.action'
 import {connect} from 'react-redux'
 import {selectMode} from '../../../store/selectors/global.selector'
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
+import './Wod.scss'
 
 function WodPage(props) {
     function displayContent() {
+        // todo: Think about using MAP object.
         if (props.mode === 'regular') {
             return <CompleteWod />
         } else if (props.mode === 'wod') {

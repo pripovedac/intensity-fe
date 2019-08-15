@@ -48,8 +48,7 @@ function CompleteWod(props) {
 
     function displayExerciseList() {
         return (
-            <ExerciseList
-                exercises={props.wod.exercises}/>
+            <ExerciseList exercises={props.wod.exercises}/>
         )
     }
 

@@ -64,7 +64,6 @@ function Calendar(props) {
 
     function handleClick(e) {
         console.log('clicked: ', props)
-
     }
 
     function insertTableData(hour, trainingType) {
@@ -72,14 +71,13 @@ function Calendar(props) {
                 if (day !== 'Sun') {
                     return (
                         <td key={`${hour}-${day}`}
-                            onClick={handleClick}
-                        >
-                            <Link
-                                to={{
+                            onClick={handleClick}>
+                            <Link to={{
                                     pathname: '/wod',
                                     search: `?hour=${hour}&day=${day}&week=0`
-                                }}
-                            >{trainingType}</Link>
+                                }}>
+                                {trainingType}
+                            </Link>
                         </td>
                     )
                 } else

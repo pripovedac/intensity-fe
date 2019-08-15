@@ -2,7 +2,6 @@ import React from 'react'
 import './RadioButton.scss'
 
 function RadioButton(props) {
-
     function handleInput(event) {
         const value = event.target.value
         props.handleInput(value)

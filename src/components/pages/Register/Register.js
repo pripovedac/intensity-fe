@@ -1,15 +1,14 @@
 import React, {useState} from 'react'
-import '../../styles/public-styles/PublicStyles.scss'
 import Card from '../../ui/Card/Card'
 import LabeledInput from '../../ui/Input/LabeledInput/LabeledInput'
 import PublicButton from '../../ui/Button/PublicButton/PublicButton'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {registerUser} from '../../../store/actions/auth.action'
-import {bindActionCreators} from "redux";
+import {bindActionCreators} from 'redux'
+import '../../styles/public-styles/PublicStyles.scss'
 
 function RegisterPage(props) {
-
     const [name, setName] = useState('John')
     const [lastname, setLastname] = useState('Doe')
     const [email, setEmail] = useState('johndoe@gmail.com')
@@ -57,38 +56,37 @@ function RegisterPage(props) {
                         label="Name"
                         value={name}
                         type="text"
-                        handleInput={setName}
-                    />
+                        handleInput={setName}/>
 
                     <LabeledInput
                         label="Lastname"
                         value={lastname}
                         type="text"
-                        handleInput={setLastname}
-                    />
+                        handleInput={setLastname}/>
 
                     <LabeledInput
                         label="Email"
                         value={email}
                         type="email"
-                        handleInput={setEmail}
-                    />
+                        handleInput={setEmail}/>
 
                     <LabeledInput
                         label="Password"
                         value={password}
                         type="password"
-                        handleInput={setPassword}
-                    />
+                        handleInput={setPassword}/>
 
                     <PublicButton>
                         Submit
                     </PublicButton>
 
                 </form>
+
                 <p>
                     Already have an account? Just
-                    <Link to="/login/"> login</Link>.
+                    <Link to="/login/">
+                        login
+                    </Link>.
                 </p>
 
             </Card>

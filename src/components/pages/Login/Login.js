@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import '../../styles/public-styles/PublicStyles.scss'
 import Card from '../../ui/Card/Card'
 import LabeledInput from '../../ui/Input/LabeledInput/LabeledInput'
 import PublicButton from '../../ui/Button/PublicButton/PublicButton'
@@ -7,9 +6,9 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {loginUser} from '../../../store/actions/auth.action'
 import {bindActionCreators} from 'redux'
+import '../../styles/public-styles/PublicStyles.scss'
 
 function LoginPage(props) {
-
     const [email, setEmail] = useState('wile.e.coyote@acme.com')
     const [password, setPassword] = useState('wilespassword')
 
@@ -38,7 +37,9 @@ function LoginPage(props) {
                 <h1>Intensity Login</h1>
 
                 <div className="funny-text">
-                    <p>Feeling strong today?</p>
+                    <p>
+                        Feeling strong today?
+                    </p>
                 </div>
 
                 <form onSubmit={handleSubmit}>
@@ -47,19 +48,16 @@ function LoginPage(props) {
                         label="Email"
                         value={email}
                         type="email"
-                        handleInput={setEmail}
-                    />
+                        handleInput={setEmail}/>
 
                     <LabeledInput
                         label="Password"
                         value={password}
                         type="password"
-                        handleInput={setPassword}
-                    />
+                        handleInput={setPassword}/>
 
                     <PublicButton
-                        type="submit"
-                    >
+                        type="submit">
                         Submit
                     </PublicButton>
 
@@ -68,7 +66,9 @@ function LoginPage(props) {
                 <p>
                     Don't have an account?
                     Feel free to
-                    <Link to="/register/"> register</Link>.
+                    <Link to="/register/">
+                        register
+                    </Link>.
                 </p>
 
             </Card>

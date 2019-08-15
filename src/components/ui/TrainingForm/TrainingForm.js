@@ -3,12 +3,12 @@ import LabeledInput from '../Input/LabeledInput/LabeledInput'
 import RadioButton from '../Input/RadioButton/RadioButton'
 import SelectInput from '../Input/SelectInput/SelectInput'
 import {FaArrowAltCircleLeft, FaCheckCircle} from 'react-icons/fa'
-import '../../styles/form-styles/FormStyles.scss'
 import {bindActionCreators} from 'redux'
 import {addWod} from '../../../store/actions/wod.action'
 import {connect} from 'react-redux'
 import {setExerciseMode, setRegularMode} from '../../../store/actions/global.action'
 import RoundedButton from '../Button/RoundedButton/RoundedButton.js'
+import '../../styles/form-styles/FormStyles.scss'
 
 function TrainingForm(props) {
     const [globalType, setGlobaltype] = useState('crossfit')
