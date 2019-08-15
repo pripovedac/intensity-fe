@@ -13,7 +13,7 @@ import {IoMdCheckmarkCircle, IoMdCloseCircle} from 'react-icons/io'
 
 function CompleteWod(props) {
     function displayEditButton() {
-        if (props.user.role != 'user') {
+        if (props.user.role === 'user') {
             return (
                 <button onClick={props.setWodMode}>
                     <FaPencilAlt/>
