@@ -7,6 +7,7 @@ import {addExercise} from '../../../store/actions/exercise.action'
 import {setWodMode} from '../../../store/actions/global.action'
 import '../../styles/form-styles/FormStyles.scss'
 import './ExerciseForm.scss'
+import RoundedButton from '../Button/RoundedButton/RoundedButton'
 
 function ExerciseForm(props) {
     const [name, setName] = useState('')
@@ -81,17 +82,20 @@ function ExerciseForm(props) {
                     handleInput={setDuration}/>
 
                 <div className="button-container">
-                    <button onClick={props.setWodMode}>
-                        <FaArrowAltCircleLeft className="checkmark"/>
-                    </button>
 
-                    <button className="exercise-button"
-                            type="submit">
+                    <RoundedButton
+                        onClick={props.setWodMode}>
+                        <FaArrowAltCircleLeft
+                            className="button-icon"/>
+                    </RoundedButton>
+
+                    <RoundedButton>
                         <FaCheckCircle
-                            className="checkmark"/>
-                    </button>
-                </div>
+                            type="submit"
+                            className="button-icon"/>
+                    </RoundedButton>
 
+                </div>
             </form>
         </div>
     )

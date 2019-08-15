@@ -2,12 +2,13 @@ import React, {useState} from 'react'
 import LabeledInput from '../Input/LabeledInput/LabeledInput'
 import RadioButton from '../Input/RadioButton/RadioButton'
 import SelectInput from '../Input/SelectInput/SelectInput'
-import {FaCheckCircle} from 'react-icons/fa'
+import {FaArrowAltCircleLeft, FaCheckCircle} from 'react-icons/fa'
 import '../../styles/form-styles/FormStyles.scss'
 import {bindActionCreators} from 'redux'
 import {addWod} from '../../../store/actions/wod.action'
 import {connect} from 'react-redux'
-import {setExerciseMode} from '../../../store/actions/global.action'
+import {setExerciseMode, setRegularMode} from '../../../store/actions/global.action'
+import RoundedButton from '../Button/RoundedButton/RoundedButton.js'
 
 function TrainingForm(props) {
     const [globalType, setGlobaltype] = useState('crossfit')
@@ -108,10 +109,19 @@ function TrainingForm(props) {
                              options={trainerOptions}
                              handleInput={setTrainer}/>
 
-                <button type="submit">
-                    <FaCheckCircle
-                        className="checkmark"/>
-                </button>
+                <div className="button-container">
+                    <RoundedButton
+                        onClick={props.setRegularMode}>
+                        <FaArrowAltCircleLeft
+                            className="button-icon"/>
+                    </RoundedButton>
+
+                    <RoundedButton
+                        type="submit">
+                        <FaCheckCircle
+                            className="button-icon"/>
+                    </RoundedButton>
+                </div>
             </form>
         </div>
     )
@@ -121,7 +131,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
             addWod,
-            setExerciseMode
+            setExerciseMode,
+            setRegularMode,
         }, dispatch)
 }
 
