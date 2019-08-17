@@ -12,7 +12,10 @@ import RoundedButton from '../Button/RoundedButton/RoundedButton.js'
 import '../../styles/form-styles/FormStyles.scss'
 
 function TrainingForm(props) {
-    const [globalType, setGlobaltype] = useState(props.wod.globalType)
+    const [globalType, setGlobaltype] =
+        useState(props.wod.globalType ?
+            props.wod.globalType :
+            'crossfit')
     const [name, setName] = useState(props.wod.name)
     const [date, setDate] = useState(props.wod.date)
     const [duration, setDuration] = useState(props.wod.duration)
