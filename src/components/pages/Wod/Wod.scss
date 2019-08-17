@@ -35,6 +35,11 @@
     display: flex;
     flex-direction: column;
     width: 70%;
+
+    .text-button {
+      width: 30%;
+    }
+
   }
 
   .exercise-container {
