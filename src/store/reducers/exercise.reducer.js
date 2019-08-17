@@ -22,6 +22,13 @@ export default function (state = initialState, action) {
             }
         }
 
+        case actions.NEW_EXERCISE_CLEAN: {
+            return {
+                ...state,
+                new: []
+            }
+        }
+
         default: {
             return state
         }

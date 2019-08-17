@@ -1,16 +1,18 @@
 import * as actions from '../actions/wod.action'
 
+const newWod = {
+    globalType: '',
+    name: '',
+    date: '',
+    duration: '',
+    roundNumber: '',
+    trainingType: '',
+    trainer: ''
+}
+
 const initialState = {
     active: {},
-    new: {
-        globalType: '',
-        name: '',
-        date: '',
-        duration: '',
-        roundNumber: '',
-        trainingType: '',
-        trainer: ''
-    }
+    new: {...newWod}
 }
 
 export default function (state = initialState, action) {
@@ -24,6 +26,13 @@ export default function (state = initialState, action) {
 
         case actions.WOD_SUBMIT_ABORT: {
             return state
+        }
+
+        case actions.NEW_WOD_CLEAN: {
+            return {
+                ...state,
+                new: {...newWod}
+            }
         }
 
         default: {
