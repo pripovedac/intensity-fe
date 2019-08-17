@@ -7,24 +7,25 @@ import {bindActionCreators} from 'redux'
 import {addWod} from '../../../store/actions/wod.action'
 import {connect} from 'react-redux'
 import {setExerciseMode, setRegularMode} from '../../../store/actions/global.action'
+import {selectNewWod} from '../../../store/selectors/wod.selector'
 import RoundedButton from '../Button/RoundedButton/RoundedButton.js'
 import '../../styles/form-styles/FormStyles.scss'
 
 function TrainingForm(props) {
-    const [globalType, setGlobaltype] = useState('crossfit')
-    const [name, setName] = useState('')
-    const [date, setDate] = useState('')
-    const [duration, setDuration] = useState('')
-    const [roundNumber, setRounds] = useState('')
+    const [globalType, setGlobaltype] = useState(props.wod.globalType)
+    const [name, setName] = useState(props.wod.name)
+    const [date, setDate] = useState(props.wod.date)
+    const [duration, setDuration] = useState(props.wod.duration)
+    const [roundNumber, setRounds] = useState(props.wod.roundNumber)
 
     // todo: this should be taken from DB
     const trainingOptions = ['custom', 'emom', 'amrap',
         'rft', 'chipper', 'ladder', 'tabata']
-    const [trainingType, setTrainingType] = useState(trainingOptions[0])
+    const [trainingType, setTrainingType] = useState(props.wod.trainingType)
 
     // todo: this should be taken from DB
     const trainerOptions = ['Dusan Arandjelovic', 'Milan Spasic', 'Nemanja Sutanovac']
-    const [trainer, setTrainer] = useState(trainerOptions[0])
+    const [trainer, setTrainer] = useState(props.wod.trainter)
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -38,7 +39,7 @@ function TrainingForm(props) {
     }
 
     function checkForm() {
-        return name.trim().length
+        return (name && name.trim().length)
     }
 
     function createWod() {
@@ -78,6 +79,7 @@ function TrainingForm(props) {
                 <LabeledInput
                     label="Name"
                     type="text"
+                    value={name}
                     placeholder="Dangerous name"
                     handleInput={setName}
                 />
@@ -85,17 +87,20 @@ function TrainingForm(props) {
                 <LabeledInput
                     type="date"
                     label="Date"
+                    value={date}
                     handleInput={setDate}/>
 
                 <LabeledInput
                     type="number"
                     label="Duration"
+                    value={duration}
                     placeholder="0"
                     handleInput={setDuration}/>
 
                 <LabeledInput
                     type="number"
                     label="Rounds"
+                    value={roundNumber}
                     placeholder="0"
                     handleInput={setRounds}/>
 
@@ -127,6 +132,12 @@ function TrainingForm(props) {
     )
 }
 
+function mapStateToProps(state) {
+    return {
+        wod: selectNewWod(state)
+    }
+}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
@@ -137,6 +148,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(TrainingForm)
