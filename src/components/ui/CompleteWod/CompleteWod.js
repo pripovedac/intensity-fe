@@ -1,21 +1,32 @@
 import React from 'react'
-import './CompleteWod.scss'
-import {selectMode} from "../../../store/selectors/global.selector";
-import {selectNewWodWithExercises} from "../../../store/selectors/wod.selector";
-import {bindActionCreators} from "redux";
-import {setWodMode} from "../../../store/actions/global.action";
-import {submitWod} from "../../../store/actions/wod.action";
-import {connect} from "react-redux";
-import {selectUser} from "../../../store/selectors/auth.selector";
-import ExerciseList from "../ExerciseList/ExerciseList";
+import ButtonWithText from '../Button/ButtonWithText/ButtonWithText'
+import ExerciseList from '../ExerciseList/ExerciseList'
+import RoundedButton from '../Button/RoundedButton/RoundedButton'
+import {FaArrowAltCircleLeft, FaCheckCircle} from 'react-icons/fa'
+import {selectMode} from '../../../store/selectors/global.selector'
+import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
+import {bindActionCreators} from 'redux'
+import {setWodMode} from '../../../store/actions/global.action'
+import {submitWod} from '../../../store/actions/wod.action'
+import {connect} from 'react-redux'
+import {selectUser} from '../../../store/selectors/auth.selector'
 import {FaPencilAlt} from 'react-icons/fa'
-import {IoMdCheckmarkCircle, IoMdCloseCircle} from 'react-icons/io'
+import {isEmpty} from 'lodash'
+import './CompleteWod.scss'
 
 function CompleteWod(props) {
+    function displayCompleteWod() {
+        displayEditButton()
+        displayWodInfo()
+        displayExerciseList()
+        displaySubmitButton()
+    }
+
     function displayEditButton() {
         if (props.user.role === 'user') {
             return (
-                <button onClick={props.setWodMode}>
+                <button className="pen-button"
+                        onClick={props.setWodMode}>
                     <FaPencilAlt/>
                 </button>
             )
@@ -28,13 +39,17 @@ function CompleteWod(props) {
             'round'
 
         const wodName = props.wod.name
-        const title = wodName != 'crossfit' && wodName != 'lightfit' ?
-            <div className="title-container">
+        let title
+        if (wodName != 'crossfit' && wodName != 'lightfit') {
+            title = <div className="title-container">
                 <h1>{`${wodName}`}</h1>
                 <h2>{`${props.wod.trainingType} ${props.wod.globalType} workout of the Day`}</h2>
-            </div> :
-            <h1> {`${props.wod.trainingType} ${props.wod.globalType} workout of the Day`}</h1>
-
+            </div>
+        } else {
+            title = <h1>
+                {`${props.wod.trainingType} ${props.wod.globalType} workout of the Day`}
+            </h1>
+        }
         return (
             <div className="wod-info">
                 {title}
@@ -55,19 +70,58 @@ function CompleteWod(props) {
     function displaySubmitButton() {
         return (
             <button className="submit-button">
-                <IoMdCheckmarkCircle/>
+                <FaCheckCircle/>
             </button>
         )
     }
 
-    return (
-        <div className="complete-wod">
-            {displayEditButton()}
-            {displayWodInfo()}
-            {displayExerciseList()}
-            {displaySubmitButton()}
-        </div>
-    )
+    function displayAddButton() {
+        if (props.user.role === 'user') {
+            return (
+                <ButtonWithText onClick={props.setWodMode}>
+                    Add wod
+                </ButtonWithText>
+            )
+        }
+    }
+
+    function displayEmptyWod() {
+        return (
+            <p>
+                WOD hasn't been posted yet,
+                but you can still sign in.
+            </p>
+        )
+    }
+
+    function displaySignButtons() {
+        // todo: Display button according to user's trainings.
+        return (
+            <RoundedButton>
+                <FaCheckCircle className="button-icon"/>
+            </RoundedButton>
+        )
+    }
+
+
+    if (!isEmpty(props.wod.active)) {
+        return (
+            <div className="complete-wod">
+                {displayEditButton()}
+                {displayWodInfo()}
+                {displayExerciseList()}
+                {displaySubmitButton()}
+            </div>
+        )
+    } else {
+        return (
+            <div className="empty-wod">
+                {displayAddButton()}
+                {displayEmptyWod()}
+                {displaySignButtons()}
+            </div>
+        )
+    }
 }
 
 function mapStateToProps(state) {

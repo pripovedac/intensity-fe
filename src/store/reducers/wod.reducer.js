@@ -2,7 +2,15 @@ import * as actions from '../actions/wod.action'
 
 const initialState = {
     active: {},
-    new: {}
+    new: {
+        globalType: '',
+        name: '',
+        date: '',
+        duration: '',
+        roundNumber: '',
+        trainingType: '',
+        trainer: ''
+    }
 }
 
 export default function (state = initialState, action) {

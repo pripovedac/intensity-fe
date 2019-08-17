@@ -5,6 +5,7 @@
   "dependencies": {
     "eslint-plugin-react-hooks": "^1.6.1",
     "history": "^4.9.0",
+    "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
