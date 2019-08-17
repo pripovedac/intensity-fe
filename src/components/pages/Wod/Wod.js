@@ -4,6 +4,7 @@ import Navigation from '../../ui/Navigation/Navigation.js'
 import ExerciseForm from '../../ui/ExerciseForm/ExerciseForm'
 import ExerciseList from '../../ui/ExerciseList/ExerciseList'
 import CompleteWod from '../../ui/CompleteWod/CompleteWod'
+import ButtonWithText from '../../ui/Button/ButtonWithText/ButtonWithText'
 import {bindActionCreators} from 'redux'
 import {setWodMode} from '../../../store/actions/global.action'
 import {submitWod} from '../../../store/actions/wod.action'
@@ -26,11 +27,11 @@ function WodPage(props) {
                         <ExerciseForm/>
                         <ExerciseList exercises={props.wodWithExercises.exercises}/>
                     </div>
-                    <button
+                    <ButtonWithText
                         disabled={!props.wodWithExercises.exercises.length}
                         onClick={submitWod}>
                         Submit complete WOD
-                    </button>
+                    </ButtonWithText>
                 </div>
             )
         }
