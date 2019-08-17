@@ -18,6 +18,12 @@
   font-weight: bold;
 }
 
+.text-button:hover {
+  background-color: $lightocher;
+  color: #000;
+  border: 1px solid #000;
+}
+
 .text-button:disabled {
   opacity: 0.7;
   cursor: not-allowed;
