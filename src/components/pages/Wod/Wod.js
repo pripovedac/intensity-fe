@@ -38,6 +38,7 @@ function WodPage(props) {
     }
 
     function submitWod() {
+        console.log('wod.js')
         props.submitWod(props.wodWithExercises)
     }
 

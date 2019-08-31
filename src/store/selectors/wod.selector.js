@@ -5,7 +5,7 @@ export function selectNewWod(state) {
 
 export function selectNewWodWithExercises(state) {
     return {
-        ...state.wod,
+        ...state.wod.new,
         exercises: state.exercises.new
     }
 }

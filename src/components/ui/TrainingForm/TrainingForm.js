@@ -24,17 +24,22 @@ function TrainingForm(props) {
     // todo: this should be taken from DB
     const trainingOptions = ['custom', 'emom', 'amrap',
         'rft', 'chipper', 'ladder', 'tabata']
-    const [trainingType, setTrainingType] = useState(props.wod.trainingType)
+    const [trainingType, setTrainingType] = useState(props.wod.trainingType ?
+        props.wod.trainingType :
+        trainingOptions[0])
 
     // todo: this should be taken from DB
     const trainerOptions = ['Dusan Arandjelovic', 'Milan Spasic', 'Nemanja Sutanovac']
-    const [trainer, setTrainer] = useState(props.wod.trainter)
+    const [trainer, setTrainer] = useState(props.wod.trainer ?
+        props.wod.trainer :
+        trainerOptions[0])
 
     function handleSubmit(event) {
         event.preventDefault()
         if (checkForm()) {
             const wod = createWod()
-            props.addWod(wod)
+            const validatedWod = validateWod(wod)
+            props.addWod(validatedWod)
             props.setExerciseMode()
         } else {
             alert('WOD is not intense if it does not have a name.')
@@ -42,7 +47,7 @@ function TrainingForm(props) {
     }
 
     function checkForm() {
-        return (name && name.trim().length)
+        return name.trim().length
     }
 
     function createWod() {
@@ -55,6 +60,21 @@ function TrainingForm(props) {
             trainer,
             trainingType,
         }
+    }
+
+    function validateWod(wod) {
+        let validatedWod
+        validatedWod = validateProperty(wod, 'duration')
+        validatedWod = validateProperty(wod, 'roundNumber')
+        return validatedWod
+    }
+
+    // Validation is necessary due to BE type constraints.
+    function validateProperty(wod, property) {
+        if (!wod[property]) {
+            wod[property] = 0
+        }
+        return wod
     }
 
     return (

@@ -10,7 +10,7 @@ import './ExerciseForm.scss'
 import RoundedButton from '../Button/RoundedButton/RoundedButton'
 
 function ExerciseForm(props) {
-    const [name, setName] = useState('')
+    const [name, setName] = useState('bench')
     const [repsNumber, setReps] = useState('')
     const [weight, setWeight] = useState('')
     const [duration, setDuration] = useState('')
@@ -20,7 +20,8 @@ function ExerciseForm(props) {
 
         if (checkForm()) {
             const exercise = createExercise()
-            props.addNewExercise(exercise)
+            const validatedExercise = validateExercise(exercise)
+            props.addNewExercise(validatedExercise)
             resetFields()
 
         } else {
@@ -39,6 +40,23 @@ function ExerciseForm(props) {
             weight,
             duration
         }
+    }
+
+    function validateExercise(exercise) {
+        let validatedExercise
+        validatedExercise = validateProperty(exercise, 'repsNumber')
+        validatedExercise = validateProperty(exercise, 'weight')
+        validatedExercise = validateProperty(exercise, 'duration')
+        return validatedExercise
+    }
+
+    // todo: see how to extract this function using hooks
+    // same function in this and TrainingForm components
+    function validateProperty(exercise, property) {
+        if (!exercise[property]) {
+            exercise[property] = 0
+        }
+        return exercise
     }
 
     function resetFields() {
