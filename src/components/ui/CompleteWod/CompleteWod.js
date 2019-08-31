@@ -4,7 +4,7 @@ import ExerciseList from '../ExerciseList/ExerciseList'
 import RoundedButton from '../Button/RoundedButton/RoundedButton'
 import {FaArrowAltCircleLeft, FaCheckCircle} from 'react-icons/fa'
 import {selectMode} from '../../../store/selectors/global.selector'
-import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
+import {selectActiveWodWithExercises} from '../../../store/selectors/wod.selector'
 import {bindActionCreators} from 'redux'
 import {setWodMode} from '../../../store/actions/global.action'
 import {submitWod} from '../../../store/actions/wod.action'
@@ -127,7 +127,7 @@ function CompleteWod(props) {
 function mapStateToProps(state) {
     return {
         mode: selectMode(state),
-        wod: selectNewWodWithExercises(state),
+        wod: selectActiveWodWithExercises(state),
         user: selectUser(state)
     }
 }

@@ -1,4 +1,7 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import {calculateDate} from '../../../services/dates'
+import queryString from 'query-string'
+import {getTraining} from '../../../services/api/training'
 import TrainingForm from '../../ui/TrainingForm/TrainingForm'
 import Navigation from '../../ui/Navigation/Navigation.js'
 import ExerciseForm from '../../ui/ExerciseForm/ExerciseForm'
@@ -14,10 +17,18 @@ import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
 import './Wod.scss'
 
 function WodPage(props) {
+    useEffect(async () => {
+        console.log('Effect running!')
+        const queryParams = queryString.parse(props.location.search)
+        const date = calculateDate(queryParams)
+        const training = await getTraining(date)
+        console.log('gotten training: ', training)
+    })
+
     function displayContent() {
         // todo: Think about using MAP object.
         if (props.mode === 'regular') {
-            return <CompleteWod />
+            return <CompleteWod/>
         } else if (props.mode === 'wod') {
             return <TrainingForm/>
         } else if (props.mode === 'exercise') {
@@ -38,7 +49,6 @@ function WodPage(props) {
     }
 
     function submitWod() {
-        console.log('wod.js')
         props.submitWod(props.wodWithExercises)
     }
 

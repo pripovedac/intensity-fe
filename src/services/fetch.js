@@ -16,8 +16,10 @@ function apiFetchFactory({fetch}) {
                 'content-type': contentType,
             },
         })
-        if (responseType == "json" && res.status >= 200 && res.status < 300)
+
+        if (responseType == "json" && res.status >= 200 && res.status < 300) {
             return res.json()
+        }
         else {
             return {errorStatus: res.status}
         }

@@ -3,6 +3,7 @@ import moment from 'moment'
 import {Link} from 'react-router-dom'
 import {calculateWeek} from '../../../services/dates'
 import {connect} from 'react-redux'
+import {selectWeek} from '../../../store/selectors/global.selector'
 import './Calendar.scss'
 
 function Calendar(props) {
@@ -74,7 +75,7 @@ function Calendar(props) {
                             onClick={handleClick}>
                             <Link to={{
                                     pathname: '/wod',
-                                    search: `?hour=${hour}&day=${day}&week=0`
+                                    search: `?hour=${hour}&day=${day}&week=${props.week}`
                                 }}>
                                 {trainingType}
                             </Link>
@@ -103,9 +104,9 @@ function Calendar(props) {
 
 }
 
-function mapStateToProps({global}) {
+function mapStateToProps(state) {
     return {
-        week: global
+        week: selectWeek(state)
     }
 }
 

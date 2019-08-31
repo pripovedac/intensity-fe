@@ -4,6 +4,8 @@ const initialState = {
     week: 0,
     wodMode: 'regular'
 }
+// Possible wodMode, i.e. modes for page Wod, are:
+// [wod, exercise, regular].
 
 export default function (state = initialState, action) {
     switch (action.type) {
