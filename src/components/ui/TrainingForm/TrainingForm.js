@@ -16,8 +16,8 @@ function TrainingForm(props) {
         useState(props.wod.globalType ?
             props.wod.globalType :
             'crossfit')
-    const [name, setName] = useState(props.wod.name)
     const [date, setDate] = useState(props.wod.date)
+    const [name, setName] = useState(props.wod.name)
     const [duration, setDuration] = useState(props.wod.duration)
     const [roundNumber, setRounds] = useState(props.wod.roundNumber)
 
@@ -100,18 +100,18 @@ function TrainingForm(props) {
                 </div>
 
                 <LabeledInput
+                    type="date"
+                    label="Date"
+                    value={date}
+                    handleInput={setDate}/>
+
+                <LabeledInput
                     label="Name"
                     type="text"
                     value={name}
                     placeholder="Dangerous name"
                     handleInput={setName}
                 />
-
-                <LabeledInput
-                    type="date"
-                    label="Date"
-                    value={date}
-                    handleInput={setDate}/>
 
                 <LabeledInput
                     type="number"
