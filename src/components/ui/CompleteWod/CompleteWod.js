@@ -14,6 +14,7 @@ import {selectUser} from '../../../store/selectors/auth.selector'
 import {FaPencilAlt} from 'react-icons/fa'
 import {isEmpty} from 'lodash'
 import {signForTraining} from '../../../services/api/training'
+import {toUserDateFormat} from '../../../services/dates'
 import './CompleteWod.scss'
 
 function CompleteWod(props) {
@@ -49,7 +50,7 @@ function CompleteWod(props) {
             <div className="wod-info">
                 {title}
                 {/*todo: fix date and add time} */}
-                <p>{`${props.wod.date}`}</p>
+                <p>{`${toUserDateFormat(props.wod.date)}`}</p>
                 <p>{`${props.wod.roundNumber} ${wordRound} for ${props.wod.duration}
                  minutes with ${props.wod.trainer}`}</p>
             </div>

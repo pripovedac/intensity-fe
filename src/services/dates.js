@@ -23,6 +23,12 @@ export function calculateDate(date) {
     return toApiString(calculatedDate)
 }
 
-function toApiString(date) {
+export function toApiString(date) {
     return moment(date).format('YYYY-MM-DD HH:mm:ss')
+}
+
+export function toUserDateFormat(date) {
+    const dateObject = moment(date)
+    const dateString = dateObject.format('dddd, MMMM Do YYYY')
+    return dateString
 }
