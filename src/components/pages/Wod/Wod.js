@@ -9,17 +9,19 @@ import ExerciseList from '../../ui/ExerciseList/ExerciseList'
 import CompleteWod from '../../ui/CompleteWod/CompleteWod'
 import ButtonWithText from '../../ui/Button/ButtonWithText/ButtonWithText'
 import {bindActionCreators} from 'redux'
-import {setWodMode,  addActiveTraining, removeActiveTraining} from '../../../store/actions/global.action'
+import {setWodMode, addActiveTraining, removeActiveTraining} from '../../../store/actions/global.action'
 import {submitWod, addActiveWod, removeActiveWod} from '../../../store/actions/wod.action'
 import {addActiveExercises, removeActiveExercises} from '../../../store/actions/exercise.action'
 import {selectMode} from '../../../store/selectors/global.selector'
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
 import {connect} from 'react-redux'
+import MemberList from '../../ui/MemberList/MemberList'
 import './Wod.scss'
 
 function WodPage(props) {
-    useEffect(  () => {
+    useEffect(() => {
         console.log('Effect running!')
+
         async function fetchTraining() {
             const queryParams = queryString.parse(props.location.search)
             const date = calculateDate(queryParams)
@@ -31,7 +33,10 @@ function WodPage(props) {
 
         function updateRedux(training) {
             props.addActiveTraining(training.id)
-            props.addActiveWod(training.wod)
+            props.addActiveWod({
+                ...training.wod,
+                members: training.members
+            })
             props.addActiveExercises(training.exercises)
         }
 
@@ -83,6 +88,7 @@ function WodPage(props) {
                          width={300}/>
                 </div>
                 {displayContent()}
+                <MemberList/>
             </div>
         </div>
     )

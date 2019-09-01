@@ -21,3 +21,11 @@ export function selectActiveWodWithExercises(state) {
         return {}
     }
 }
+
+export function selectMembers(state) {
+    if (!isEmpty(state.wod.active)) {
+        return state.wod.active.members
+    } else {
+        return []
+    }
+}

@@ -4,6 +4,7 @@
   .wod-container {
     display: flex;
     justify-content: flex-start;
+    //border: 5px solid deepskyblue;
 
     .hulk-container {
       max-width: 20em;
@@ -54,4 +55,7 @@
     }
   }
 
+  .member-list {
+    width: 25%;
+  }
 }

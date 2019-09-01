@@ -13,3 +13,7 @@ export function selectName(state) {
 export function selectUserRole(state) {
     return state.user.role
 }
+
+export function selectUserTrainings(state) {
+    return state.user.trainings
+}
