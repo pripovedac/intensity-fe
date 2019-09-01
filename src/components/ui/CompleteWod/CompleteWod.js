@@ -88,8 +88,7 @@ function CompleteWod(props) {
     function displayEmptyWod() {
         return (
             <p>
-                WOD hasn't been posted yet,
-                but you can still sign in.
+                WOD hasn't been posted yet.
             </p>
         )
     }
@@ -104,7 +103,7 @@ function CompleteWod(props) {
     }
 
 
-    if (!isEmpty(props.wod.active)) {
+    if (!isEmpty(props.wod)) {
         return (
             <div className="complete-wod">
                 {displayEditButton()}
