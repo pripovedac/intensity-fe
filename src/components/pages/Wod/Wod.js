@@ -9,12 +9,12 @@ import ExerciseList from '../../ui/ExerciseList/ExerciseList'
 import CompleteWod from '../../ui/CompleteWod/CompleteWod'
 import ButtonWithText from '../../ui/Button/ButtonWithText/ButtonWithText'
 import {bindActionCreators} from 'redux'
-import {setWodMode} from '../../../store/actions/global.action'
+import {setWodMode,  addActiveTraining, removeActiveTraining} from '../../../store/actions/global.action'
 import {submitWod, addActiveWod, removeActiveWod} from '../../../store/actions/wod.action'
 import {addActiveExercises, removeActiveExercises} from '../../../store/actions/exercise.action'
-import {connect} from 'react-redux'
 import {selectMode} from '../../../store/selectors/global.selector'
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
+import {connect} from 'react-redux'
 import './Wod.scss'
 
 function WodPage(props) {
@@ -30,11 +30,13 @@ function WodPage(props) {
         }
 
         function updateRedux(training) {
+            props.addActiveTraining(training.id)
             props.addActiveWod(training.wod)
             props.addActiveExercises(training.exercises)
         }
 
         function cleanRedux() {
+            props.removeActiveTraining()
             props.removeActiveWod()
             props.removeActiveExercises()
         }
@@ -98,8 +100,10 @@ function mapDispatchToProps(dispatch) {
         {
             setWodMode,
             submitWod,
+            addActiveTraining,
             addActiveWod,
             addActiveExercises,
+            removeActiveTraining,
             removeActiveWod,
             removeActiveExercises
         }, dispatch)
