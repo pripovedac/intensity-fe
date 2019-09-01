@@ -5,7 +5,7 @@ import * as exerciseActions from '../actions/exercise.action'
 import {saveWod} from '../../services/api/wod'
 
 export function* submitWodSaga(action) {
-    const wodWithExercises = yield call(saveWod, action.payload)
+    yield call(saveWod, action.payload)
     yield put(globalActions.setRegularMode())
     yield put(wodActions.cleanNewWod())
     yield put(exerciseActions.cleanNewExercises())

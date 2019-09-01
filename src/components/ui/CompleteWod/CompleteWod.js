@@ -2,7 +2,7 @@ import React from 'react'
 import ButtonWithText from '../Button/ButtonWithText/ButtonWithText'
 import ExerciseList from '../ExerciseList/ExerciseList'
 import RoundedButton from '../Button/RoundedButton/RoundedButton'
-import {FaArrowAltCircleLeft, FaCheckCircle} from 'react-icons/fa'
+import {FaCheckCircle} from 'react-icons/fa'
 import {selectMode} from '../../../store/selectors/global.selector'
 import {selectActiveWodWithExercises} from '../../../store/selectors/wod.selector'
 import {bindActionCreators} from 'redux'
@@ -17,13 +17,6 @@ import {signForTraining} from '../../../services/api/training'
 import './CompleteWod.scss'
 
 function CompleteWod(props) {
-    function displayCompleteWod() {
-        displayEditButton()
-        displayWodInfo()
-        displayExerciseList()
-        displaySubmitButton()
-    }
-
     function displayEditButton() {
         if (props.user.role === 'user') {
             return (
@@ -42,7 +35,7 @@ function CompleteWod(props) {
 
         const wodName = props.wod.name
         let title
-        if (wodName != 'crossfit' && wodName != 'lightfit') {
+        if (wodName !== 'crossfit' && wodName !== 'lightfit') {
             title = <div className="title-container">
                 <h1>{`${wodName}`}</h1>
                 <h2>{`${props.wod.trainingType} ${props.wod.globalType} workout of the Day`}</h2>

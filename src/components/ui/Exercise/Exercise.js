@@ -22,7 +22,7 @@ function Exercise(props) {
     }
 
     function displayRemoveButton() {
-        if (props.mode != 'regular') {
+        if (props.mode !== 'regular') {
             return(
                 <button onClick={handleClick}>
                     <IoMdRemoveCircleOutline
