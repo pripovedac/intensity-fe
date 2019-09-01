@@ -1,3 +1,5 @@
+import {getToken} from './localstorage'
+
 function apiFetchFactory({fetch}) {
     return async function apiFetch(method, url, body, {
         contentType = 'application/json',
@@ -6,21 +8,20 @@ function apiFetchFactory({fetch}) {
     } = {}) {
 
         //todo: read accessToken from the store
-        const accessToken = ''
+        const accessToken = getToken()
 
         const res = await fetch(url, {
             method,
             body: JSON.stringify(body),
             headers: {
-                ...(hasAuthHeader ? {'authorization':  'Bearer ' + accessToken} : {}),
+                ...(hasAuthHeader ? {'authorization': 'Bearer ' + accessToken} : {}),
                 'content-type': contentType,
             },
         })
 
         if (responseType === "json" && res.status >= 200 && res.status < 300) {
             return res.json()
-        }
-        else {
+        } else {
             return {errorStatus: res.status}
         }
     }

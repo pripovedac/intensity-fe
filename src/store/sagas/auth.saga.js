@@ -2,11 +2,13 @@ import {call, put, takeLatest} from 'redux-saga/effects'
 import * as actions from '../actions/auth.action'
 import {login, register} from '../../services/api/auth'
 import {push} from 'react-router-redux'
+import {setToken} from '../../services/localstorage'
 
 export function* loginSaga(action) {
     const response = yield call(login, action.payload)
     if (response.ok) {
         const user = yield response.json()
+        setToken(user.token)
         yield put(actions.accomplishLogin(user))
         yield put(push('/home'))
     } else {
