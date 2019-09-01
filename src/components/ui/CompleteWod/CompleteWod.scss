@@ -7,7 +7,7 @@
   align-items: center;
   width: 50%;
 
-  > button {
+  .pen-button {
     align-self: flex-end;
     color: $grassgreen;
     background: #fff;
@@ -18,7 +18,7 @@
     cursor: pointer;
   }
 
-  > button:hover {
+  > .pen-button:hover {
     color: #000;
   }
 
@@ -62,18 +62,13 @@
 
   }
 
-  .submit-button {
+  .rounded-button {
     align-self: center;
-    font-size: 2.5em;
   }
 
-  .submit-button:hover {
-    color: #000;
-
-    > * {
-      color: red;
-    }
-
+  .rounded-button:hover {
+    background-color: #000;
+    color: $lightocher;
   }
 }
 
@@ -89,4 +84,3 @@
     width: 20%;
   }
 }
-

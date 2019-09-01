@@ -69,9 +69,9 @@ function CompleteWod(props) {
 
     function displaySubmitButton() {
         return (
-            <button className="submit-button">
-                <FaCheckCircle/>
-            </button>
+            <RoundedButton>
+                <FaCheckCircle className="button-icon"/>
+            </RoundedButton>
         )
     }
 
