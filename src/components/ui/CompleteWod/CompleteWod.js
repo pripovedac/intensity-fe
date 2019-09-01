@@ -6,12 +6,14 @@ import {FaArrowAltCircleLeft, FaCheckCircle} from 'react-icons/fa'
 import {selectMode} from '../../../store/selectors/global.selector'
 import {selectActiveWodWithExercises} from '../../../store/selectors/wod.selector'
 import {bindActionCreators} from 'redux'
+import {addTrainings} from '../../../store/actions/auth.action'
 import {setWodMode} from '../../../store/actions/global.action'
 import {submitWod} from '../../../store/actions/wod.action'
 import {connect} from 'react-redux'
 import {selectUser} from '../../../store/selectors/auth.selector'
 import {FaPencilAlt} from 'react-icons/fa'
 import {isEmpty} from 'lodash'
+import {signForTraining} from '../../../services/api/training'
 import './CompleteWod.scss'
 
 function CompleteWod(props) {
@@ -69,7 +71,8 @@ function CompleteWod(props) {
 
     function displaySubmitButton() {
         return (
-            <RoundedButton>
+            <RoundedButton
+                onClick={signIn}>
                 <FaCheckCircle className="button-icon"/>
             </RoundedButton>
         )
@@ -102,7 +105,12 @@ function CompleteWod(props) {
         )
     }
 
-    console.log('props.wod: ', props.wod)
+    async function signIn() {
+        const trainings = await signForTraining(props.user.id, props.wod.id)
+        props.addTrainings(trainings)
+        console.log('trainings added')
+    }
+
     if (!isEmpty(props.wod)) {
         return (
             <div className="complete-wod">
@@ -134,6 +142,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
+            addTrainings,
             setWodMode,
             submitWod,
         }, dispatch)

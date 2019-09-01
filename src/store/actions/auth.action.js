@@ -6,6 +6,7 @@ export const LOGOUT_ACCOMPLISH = 'LOGOUT_ACCOMPLISH'
 export const USER_REGISTER = 'USER_REGISTER'
 export const REGISTRATION_ACCOMPLISH = 'REGISTRATION_ACCOMPLISH'
 export const REGISTRATION_ABORT = 'REGISTRATION_ABORT'
+export const TRAININGS_ADD = 'TRAININGS_ADD'
 
 export function loginUser(user) {
     return {
@@ -59,6 +60,13 @@ export function abortRegistration(message) {
     return {
         type: REGISTRATION_ABORT,
         payload: message
+    }
+}
+
+export function addTrainings(trainingIds) {
+    return {
+        type: TRAININGS_ADD,
+        payload: trainingIds
     }
 }
 

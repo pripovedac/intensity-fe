@@ -24,6 +24,13 @@ export default function (state = initialState, action) {
             return state
         }
 
+        case actions.TRAININGS_ADD: {
+            return {
+                ...state,
+                trainings: action.payload,
+            }
+        }
+
         default: {
             return state
         }
