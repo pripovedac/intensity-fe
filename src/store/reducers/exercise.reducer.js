@@ -36,6 +36,13 @@ export default function (state = initialState, action) {
             }
         }
 
+        case actions.ACTIVE_EXERCISES_REMOVE: {
+            return {
+                ...state,
+                active: []
+            }
+        }
+
         default: {
             return state
         }

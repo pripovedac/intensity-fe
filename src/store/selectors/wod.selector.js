@@ -1,3 +1,5 @@
+import {isEmpty} from 'lodash'
+
 export function selectNewWod(state) {
     return state.wod.new
 }
@@ -10,8 +12,12 @@ export function selectNewWodWithExercises(state) {
 }
 
 export function selectActiveWodWithExercises(state) {
-    return {
-        ...state.wod.active,
-        exercises: state.exercises.active
+    if (!isEmpty(state.wod.active)) {
+        return {
+            ...state.wod.active,
+            exercises: state.exercises.active
+        }
+    } else {
+        return {}
     }
 }

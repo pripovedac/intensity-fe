@@ -10,8 +10,8 @@ import CompleteWod from '../../ui/CompleteWod/CompleteWod'
 import ButtonWithText from '../../ui/Button/ButtonWithText/ButtonWithText'
 import {bindActionCreators} from 'redux'
 import {setWodMode} from '../../../store/actions/global.action'
-import {submitWod, addActiveWod} from '../../../store/actions/wod.action'
-import {addActiveExercises} from '../../../store/actions/exercise.action'
+import {submitWod, addActiveWod, removeActiveWod} from '../../../store/actions/wod.action'
+import {addActiveExercises, removeActiveExercises} from '../../../store/actions/exercise.action'
 import {connect} from 'react-redux'
 import {selectMode} from '../../../store/selectors/global.selector'
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
@@ -24,7 +24,9 @@ function WodPage(props) {
             const queryParams = queryString.parse(props.location.search)
             const date = calculateDate(queryParams)
             const training = await getTraining(date)
-            updateRedux(training)
+            if (!training.errorStatus) {
+                updateRedux(training)
+            }
         }
 
         function updateRedux(training) {
@@ -32,8 +34,14 @@ function WodPage(props) {
             props.addActiveExercises(training.exercises)
         }
 
+        function cleanRedux() {
+            props.removeActiveWod()
+            props.removeActiveExercises()
+        }
+
         fetchTraining()
 
+        return cleanRedux
     }, [])
 
     function displayContent() {
@@ -91,7 +99,9 @@ function mapDispatchToProps(dispatch) {
             setWodMode,
             submitWod,
             addActiveWod,
-            addActiveExercises
+            addActiveExercises,
+            removeActiveWod,
+            removeActiveExercises
         }, dispatch)
 }
 

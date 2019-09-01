@@ -102,7 +102,7 @@ function CompleteWod(props) {
         )
     }
 
-
+    console.log('props.wod: ', props.wod)
     if (!isEmpty(props.wod)) {
         return (
             <div className="complete-wod">

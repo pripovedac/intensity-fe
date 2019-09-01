@@ -42,6 +42,13 @@ export default function (state = initialState, action) {
             }
         }
 
+        case actions.ACTIVE_WOD_REMOVE: {
+            return {
+                ...state,
+                active:{}
+            }
+        }
+
         default: {
             return state
         }

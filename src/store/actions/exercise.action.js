@@ -2,6 +2,7 @@ export const NEW_EXERCISE_ADD = 'NEW_EXERCISE_ADD'
 export const NEW_EXERCISE_REMOVE = 'NEW_EXERCISE_REMOVE'
 export const NEW_EXERCISE_CLEAN = 'NEW_EXERCISE_CLEAN'
 export const ACTIVE_EXERCISES_ADD = 'ACTIVE_EXERCISES_ADD'
+export const ACTIVE_EXERCISES_REMOVE = 'ACTIVE_EXERCISES_REMOVE'
 
 export function addNewExercise(exercise) {
     return {
@@ -27,5 +28,11 @@ export function addActiveExercises(exercises) {
     return {
         type: ACTIVE_EXERCISES_ADD,
         payload: exercises
+    }
+}
+
+export function removeActiveExercises(exercises) {
+    return {
+        type: ACTIVE_EXERCISES_REMOVE
     }
 }
