@@ -35,6 +35,13 @@ export default function (state = initialState, action) {
             }
         }
 
+        case actions.ACTIVE_WOD_ADD: {
+            return {
+                ...state,
+                active: action.payload
+            }
+        }
+
         default: {
             return state
         }

@@ -10,20 +10,31 @@ import CompleteWod from '../../ui/CompleteWod/CompleteWod'
 import ButtonWithText from '../../ui/Button/ButtonWithText/ButtonWithText'
 import {bindActionCreators} from 'redux'
 import {setWodMode} from '../../../store/actions/global.action'
-import {submitWod} from '../../../store/actions/wod.action'
+import {submitWod, addActiveWod} from '../../../store/actions/wod.action'
+import {addActiveExercises} from '../../../store/actions/exercise.action'
 import {connect} from 'react-redux'
 import {selectMode} from '../../../store/selectors/global.selector'
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
 import './Wod.scss'
 
 function WodPage(props) {
-    useEffect(async () => {
+    useEffect(  () => {
         console.log('Effect running!')
-        const queryParams = queryString.parse(props.location.search)
-        const date = calculateDate(queryParams)
-        const training = await getTraining(date)
-        console.log('gotten training: ', training)
-    })
+        async function fetchTraining() {
+            const queryParams = queryString.parse(props.location.search)
+            const date = calculateDate(queryParams)
+            const training = await getTraining(date)
+            updateRedux(training)
+        }
+
+        function updateRedux(training) {
+            props.addActiveWod(training.wod)
+            props.addActiveExercises(training.exercises)
+        }
+
+        fetchTraining()
+
+    }, [])
 
     function displayContent() {
         // todo: Think about using MAP object.
@@ -78,11 +89,13 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
             setWodMode,
-            submitWod
+            submitWod,
+            addActiveWod,
+            addActiveExercises
         }, dispatch)
 }
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
 )(WodPage)

@@ -29,6 +29,13 @@ export default function (state = initialState, action) {
             }
         }
 
+        case actions.ACTIVE_EXERCISES_ADD: {
+            return {
+                ...state,
+                active: [...action.payload]
+            }
+        }
+
         default: {
             return state
         }

@@ -3,6 +3,7 @@ export const WOD_SUBMIT = 'WOD_SUBMIT'
 export const WOD_SUBMIT_ACCOMPLISH = 'WOD_SUBMIT_ACCOMPLISH'
 export const WOD_SUBMIT_ABORT = 'WOD_SUBMIT_ABORT'
 export const NEW_WOD_CLEAN = 'NEW_WOD_CLEAN'
+export const ACTIVE_WOD_ADD = 'ACTIVE_WOD_ADD'
 
 export function addWod(wod) {
     return {
@@ -34,5 +35,12 @@ export function abortWodSubmit(message) {
 export function cleanNewWod() {
     return {
         type: NEW_WOD_CLEAN,
+    }
+}
+
+export function addActiveWod(wod) {
+    return {
+        type: ACTIVE_WOD_ADD,
+        payload: wod
     }
 }
