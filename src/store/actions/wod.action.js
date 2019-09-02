@@ -5,6 +5,7 @@ export const WOD_SUBMIT_ABORT = 'WOD_SUBMIT_ABORT'
 export const NEW_WOD_CLEAN = 'NEW_WOD_CLEAN'
 export const ACTIVE_WOD_ADD = 'ACTIVE_WOD_ADD'
 export const ACTIVE_WOD_REMOVE = 'ACTIVE_WOD_REMOVE'
+export const NEW_MEMBER_ADD = 'NEW_MEMBER_ADD'
 
 export function addWod(wod) {
     return {
@@ -46,8 +47,15 @@ export function addActiveWod(wod) {
     }
 }
 
-export function removeActiveWod(wod) {
+export function removeActiveWod() {
     return {
         type: ACTIVE_WOD_REMOVE,
+    }
+}
+
+export function addNewMember(memberName) {
+    return {
+        type: NEW_MEMBER_ADD,
+        payload: memberName
     }
 }

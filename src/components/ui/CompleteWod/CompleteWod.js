@@ -3,12 +3,12 @@ import ButtonWithText from '../Button/ButtonWithText/ButtonWithText'
 import ExerciseList from '../ExerciseList/ExerciseList'
 import RoundedButton from '../Button/RoundedButton/RoundedButton'
 import {FaCheckCircle} from 'react-icons/fa'
-import {selectMode} from '../../../store/selectors/global.selector'
+import {selectActiveTrainingId, selectMode} from '../../../store/selectors/global.selector'
 import {selectActiveWodWithExercises} from '../../../store/selectors/wod.selector'
 import {bindActionCreators} from 'redux'
 import {addTrainings} from '../../../store/actions/auth.action'
 import {setWodMode} from '../../../store/actions/global.action'
-import {submitWod} from '../../../store/actions/wod.action'
+import {submitWod, addNewMember} from '../../../store/actions/wod.action'
 import {connect} from 'react-redux'
 import {selectUser} from '../../../store/selectors/auth.selector'
 import {FaPencilAlt} from 'react-icons/fa'
@@ -67,7 +67,6 @@ function CompleteWod(props) {
     }
 
     function displaySubmitButton() {
-
         return (
             <RoundedButton
                 onClick={signIn}>
@@ -110,9 +109,12 @@ function CompleteWod(props) {
     }
 
     async function signIn() {
-        const trainings = await signForTraining(props.user.id, props.wod.id)
-        props.addTrainings(trainings)
-        console.log('trainings added')
+        const response = await signForTraining(props.user.id, props.trainingId)
+        if (!response.errorStatus) {
+            props.addTrainings(response)
+            const myName = `${props.user.name} ${props.user.lastname}`
+            props.addNewMember(myName)
+        }
     }
 
     if (!isEmpty(props.wod)) {
@@ -143,6 +145,7 @@ function CompleteWod(props) {
 function mapStateToProps(state) {
     return {
         mode: selectMode(state),
+        trainingId: selectActiveTrainingId(state),
         wod: selectActiveWodWithExercises(state),
         user: selectUser(state)
     }
@@ -154,6 +157,7 @@ function mapDispatchToProps(dispatch) {
             addTrainings,
             setWodMode,
             submitWod,
+            addNewMember
         }, dispatch)
 }
 

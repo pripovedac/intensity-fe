@@ -40,13 +40,25 @@ export default function (state = initialState, action) {
                 ...state,
                 active: action.payload
             }
-            console.log('out of active')
         }
 
         case actions.ACTIVE_WOD_REMOVE: {
             return {
                 ...state,
                 active:{}
+            }
+        }
+
+        case actions.NEW_MEMBER_ADD: {
+            const activeMembers = [...state.active.members]
+            const modifiedMembers = [...activeMembers, action.payload]
+
+            return {
+                ...state,
+                active: {
+                    ...state.active,
+                    members: [...modifiedMembers]
+                }
             }
         }
 

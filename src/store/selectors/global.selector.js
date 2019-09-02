@@ -5,3 +5,7 @@ export function selectMode(state) {
 export function selectWeek(state) {
     return state.global.week
 }
+
+export function selectActiveTrainingId(state) {
+    return state.global.trainingId
+}

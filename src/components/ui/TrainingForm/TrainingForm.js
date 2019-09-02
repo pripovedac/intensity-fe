@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import LabeledInput from '../Input/LabeledInput/LabeledInput'
 import RadioButton from '../Input/RadioButton/RadioButton'
 import SelectInput from '../Input/SelectInput/SelectInput'
@@ -103,14 +103,14 @@ function TrainingForm(props) {
                         name="training-type"
                         value="type"
                         label="Crossfit"
-                        checked={globalType == 'crossfit'}
+                        checked={globalType === 'crossfit'}
                         handleInput={setGlobaltype}
                     />
                     <RadioButton
                         name="training-type"
                         value="type"
                         label="Lightfit"
-                        checked={globalType == 'lightfit'}
+                        checked={globalType === 'lightfit'}
                         handleInput={setGlobaltype}
                     />
                 </div>
