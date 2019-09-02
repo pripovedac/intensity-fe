@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import LabeledInput from '../Input/LabeledInput/LabeledInput'
 import RadioButton from '../Input/RadioButton/RadioButton'
 import SelectInput from '../Input/SelectInput/SelectInput'
@@ -10,13 +10,13 @@ import {setExerciseMode, setRegularMode} from '../../../store/actions/global.act
 import {selectNewWod} from '../../../store/selectors/wod.selector'
 import RoundedButton from '../Button/RoundedButton/RoundedButton.js'
 import '../../styles/form-styles/FormStyles.scss'
+import queryString from 'query-string'
+import {calculateDate} from '../../../services/dates'
+import {withRouter} from 'react-router-dom'
 
 function TrainingForm(props) {
-    const [globalType, setGlobaltype] =
-        useState(props.wod.globalType ?
-            props.wod.globalType :
-            'crossfit')
-    const [date, setDate] = useState(props.wod.date)
+    const [globalType, setGlobaltype] = useState(calculateTrainingType())
+    const [date, setDate] = useState(calculateInitDate())
     const [name, setName] = useState(props.wod.name)
     const [duration, setDuration] = useState(props.wod.duration)
     const [roundNumber, setRounds] = useState(props.wod.roundNumber)
@@ -33,6 +33,22 @@ function TrainingForm(props) {
     const [trainer, setTrainer] = useState(props.wod.trainer ?
         props.wod.trainer :
         trainerOptions[0])
+
+    function calculateInitDate() {
+        const queryParams = queryString.parse(props.location.search)
+        const dateParams = calculateDate(queryParams)
+        const dateParts = dateParams.split('_')
+        // todo: check with redux
+        return dateParts[0]
+    }
+
+    function calculateTrainingType() {
+        const queryParams = queryString.parse(props.location.search)
+        // This is only temporary.
+        return queryParams.hour % 2
+            ? 'crossfit'
+            : 'lightfit'
+    }
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -87,14 +103,14 @@ function TrainingForm(props) {
                         name="training-type"
                         value="type"
                         label="Crossfit"
-                        checked
+                        checked={globalType == 'crossfit'}
                         handleInput={setGlobaltype}
                     />
                     <RadioButton
                         name="training-type"
                         value="type"
                         label="Lightfit"
-                        checked={false}
+                        checked={globalType == 'lightfit'}
                         handleInput={setGlobaltype}
                     />
                 </div>
@@ -170,7 +186,7 @@ function mapDispatchToProps(dispatch) {
         }, dispatch)
 }
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(TrainingForm)
+)(TrainingForm))
