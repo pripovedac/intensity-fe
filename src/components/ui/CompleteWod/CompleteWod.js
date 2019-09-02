@@ -15,10 +15,12 @@ import {FaPencilAlt} from 'react-icons/fa'
 import {isEmpty} from 'lodash'
 import {signForTraining} from '../../../services/api/training'
 import {toUserDateFormat} from '../../../services/dates'
+import MemberList from '../MemberList/MemberList'
 import './CompleteWod.scss'
-import MemberList from "../../pages/Wod/Wod";
 
 function CompleteWod(props) {
+    console.log('Rendering Complete Wod Component')
+
     function displayEditButton() {
         if (props.user.role === 'user') {
             return (
@@ -65,6 +67,7 @@ function CompleteWod(props) {
     }
 
     function displaySubmitButton() {
+
         return (
             <RoundedButton
                 onClick={signIn}>
@@ -100,6 +103,12 @@ function CompleteWod(props) {
         )
     }
 
+    function displayMemberList() {
+        return (
+            <MemberList/>
+        )
+    }
+
     async function signIn() {
         const trainings = await signForTraining(props.user.id, props.wod.id)
         props.addTrainings(trainings)
@@ -109,12 +118,15 @@ function CompleteWod(props) {
     if (!isEmpty(props.wod)) {
         return (
             <div className="complete-wod">
-                {displayEditButton()}
-                {displayWodInfo()}
-                {displayExerciseList()}
-                // todo: change this
-                <MemberList/>
-                {displaySubmitButton()}
+                <div className="content-container">
+                    {displayEditButton()}
+                    {displayWodInfo()}
+                    {displayExerciseList()}
+                    {displaySubmitButton()}
+                </div>
+                <div>
+                    {displayMemberList()}
+                </div>
             </div>
         )
     } else {

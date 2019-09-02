@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {selectMembers} from "../../../store/selectors/wod.selector";
 
 function MemberList(props) {
+    console.log('Rendering MemberList component.')
     function displayContent() {
         if (props.members.length) {
             return (

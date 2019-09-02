@@ -3,72 +3,82 @@
 .complete-wod {
   margin-top: 2em;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50%;
+  justify-content: space-between;
+  width: 80%;
 
-  .pen-button {
-    align-self: flex-end;
-    color: $grassgreen;
-    background: #fff;
-    border-radius: 50%;
-    font-size: 1.2em;
-    border: none;
-    outline: none;
-    cursor: pointer;
-  }
-
-  > .pen-button:hover {
-    color: #000;
-  }
-
-  .title-container {
+  .content-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    h1 {
-      font-size: 3em;
-      text-transform: uppercase;
+    .pen-button {
+      align-self: flex-end;
+      color: $grassgreen;
+      background: #fff;
+      border-radius: 50%;
+      font-size: 1.2em;
+      border: none;
+      outline: none;
+      cursor: pointer;
     }
 
-    h2 {
-      margin-top: 0;
-      margin-bottom: 0.2em;
-      text-align: center;
-      font-size: 2em;
-      text-transform: uppercase;
+    > .pen-button:hover {
+      color: #000;
+    }
+
+    .title-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h1 {
+        font-size: 3em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin-top: 0;
+        margin-bottom: 0.2em;
+        text-align: center;
+        font-size: 2em;
+        text-transform: uppercase;
+      }
+    }
+
+    .wod-info {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      > p {
+        margin-bottom: 0;
+      }
+    }
+
+    .exercise-list {
+      margin-top: 2em;
+      width: 60%;
+
+      li {
+        margin-bottom: 0.3em;
+      }
+
+    }
+
+    .rounded-button {
+      align-self: center;
+    }
+
+    .rounded-button:hover {
+      background-color: #000;
+      color: $lightocher;
     }
   }
 
-  .wod-info {
+  .member-list {
+    margin-right: 10em;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    > p {
-      margin-bottom: 0;
-    }
-  }
-
-  .exercise-list {
-    margin-top: 2em;
-    width: 60%;
-
-    li {
-      margin-bottom: 0.3em;
-    }
-
-  }
-
-  .rounded-button {
-    align-self: center;
-  }
-
-  .rounded-button:hover {
-    background-color: #000;
-    color: $lightocher;
   }
 }
 

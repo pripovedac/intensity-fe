@@ -40,6 +40,7 @@ export default function (state = initialState, action) {
                 ...state,
                 active: action.payload
             }
+            console.log('out of active')
         }
 
         case actions.ACTIVE_WOD_REMOVE: {

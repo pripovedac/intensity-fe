@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import {calculateDate} from '../../../services/dates'
 import queryString from 'query-string'
 import {getTraining} from '../../../services/api/training'
@@ -15,41 +15,48 @@ import {addActiveExercises, removeActiveExercises} from '../../../store/actions/
 import {selectMode} from '../../../store/selectors/global.selector'
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
 import {connect} from 'react-redux'
-import MemberList from '../../ui/MemberList/MemberList'
+import {useDispatch} from 'react-redux'
 import './Wod.scss'
 
 function WodPage(props) {
+    console.log('Rendering WodPage component.')
+
+    const [search] = useState(props.location.search)
+    const dispatch = useDispatch()
+
     useEffect(() => {
         console.log('Effect running!')
 
-        async function fetchTraining() {
-            const queryParams = queryString.parse(props.location.search)
+        async function fetchTraining(search) {
+            const queryParams = queryString.parse(search)
             const date = calculateDate(queryParams)
             const training = await getTraining(date)
             if (!training.errorStatus) {
+                // re-renders!
                 updateRedux(training)
             }
         }
 
         function updateRedux(training) {
-            props.addActiveTraining(training.id)
-            props.addActiveWod({
+            dispatch(addActiveTraining(training.id))
+            const wodPayload = {
                 ...training.wod,
                 members: training.members
-            })
-            props.addActiveExercises(training.exercises)
+            }
+            dispatch(addActiveWod(wodPayload))
+            dispatch(addActiveExercises(training.exercises))
         }
+
 
         function cleanRedux() {
-            props.removeActiveTraining()
-            props.removeActiveWod()
-            props.removeActiveExercises()
+            dispatch(removeActiveTraining())
+            dispatch(removeActiveWod())
+            dispatch(removeActiveExercises())
         }
 
-        fetchTraining()
-
+        fetchTraining(search)
         return cleanRedux
-    }, [])
+    }, [search, dispatch])
 
     function displayContent() {
         // todo: Think about using MAP object.
@@ -88,7 +95,7 @@ function WodPage(props) {
                          width={300}/>
                 </div>
                 {displayContent()}
-                <MemberList/>
+
             </div>
         </div>
     )
@@ -106,12 +113,6 @@ function mapDispatchToProps(dispatch) {
         {
             setWodMode,
             submitWod,
-            addActiveTraining,
-            addActiveWod,
-            addActiveExercises,
-            removeActiveTraining,
-            removeActiveWod,
-            removeActiveExercises
         }, dispatch)
 }
 
