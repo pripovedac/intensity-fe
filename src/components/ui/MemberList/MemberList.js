@@ -20,7 +20,7 @@ function MemberList(props) {
     }
 
     function displayMembers() {
-        return props.members.map(member => <li key={member}>{member}</li>)
+        return props.members.map(member => <li key={member.id}>{member.name}</li>)
     }
 
     return (

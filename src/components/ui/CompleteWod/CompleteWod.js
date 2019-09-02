@@ -2,9 +2,9 @@ import React from 'react'
 import ButtonWithText from '../Button/ButtonWithText/ButtonWithText'
 import ExerciseList from '../ExerciseList/ExerciseList'
 import RoundedButton from '../Button/RoundedButton/RoundedButton'
-import {FaCheckCircle} from 'react-icons/fa'
+import {FaCheckCircle, FaTimesCircle} from 'react-icons/fa'
 import {selectActiveTrainingId, selectMode} from '../../../store/selectors/global.selector'
-import {selectActiveWodWithExercises} from '../../../store/selectors/wod.selector'
+import {selectActiveWodWithExercises, selectMembers} from '../../../store/selectors/wod.selector'
 import {bindActionCreators} from 'redux'
 import {addTrainings} from '../../../store/actions/auth.action'
 import {setWodMode} from '../../../store/actions/global.action'
@@ -67,12 +67,19 @@ function CompleteWod(props) {
     }
 
     function displaySubmitButton() {
-        return (
-            <RoundedButton
-                onClick={signIn}>
-                <FaCheckCircle className="button-icon"/>
-            </RoundedButton>
-        )
+        if (!checkIfSignedIn(props.user.id)) {
+            return (
+                <RoundedButton onClick={signIn}>
+                    <FaCheckCircle className="button-icon"/>
+                </RoundedButton>
+            )
+        } else {
+            return (
+                <RoundedButton onClick={signOut}>
+                    <FaTimesCircle className="button-icon"/>
+                </RoundedButton>
+            )
+        }
     }
 
     function displayAddButton() {
@@ -102,6 +109,16 @@ function CompleteWod(props) {
         )
     }
 
+
+    function checkIfSignedIn(id) {
+        console.log('test: ', props.members
+            .map(({id}) => id)
+            .includes(id))
+        return props.members
+            .map(({id}) => id)
+            .includes(id)
+    }
+
     function displayMemberList() {
         return (
             <MemberList/>
@@ -115,6 +132,10 @@ function CompleteWod(props) {
             const myName = `${props.user.name} ${props.user.lastname}`
             props.addNewMember(myName)
         }
+    }
+
+    async function signOut() {
+        // todo
     }
 
     if (!isEmpty(props.wod)) {
@@ -147,7 +168,8 @@ function mapStateToProps(state) {
         mode: selectMode(state),
         trainingId: selectActiveTrainingId(state),
         wod: selectActiveWodWithExercises(state),
-        user: selectUser(state)
+        user: selectUser(state),
+        members: selectMembers(state)
     }
 }
 
