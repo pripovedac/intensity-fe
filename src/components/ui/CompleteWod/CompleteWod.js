@@ -16,6 +16,7 @@ import {isEmpty} from 'lodash'
 import {signForTraining} from '../../../services/api/training'
 import {toUserDateFormat} from '../../../services/dates'
 import './CompleteWod.scss'
+import MemberList from "../../pages/Wod/Wod";
 
 function CompleteWod(props) {
     function displayEditButton() {
@@ -111,6 +112,8 @@ function CompleteWod(props) {
                 {displayEditButton()}
                 {displayWodInfo()}
                 {displayExerciseList()}
+                // todo: change this
+                <MemberList/>
                 {displaySubmitButton()}
             </div>
         )
