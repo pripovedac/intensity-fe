@@ -8,12 +8,12 @@ import {selectActiveWodWithExercises, selectMembers} from '../../../store/select
 import {bindActionCreators} from 'redux'
 import {addTrainings} from '../../../store/actions/auth.action'
 import {setWodMode} from '../../../store/actions/global.action'
-import {submitWod, addNewMember} from '../../../store/actions/wod.action'
+import {submitWod, addNewMember, removeMember} from '../../../store/actions/wod.action'
 import {connect} from 'react-redux'
 import {selectUser} from '../../../store/selectors/auth.selector'
 import {FaPencilAlt} from 'react-icons/fa'
 import {isEmpty} from 'lodash'
-import {signForTraining} from '../../../services/api/training'
+import {signForTraining, signOutOfTraining} from '../../../services/api/training'
 import {toUserDateFormat} from '../../../services/dates'
 import MemberList from '../MemberList/MemberList'
 import './CompleteWod.scss'
@@ -111,9 +111,6 @@ function CompleteWod(props) {
 
 
     function checkIfSignedIn(id) {
-        console.log('test: ', props.members
-            .map(({id}) => id)
-            .includes(id))
         return props.members
             .map(({id}) => id)
             .includes(id)
@@ -135,7 +132,11 @@ function CompleteWod(props) {
     }
 
     async function signOut() {
-        // todo
+        const response = await signOutOfTraining(props.user.id, props.trainingId)
+        if (!response.errorStatus) {
+            props.addTrainings(response)
+            props.removeMember(props.user.id)
+        }
     }
 
     if (!isEmpty(props.wod)) {
@@ -179,7 +180,8 @@ function mapDispatchToProps(dispatch) {
             addTrainings,
             setWodMode,
             submitWod,
-            addNewMember
+            addNewMember,
+            removeMember
         }, dispatch)
 }
 

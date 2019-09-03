@@ -12,3 +12,11 @@ export async function signForTraining(userId, trainingId) {
     }
     return await apiFetch('POST', `${path}/training/sign`, payload)
 }
+
+export async function signOutOfTraining(userId, trainingId) {
+    const payload = {
+        userId,
+        trainingId
+    }
+    return await apiFetch('DELETE', `${path}/training/signout`, payload)
+}
