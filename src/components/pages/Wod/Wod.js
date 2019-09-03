@@ -19,8 +19,6 @@ import {useDispatch} from 'react-redux'
 import './Wod.scss'
 
 function WodPage(props) {
-    console.log('Rendering WodPage component.')
-
     const [search] = useState(props.location.search)
     const dispatch = useDispatch()
 

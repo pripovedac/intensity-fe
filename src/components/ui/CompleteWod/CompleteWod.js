@@ -19,8 +19,6 @@ import MemberList from '../MemberList/MemberList'
 import './CompleteWod.scss'
 
 function CompleteWod(props) {
-    console.log('Rendering Complete Wod Component')
-
     function displayEditButton() {
         if (props.user.role === 'user') {
             return (
@@ -126,8 +124,9 @@ function CompleteWod(props) {
         const response = await signForTraining(props.user.id, props.trainingId)
         if (!response.errorStatus) {
             props.addTrainings(response)
-            const myName = `${props.user.name} ${props.user.lastname}`
-            props.addNewMember(myName)
+            const id = props.user.id
+            const name = `${props.user.name} ${props.user.lastname}`
+            props.addNewMember({id, name})
         }
     }
 
