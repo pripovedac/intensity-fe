@@ -93,6 +93,7 @@ function TrainingForm(props) {
         return wod
     }
 
+
     return (
         <div className="training-form">
             <h1>Workout of the Day</h1>
@@ -104,14 +105,14 @@ function TrainingForm(props) {
                         value="type"
                         label="Crossfit"
                         checked={globalType === 'crossfit'}
-                        handleInput={setGlobaltype}
+                        handleInput={() => setGlobaltype('crossfit')}
                     />
                     <RadioButton
                         name="training-type"
                         value="type"
                         label="Lightfit"
                         checked={globalType === 'lightfit'}
-                        handleInput={setGlobaltype}
+                        handleInput={() => setGlobaltype('lightfit')}
                     />
                 </div>
 
