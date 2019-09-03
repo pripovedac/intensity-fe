@@ -52,8 +52,16 @@ function CompleteWod(props) {
                 {title}
                 {/*todo: fix date and add time} */}
                 <p>{`${toUserDateFormat(props.wod.date)}`}</p>
-                <p>{`${props.wod.roundNumber} ${wordRound} for ${props.wod.duration}
-                 minutes with ${props.wod.trainer}`}</p>
+                <p>
+                    {
+                        `${
+                            props.wod.roundNumber
+                                ? `${props.wod.roundNumber} ${wordRound}`
+                                : ''
+                            } for ${props.wod.duration
+                            } minutes with ${props.wod.trainer}`
+                    }
+                </p>
             </div>
         )
     }

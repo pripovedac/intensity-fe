@@ -4,6 +4,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid #A9A9A9;
 
   button {
     border-radius: 50%;
@@ -12,6 +14,7 @@
     cursor: pointer;
     border: none;
     outline: none;
+    align-self: flex-end;
   }
 
   .remove-circle {

@@ -10,11 +10,11 @@ function Exercise(props) {
         const exercise = props.exercise
         //todo: see if this can be do better
         if (!exercise.duration && exercise.weight)
-            return `${exercise.name} for ${exercise.reps} reps, ${exercise.weight} kilos`
+            return `${exercise.name} for ${exercise.repsNumber} reps, ${exercise.weight} kilos`
         else if (exercise.duration && !exercise.weight)
-            return `${exercise.duration} mins of ${exercise.name} for ${exercise.reps} reps`
+            return `${exercise.duration} mins of ${exercise.name} for ${exercise.repsNumber} reps`
         else if (exercise.duration && exercise.weight)
-            return `${exercise.duration} mins of ${exercise.name} for ${exercise.reps} reps, ${exercise.weight} kilos`
+            return `${exercise.duration} mins of ${exercise.name} for ${exercise.repsNumber} reps, ${exercise.weight} kilos`
         else if (exercise.duration && !exercise.weight && !exercise.reps)
             return `${exercise.duration} mins of ${exercise.name}`
         else
