@@ -5,7 +5,7 @@ import {selectMembers} from "../../../store/selectors/wod.selector";
 
 function MemberList(props) {
     function displayContent() {
-        if (props.members.length) {
+        if (props.members && props.members.length) {
             return (
                 <ul>
                     {displayMembers()}

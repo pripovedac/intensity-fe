@@ -6,6 +6,8 @@ export const EXERCISE_MODE_SET = 'EXERCISE_MODE_SET'
 export const REGULAR_MODE_SET = 'REGULAR_MODE_SET'
 export const ACTIVE_TRAINING_ADD = 'ACTIVE_TRAINING_ADD'
 export const ACTIVE_TRAINING_REMOVE = 'ACTIVE_TRAINING_REMOVE'
+export const UPDATE_NOTIFY = 'UPDATE_NOTIFY'
+export const UPDATE_NOTIFICATION_REMOVE = 'UPDATE_NOTIFICATION_REMOVE'
 
 export function subtractWeek() {
     return {
@@ -53,5 +55,17 @@ export function addActiveTraining(trainingId) {
 export function removeActiveTraining() {
     return {
         type: ACTIVE_TRAINING_REMOVE
+    }
+}
+
+export function notifyUpdate() {
+    return {
+        type: UPDATE_NOTIFY
+    }
+}
+
+export function removeUpdateNotification() {
+    return {
+        type: UPDATE_NOTIFICATION_REMOVE
     }
 }

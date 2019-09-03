@@ -8,7 +8,7 @@ import {selectActiveWod, selectMembers} from '../../../store/selectors/wod.selec
 import {selectActiveExercises} from '../../../store/selectors/exercise.selector'
 import {bindActionCreators} from 'redux'
 import {addTrainings} from '../../../store/actions/auth.action'
-import {setWodMode} from '../../../store/actions/global.action'
+import {setWodMode, notifyUpdate} from '../../../store/actions/global.action'
 import {addNewWod, submitWod, addNewMember, removeMember} from '../../../store/actions/wod.action'
 import {replaceNewExercises} from '../../../store/actions/exercise.action'
 import {connect} from 'react-redux'
@@ -35,6 +35,7 @@ function CompleteWod(props) {
     function prepareWodForEditing() {
         props.addNewWod(props.wod)
         props.replaceNewExercises(props.exercises)
+        props.notifyUpdate()
         props.setWodMode()
     }
 
@@ -125,9 +126,11 @@ function CompleteWod(props) {
 
 
     function checkIfSignedIn(id) {
-        return props.members
-            .map(({id}) => id)
-            .includes(id)
+        if (props.members) {
+            return props.members
+                .map(({id}) => id)
+                .includes(id)
+        }
     }
 
     function displayMemberList() {
@@ -195,6 +198,7 @@ function mapDispatchToProps(dispatch) {
         {
             addNewWod,
             replaceNewExercises,
+            notifyUpdate,
             addTrainings,
             setWodMode,
             submitWod,

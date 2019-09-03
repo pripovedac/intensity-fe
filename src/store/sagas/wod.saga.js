@@ -2,10 +2,14 @@ import {call, put, takeLatest} from 'redux-saga/effects'
 import * as globalActions from '../actions/global.action'
 import * as wodActions from '../actions/wod.action'
 import * as exerciseActions from '../actions/exercise.action'
-import {saveWod} from '../../services/api/wod'
+import {saveWod, updateWod} from '../../services/api/wod'
 
 export function* submitWodSaga(action) {
-    yield call(saveWod, action.payload)
+    const wod = yield call(saveWod, action.payload)
+    const exercises = [...wod.exercises]
+    delete wod.exercises
+    yield put(wodActions.addActiveWod(wod))
+    yield put(exerciseActions.addActiveExercises(exercises))
     yield put(globalActions.setRegularMode())
     yield put(wodActions.cleanNewWod())
     yield put(exerciseActions.cleanNewExercises())
@@ -15,4 +19,20 @@ export function* submitWodSaga(action) {
 
 export function* watchSubmitWodSaga() {
     yield takeLatest(wodActions.WOD_SUBMIT, submitWodSaga)
+}
+
+export function* updateWodSaga(action) {
+    const completeWod = yield call(updateWod, action.payload)
+    // todo: same code repeats
+    const exercises = [...completeWod.exercises]
+    delete completeWod.exercises
+    yield put(wodActions.addActiveWod(completeWod.wod))
+    yield put(exerciseActions.addActiveExercises(exercises))
+    yield put(globalActions.setRegularMode())
+    yield put(wodActions.cleanNewWod())
+    yield put(exerciseActions.cleanNewExercises())
+}
+
+export function* watchUpdateWodSaga() {
+    yield takeLatest(wodActions.WOD_UPDATE, updateWodSaga)
 }

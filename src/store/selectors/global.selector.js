@@ -9,3 +9,7 @@ export function selectWeek(state) {
 export function selectActiveTrainingId(state) {
     return state.global.trainingId
 }
+
+export function selectUpdateNotification(state) {
+    return state.global.isUpdate
+}

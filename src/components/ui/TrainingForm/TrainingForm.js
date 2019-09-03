@@ -37,7 +37,7 @@ function TrainingForm(props) {
     function calculateInitDate() {
         const queryParams = queryString.parse(props.location.search)
         const dateParams = calculateDate(queryParams)
-        const dateParts = dateParams.split('_')
+        const dateParts = dateParams.split(' ')
         // todo: check with redux
         return dateParts[0]
     }

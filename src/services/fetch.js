@@ -10,6 +10,8 @@ function apiFetchFactory({fetch}) {
         //todo: read accessToken from the store
         const accessToken = getToken()
 
+        console.log('Fetching...')
+
         const res = await fetch(url, {
             method,
             body: JSON.stringify(body),

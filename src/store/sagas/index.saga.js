@@ -1,6 +1,6 @@
 import {all, fork} from 'redux-saga/effects'
 import {watchLoginSaga, watchLogoutSaga, watchRegisterSaga} from './auth.saga'
-import {watchSubmitWodSaga} from './wod.saga'
+import {watchSubmitWodSaga, watchUpdateWodSaga} from './wod.saga'
 
 export default function* root() {
     yield all([
@@ -8,5 +8,6 @@ export default function* root() {
         fork(watchLogoutSaga),
         fork(watchRegisterSaga),
         fork(watchSubmitWodSaga),
+        fork(watchUpdateWodSaga),
     ])
 }

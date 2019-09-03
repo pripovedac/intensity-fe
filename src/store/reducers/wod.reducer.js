@@ -21,7 +21,10 @@ export default function (state = initialState, action) {
         case actions.NEW_WOD_ADD: {
             return {
                 ...state,
-                new: action.payload
+                new: {
+                    ...state.new,
+                    ...action.payload
+                }
             }
         }
 
@@ -39,14 +42,17 @@ export default function (state = initialState, action) {
         case actions.ACTIVE_WOD_ADD: {
             return {
                 ...state,
-                active: action.payload
+                active: {
+                    ...state.active,
+                    ...action.payload
+                }
             }
         }
 
         case actions.ACTIVE_WOD_REMOVE: {
             return {
                 ...state,
-                active:{}
+                active: {}
             }
         }
 

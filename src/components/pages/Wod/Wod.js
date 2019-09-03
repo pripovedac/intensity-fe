@@ -9,10 +9,16 @@ import ExerciseList from '../../ui/ExerciseList/ExerciseList'
 import CompleteWod from '../../ui/CompleteWod/CompleteWod'
 import ButtonWithText from '../../ui/Button/ButtonWithText/ButtonWithText'
 import {bindActionCreators} from 'redux'
-import {setWodMode, addActiveTraining, removeActiveTraining, setRegularMode} from '../../../store/actions/global.action'
-import {submitWod, addActiveWod, removeActiveWod, cleanNewWod} from '../../../store/actions/wod.action'
+import {
+    setWodMode,
+    addActiveTraining,
+    removeActiveTraining,
+    setRegularMode,
+    removeUpdateNotification
+} from '../../../store/actions/global.action'
+import {submitWod, addActiveWod, removeActiveWod, cleanNewWod, updateWod} from '../../../store/actions/wod.action'
 import {addActiveExercises, removeActiveExercises, cleanNewExercises} from '../../../store/actions/exercise.action'
-import {selectMode} from '../../../store/selectors/global.selector'
+import {selectMode, selectUpdateNotification} from '../../../store/selectors/global.selector'
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
 import {connect} from 'react-redux'
 import {useDispatch} from 'react-redux'
@@ -27,6 +33,9 @@ function WodPage(props) {
 
         async function fetchTraining(search) {
             const queryParams = queryString.parse(search)
+            // todo: This was necessary as the hours would be lost.
+            // todo: Should be found better way, or, preferably,
+            // todo: remove updating the date.
             const date = calculateDate(queryParams)
             const training = await getTraining(date)
             if (!training.errorStatus) {
@@ -52,6 +61,7 @@ function WodPage(props) {
             dispatch(removeActiveExercises())
             dispatch(cleanNewWod())
             dispatch(cleanNewExercises())
+            dispatch(removeUpdateNotification())
             dispatch(setRegularMode())
         }
 
@@ -83,7 +93,14 @@ function WodPage(props) {
     }
 
     function submitWod() {
-        props.submitWod(props.wodWithExercises)
+        if (props.isUpdate) {
+            const queryParams = queryString.parse(search)
+            props.wodWithExercises.date = calculateDate(queryParams)
+            props.updateWod(props.wodWithExercises)
+        } else {
+            delete props.wodWithExercises.id
+            props.submitWod(props.wodWithExercises)
+        }
     }
 
     return (
@@ -106,14 +123,17 @@ function mapStateToProps(state) {
     return {
         mode: selectMode(state),
         wodWithExercises: selectNewWodWithExercises(state),
+        isUpdate: selectUpdateNotification(state)
     }
 }
+
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
             setWodMode,
             submitWod,
+            updateWod
         }, dispatch)
 }
 

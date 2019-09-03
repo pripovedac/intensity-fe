@@ -24,7 +24,7 @@ export function calculateDate(date) {
 }
 
 export function toApiString(date) {
-    return moment(date).format('YYYY-MM-DD_HH:mm:ss')
+    return moment(date).format('YYYY-MM-DD HH:mm:ss')
 }
 
 export function toUserDateFormat(date) {

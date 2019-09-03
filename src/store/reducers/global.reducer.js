@@ -3,7 +3,8 @@ import * as actions from '../actions/global.action'
 const initialState = {
     week: 0,
     wodMode: 'regular',
-    trainingId: ''
+    trainingId: '',
+    isUpdate: false,
 }
 // Possible wodMode, i.e. modes for page Wod, are:
 // [wod, exercise, regular].
@@ -65,6 +66,20 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 trainingId: ''
+            }
+        }
+
+        case actions.UPDATE_NOTIFY: {
+            return {
+                ...state,
+                isUpdate: true
+            }
+        }
+
+        case actions.UPDATE_NOTIFICATION_REMOVE: {
+            return {
+                ...state,
+                isUpdate: false
             }
         }
 
