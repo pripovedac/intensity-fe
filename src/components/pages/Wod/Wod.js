@@ -10,8 +10,8 @@ import CompleteWod from '../../ui/CompleteWod/CompleteWod'
 import ButtonWithText from '../../ui/Button/ButtonWithText/ButtonWithText'
 import {bindActionCreators} from 'redux'
 import {setWodMode, addActiveTraining, removeActiveTraining, setRegularMode} from '../../../store/actions/global.action'
-import {submitWod, addActiveWod, removeActiveWod} from '../../../store/actions/wod.action'
-import {addActiveExercises, removeActiveExercises} from '../../../store/actions/exercise.action'
+import {submitWod, addActiveWod, removeActiveWod, cleanNewWod} from '../../../store/actions/wod.action'
+import {addActiveExercises, removeActiveExercises, cleanNewExercises} from '../../../store/actions/exercise.action'
 import {selectMode} from '../../../store/selectors/global.selector'
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
 import {connect} from 'react-redux'
@@ -50,6 +50,8 @@ function WodPage(props) {
             dispatch(removeActiveTraining())
             dispatch(removeActiveWod())
             dispatch(removeActiveExercises())
+            dispatch(cleanNewWod())
+            dispatch(cleanNewExercises())
             dispatch(setRegularMode())
         }
 
