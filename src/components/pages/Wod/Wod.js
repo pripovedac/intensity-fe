@@ -9,7 +9,7 @@ import ExerciseList from '../../ui/ExerciseList/ExerciseList'
 import CompleteWod from '../../ui/CompleteWod/CompleteWod'
 import ButtonWithText from '../../ui/Button/ButtonWithText/ButtonWithText'
 import {bindActionCreators} from 'redux'
-import {setWodMode, addActiveTraining, removeActiveTraining} from '../../../store/actions/global.action'
+import {setWodMode, addActiveTraining, removeActiveTraining, setRegularMode} from '../../../store/actions/global.action'
 import {submitWod, addActiveWod, removeActiveWod} from '../../../store/actions/wod.action'
 import {addActiveExercises, removeActiveExercises} from '../../../store/actions/exercise.action'
 import {selectMode} from '../../../store/selectors/global.selector'
@@ -50,6 +50,7 @@ function WodPage(props) {
             dispatch(removeActiveTraining())
             dispatch(removeActiveWod())
             dispatch(removeActiveExercises())
+            dispatch(setRegularMode())
         }
 
         fetchTraining(search)
