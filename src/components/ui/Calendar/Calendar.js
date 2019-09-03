@@ -1,17 +1,35 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import moment from 'moment'
 import {Link} from 'react-router-dom'
 import {calculateWeek} from '../../../services/dates'
 import {connect} from 'react-redux'
 import {selectWeek} from '../../../store/selectors/global.selector'
+import classNames from 'classnames'
 import './Calendar.scss'
 
 function Calendar(props) {
+    const [loading, setLoading] = useState(false)
     const [weekDays] = useState(moment.weekdaysShort())
+    const [weekOffsetText, setWeekOffsetText] = useState(calculateWeek(props.week))
+    const weekOffset = props.week
 
-    function displayWeek() {
-        return calculateWeek(props.week)
-    }
+    useEffect(() => {
+        function displayWeek() {
+            return calculateWeek(props.week)
+        }
+
+        // Everytime component state is changed, tje component will re-render.
+        setLoading(true)
+
+        const timer = setTimeout(() => {
+            setWeekOffsetText(displayWeek())
+            setLoading(false)
+        }, 200);
+
+        return () => clearTimeout(timer);
+
+    }, [weekOffset])
+
 
     function getDays() {
         let days = weekDays.map(day => {
@@ -69,9 +87,9 @@ function Calendar(props) {
                     return (
                         <td key={`${hour}-${day}`}>
                             <Link to={{
-                                    pathname: '/wod',
-                                    search: `?hour=${hour}&day=${day}&week=${props.week}`
-                                }}>
+                                pathname: '/wod',
+                                search: `?hour=${hour}&day=${day}&week=${props.week}`
+                            }}>
                                 {trainingType}
                             </Link>
                         </td>
@@ -82,10 +100,15 @@ function Calendar(props) {
         )
     }
 
+    const classes = classNames({
+        'table-calendar': true,
+        'loading-calendar': loading
+    })
+
     return (
         <div>
-            <table className="table-calendar">
-                <caption>Intensity week {displayWeek()}</caption>
+            <table className={classes}>
+                <caption>{`Intensity week ${weekOffsetText}`}</caption>
                 <thead>
                 {getDays()}
                 </thead>
@@ -96,7 +119,6 @@ function Calendar(props) {
         </div>
 
     )
-
 }
 
 function mapStateToProps(state) {

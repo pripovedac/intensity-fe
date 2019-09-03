@@ -37,6 +37,7 @@ function WodPage(props) {
     useEffect(() => {
         console.log('Effect running!')
         setLoading(true)
+
         async function fetchTraining(search) {
             const queryParams = queryString.parse(search)
             // todo: This was necessary as the hours would be lost.

@@ -9,7 +9,6 @@ import './WeeklyNavigation.scss'
 function WeeklyNavigation(props) {
     return (
         <div className="weekly-navigation">
-
             <button
                 onClick={props.subtractWeek}>
                 <FaArrowAltCircleLeft/>
