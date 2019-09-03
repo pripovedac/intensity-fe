@@ -4,11 +4,13 @@ import ExerciseList from '../ExerciseList/ExerciseList'
 import RoundedButton from '../Button/RoundedButton/RoundedButton'
 import {FaCheckCircle, FaTimesCircle} from 'react-icons/fa'
 import {selectActiveTrainingId, selectMode} from '../../../store/selectors/global.selector'
-import {selectActiveWodWithExercises, selectMembers} from '../../../store/selectors/wod.selector'
+import {selectActiveWod, selectMembers} from '../../../store/selectors/wod.selector'
+import {selectActiveExercises} from '../../../store/selectors/exercise.selector'
 import {bindActionCreators} from 'redux'
 import {addTrainings} from '../../../store/actions/auth.action'
 import {setWodMode} from '../../../store/actions/global.action'
-import {submitWod, addNewMember, removeMember} from '../../../store/actions/wod.action'
+import {addNewWod, submitWod, addNewMember, removeMember} from '../../../store/actions/wod.action'
+import {replaceNewExercises} from '../../../store/actions/exercise.action'
 import {connect} from 'react-redux'
 import {selectUser} from '../../../store/selectors/auth.selector'
 import {FaPencilAlt} from 'react-icons/fa'
@@ -23,11 +25,17 @@ function CompleteWod(props) {
         if (props.user.role === 'user') {
             return (
                 <button className="pen-button"
-                        onClick={props.setWodMode}>
+                        onClick={prepareWodForEditing}>
                     <FaPencilAlt/>
                 </button>
             )
         }
+    }
+
+    function prepareWodForEditing() {
+        props.addNewWod(props.wod)
+        props.replaceNewExercises(props.exercises)
+        props.setWodMode()
     }
 
     function displayWodInfo() {
@@ -68,7 +76,7 @@ function CompleteWod(props) {
 
     function displayExerciseList() {
         return (
-            <ExerciseList exercises={props.wod.exercises}/>
+            <ExerciseList exercises={props.exercises}/>
         )
     }
 
@@ -175,7 +183,8 @@ function mapStateToProps(state) {
     return {
         mode: selectMode(state),
         trainingId: selectActiveTrainingId(state),
-        wod: selectActiveWodWithExercises(state),
+        wod: selectActiveWod(state),
+        exercises: selectActiveExercises(state),
         user: selectUser(state),
         members: selectMembers(state)
     }
@@ -184,6 +193,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
+            addNewWod,
+            replaceNewExercises,
             addTrainings,
             setWodMode,
             submitWod,

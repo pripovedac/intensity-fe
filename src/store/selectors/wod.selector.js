@@ -11,12 +11,9 @@ export function selectNewWodWithExercises(state) {
     }
 }
 
-export function selectActiveWodWithExercises(state) {
+export function selectActiveWod(state) {
     if (!isEmpty(state.wod.active)) {
-        return {
-            ...state.wod.active,
-            exercises: state.exercises.active
-        }
+        return state.wod.active
     } else {
         return {}
     }

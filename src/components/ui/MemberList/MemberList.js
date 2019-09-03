@@ -19,7 +19,6 @@ function MemberList(props) {
     }
 
     function displayMembers() {
-        console.log('memberList: ', props.members)
         return props.members.map(member => <li key={member.id}>{member.name}</li>)
     }
 

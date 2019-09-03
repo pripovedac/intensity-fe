@@ -4,7 +4,7 @@ import RadioButton from '../Input/RadioButton/RadioButton'
 import SelectInput from '../Input/SelectInput/SelectInput'
 import {FaArrowAltCircleLeft, FaCheckCircle} from 'react-icons/fa'
 import {bindActionCreators} from 'redux'
-import {addWod} from '../../../store/actions/wod.action'
+import {addNewWod} from '../../../store/actions/wod.action'
 import {connect} from 'react-redux'
 import {setExerciseMode, setRegularMode} from '../../../store/actions/global.action'
 import {selectNewWod} from '../../../store/selectors/wod.selector'
@@ -55,7 +55,7 @@ function TrainingForm(props) {
         if (checkForm()) {
             const wod = createWod()
             const validatedWod = validateWod(wod)
-            props.addWod(validatedWod)
+            props.addNewWod(validatedWod)
             props.setExerciseMode()
         } else {
             alert('WOD is not intense if it does not have a name.')
@@ -180,7 +180,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
-            addWod,
+            addNewWod,
             setExerciseMode,
             setRegularMode,
         }, dispatch)

@@ -43,6 +43,13 @@ export default function (state = initialState, action) {
             }
         }
 
+        case actions.NEW_EXERCISES_REPLACE: {
+            return {
+                ...state,
+                new: [...action.payload]
+            }
+        }
+
         default: {
             return state
         }

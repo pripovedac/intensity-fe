@@ -1,4 +1,4 @@
-export const WOD_ADD = 'WOD_ADD'
+export const NEW_WOD_ADD = 'NEW_WOD_ADD'
 export const WOD_SUBMIT = 'WOD_SUBMIT'
 export const WOD_SUBMIT_ACCOMPLISH = 'WOD_SUBMIT_ACCOMPLISH'
 export const WOD_SUBMIT_ABORT = 'WOD_SUBMIT_ABORT'
@@ -8,9 +8,9 @@ export const ACTIVE_WOD_REMOVE = 'ACTIVE_WOD_REMOVE'
 export const NEW_MEMBER_ADD = 'NEW_MEMBER_ADD'
 export const MEMBER_REMOVE = 'MEMBER_REMOVE'
 
-export function addWod(wod) {
+export function addNewWod(wod) {
     return {
-        type: WOD_ADD,
+        type: NEW_WOD_ADD,
         payload: wod
     }
 }

@@ -1,6 +1,7 @@
 import * as actions from '../actions/wod.action'
 
 const newWod = {
+    id: '',
     globalType: '',
     name: '',
     date: '',
@@ -17,7 +18,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case actions.WOD_ADD: {
+        case actions.NEW_WOD_ADD: {
             return {
                 ...state,
                 new: action.payload

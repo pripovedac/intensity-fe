@@ -3,6 +3,8 @@ export const NEW_EXERCISE_REMOVE = 'NEW_EXERCISE_REMOVE'
 export const NEW_EXERCISE_CLEAN = 'NEW_EXERCISE_CLEAN'
 export const ACTIVE_EXERCISES_ADD = 'ACTIVE_EXERCISES_ADD'
 export const ACTIVE_EXERCISES_REMOVE = 'ACTIVE_EXERCISES_REMOVE'
+export const NEW_EXERCISES_REPLACE = 'NEW_EXERCISES_REPLACE'
+
 
 export function addNewExercise(exercise) {
     return {
@@ -34,5 +36,12 @@ export function addActiveExercises(exercises) {
 export function removeActiveExercises(exercises) {
     return {
         type: ACTIVE_EXERCISES_REMOVE
+    }
+}
+
+export function replaceNewExercises(exercises) {
+    return {
+        type: NEW_EXERCISES_REPLACE,
+        payload: exercises
     }
 }
