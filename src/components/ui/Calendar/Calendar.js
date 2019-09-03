@@ -15,7 +15,7 @@ function Calendar(props) {
 
     useEffect(() => {
         function displayWeek() {
-            return calculateWeek(props.week)
+            return calculateWeek(weekOffset)
         }
 
         // Everytime component state is changed, tje component will re-render.

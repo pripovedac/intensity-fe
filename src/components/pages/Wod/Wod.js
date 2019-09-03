@@ -29,10 +29,7 @@ function WodPage(props) {
     console.log('Rendering Wod Page.')
     const [search] = useState(props.location.search)
     const dispatch = useDispatch()
-    const [mode, setMode] = useState(props.mode)
     const [loading, setLoading] = useState(true)
-
-    console.log('Mode: ', mode)
 
     useEffect(() => {
         console.log('Effect running!')
