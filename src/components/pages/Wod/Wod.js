@@ -22,15 +22,21 @@ import {selectMode, selectUpdateNotification} from '../../../store/selectors/glo
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
 import {connect} from 'react-redux'
 import {useDispatch} from 'react-redux'
+import ReactLoading from 'react-loading';
 import './Wod.scss'
 
 function WodPage(props) {
+    console.log('Rendering Wod Page.')
     const [search] = useState(props.location.search)
     const dispatch = useDispatch()
+    const [mode, setMode] = useState(props.mode)
+    const [loading, setLoading] = useState(true)
+
+    console.log('Mode: ', mode)
 
     useEffect(() => {
         console.log('Effect running!')
-
+        setLoading(true)
         async function fetchTraining(search) {
             const queryParams = queryString.parse(search)
             // todo: This was necessary as the hours would be lost.
@@ -42,6 +48,7 @@ function WodPage(props) {
                 // re-renders!
                 updateRedux(training)
             }
+            setLoading(false)
         }
 
         function updateRedux(training) {
@@ -56,6 +63,7 @@ function WodPage(props) {
 
 
         function cleanRedux() {
+            console.log('Cleaning...')
             dispatch(removeActiveTraining())
             dispatch(removeActiveWod())
             dispatch(removeActiveExercises())
@@ -66,6 +74,7 @@ function WodPage(props) {
         }
 
         fetchTraining(search)
+
         return cleanRedux
     }, [search, dispatch])
 
@@ -103,20 +112,32 @@ function WodPage(props) {
         }
     }
 
-    return (
-        <div className="wod-page">
-            <Navigation/>
-            <div className="wod-container">
-                <div className="hulk-container">
-                    <img src="./images/hulk.jpg"
-                         alt="Hulk"
-                         width={300}/>
-                </div>
-                {displayContent()}
+    if(!loading) {
+        return (
+            <div className="wod-page">
+                <Navigation/>
+                <div className="wod-container">
+                    <div className="hulk-container">
+                        <img src="./images/hulk.jpg"
+                             alt="Hulk"
+                             width={300}/>
+                    </div>
+                    {displayContent()}
 
+                </div>
             </div>
-        </div>
-    )
+        )
+    } else {
+        return(
+            <div className="wod-page">
+                <Navigation/>
+                <div className="loading-container">
+                <ReactLoading type={"spin"} color={"#53900f"}  className="loading-icon" />
+                </div>
+            </div>
+
+        )
+    }
 }
 
 function mapStateToProps(state) {
