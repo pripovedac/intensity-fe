@@ -1,0 +1,38 @@
+@import '../../../styles/colors';
+
+.status-button {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  padding: 0.5em;
+  text-transform: lowercase;
+  color: #fff;
+  cursor: pointer;
+  border:none;
+  outline: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.active {
+  background-color: #006600;
+}
+
+.inactive {
+  background-color: #CC0000;
+}
+
+.active:hover {
+  background-color: #003300;
+}
+
+.inactive:hover {
+  background-color: #990000;
+}
+
+.status-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
