@@ -1,7 +1,7 @@
 import React from 'react'
+import {selectMembers} from '../../../store/selectors/wod.selector'
+import {connect} from 'react-redux'
 import './MemberList.scss'
-import {connect} from "react-redux";
-import {selectMembers} from "../../../store/selectors/wod.selector";
 
 function MemberList(props) {
     function displayContent() {

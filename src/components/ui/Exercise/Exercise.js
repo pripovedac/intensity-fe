@@ -1,7 +1,7 @@
 import React from 'react'
 import {IoMdRemoveCircleOutline} from 'react-icons/io'
-import {bindActionCreators} from "redux";
-import {removeNewExercise} from "../../../store/actions/exercise.action";
+import {removeNewExercise} from '../../../store/actions/exercise.action'
+import {bindActionCreators} from 'redux'
 import {connect} from "react-redux";
 import './Exercise.scss'
 

@@ -29,7 +29,7 @@ function Members(props) {
 
         fetchAllMembers()
 
-    }, [])
+    }, [dispatch])
 
     if (!loading) {
         return (

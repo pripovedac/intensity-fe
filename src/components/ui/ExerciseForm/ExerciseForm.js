@@ -1,13 +1,13 @@
 import React, {useState} from 'react'
 import LabeledInput from '../Input/LabeledInput/LabeledInput'
+import RoundedButton from '../Button/RoundedButton/RoundedButton'
 import {FaArrowAltCircleLeft, FaCheckCircle} from 'react-icons/fa'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
 import {addNewExercise} from '../../../store/actions/exercise.action'
 import {setWodMode} from '../../../store/actions/global.action'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 import '../../styles/form-styles/FormStyles.scss'
 import './ExerciseForm.scss'
-import RoundedButton from '../Button/RoundedButton/RoundedButton'
 
 function ExerciseForm(props) {
     const [name, setName] = useState('bench')

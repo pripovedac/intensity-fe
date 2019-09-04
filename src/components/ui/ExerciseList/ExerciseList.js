@@ -1,8 +1,8 @@
 import React from 'react'
 import Exercise from '../Exercise/Exercise'
-import {connect} from 'react-redux'
 import {selectName} from '../../../store/selectors/auth.selector'
 import {selectMode} from '../../../store/selectors/global.selector'
+import {connect} from 'react-redux'
 import './ExerciseList.scss'
 
 function ExerciseList(props) {

@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import moment from 'moment'
 import {Link} from 'react-router-dom'
+import moment from 'moment'
 import {calculateWeek} from '../../../services/dates'
-import {connect} from 'react-redux'
 import {selectWeek} from '../../../store/selectors/global.selector'
 import classNames from 'classnames'
+import {connect} from 'react-redux'
 import './Calendar.scss'
 
 function Calendar(props) {

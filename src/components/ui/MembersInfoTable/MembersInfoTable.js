@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react'
-import './MembersInfoTable.scss'
-import {selectAllMembers} from '../../../store/selectors/members.selector'
-import {connect, useDispatch} from 'react-redux'
-import StatusButton from "../Button/StatusButton/StatusButton";
+import React from 'react'
+import StatusButton from '../Button/StatusButton/StatusButton'
 import {toTableFormat} from '../../../services/dates'
-import {bindActionCreators} from "redux";
 import {changeMemberStatus} from '../../../store/actions/members.action'
+import {selectAllMembers} from '../../../store/selectors/members.selector'
+import {bindActionCreators} from "redux";
+import {connect} from 'react-redux'
+import './MembersInfoTable.scss'
 
 function MembersInfoTable(props) {
     function displayHeaders() {

@@ -1,9 +1,9 @@
 import React from 'react'
 import LinkButton from '../Button/LinkButton/LinkButton'
 import {logoutUser} from '../../../store/actions/auth.action'
+import {selectUsername} from '../../../store/selectors/auth.selector'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {selectUsername} from '../../../store/selectors/auth.selector'
 import './Navigation.scss'
 
 function Navigation(props) {
