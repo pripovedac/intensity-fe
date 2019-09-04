@@ -7,12 +7,29 @@ import {registerUser} from '../../../store/actions/auth.action'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import '../../styles/public-styles/PublicStyles.scss'
+import {useInput} from "../../custom-hooks/use-input/useInput";
 
 function RegisterPage(props) {
-    const [name, setName] = useState('John')
-    const [lastname, setLastname] = useState('Doe')
-    const [email, setEmail] = useState('johndoe@gmail.com')
-    const [password, setPassword] = useState('john123')
+    console.log('Rendering register page.')
+    const {
+        value: name,
+        bind: bindName,
+    } = useInput('John');
+
+    const {
+        value: lastname,
+        bind: bindLastname,
+    } = useInput('Doe');
+
+    const {
+        value: email,
+        bind: bindEmail
+    } = useInput('johndoe@gmail.com');
+
+    const {
+        value: password,
+        bind: bindPassword
+    } = useInput('john123');
 
     async function handleSubmit(event) {
         event.preventDefault()
@@ -53,24 +70,20 @@ function RegisterPage(props) {
                 <form onSubmit={handleSubmit}>
                     <LabeledInput
                         label="Name"
-                        value={name}
                         type="text"
-                        handleInput={setName}/>
+                        {...bindName}/>
                     <LabeledInput
                         label="Lastname"
-                        value={lastname}
                         type="text"
-                        handleInput={setLastname}/>
+                        {...bindLastname}/>
                     <LabeledInput
                         label="Email"
-                        value={email}
                         type="email"
-                        handleInput={setEmail}/>
+                        {...bindEmail}/>
                     <LabeledInput
                         label="Password"
-                        value={password}
                         type="password"
-                        handleInput={setPassword}/>
+                        {...bindPassword}/>
                     <PublicButton>
                         Submit
                     </PublicButton>

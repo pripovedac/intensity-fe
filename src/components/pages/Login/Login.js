@@ -7,10 +7,19 @@ import {loginUser} from '../../../store/actions/auth.action'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import '../../styles/public-styles/PublicStyles.scss'
+import {useInput} from "../../custom-hooks/use-input/useInput";
 
 function LoginPage(props) {
-    const [email, setEmail] = useState('wile.e.coyote@acme.com')
-    const [password, setPassword] = useState('wilespassword')
+    console.log('Rendering loading page.')
+    const {
+        value: email,
+        bind: bindEmail
+    } = useInput('wile.e.coyote@acme.com');
+
+    const {
+        value: password,
+        bind: bindPassword
+    } = useInput('wilespassword');
 
     async function handleSubmit(event) {
         event.preventDefault()
@@ -44,14 +53,12 @@ function LoginPage(props) {
                 <form onSubmit={handleSubmit}>
                     <LabeledInput
                         label="Email"
-                        value={email}
                         type="email"
-                        handleInput={setEmail}/>
+                        {...bindEmail}/>
                     <LabeledInput
                         label="Password"
-                        value={password}
                         type="password"
-                        handleInput={setPassword}/>
+                        {...bindPassword}/>
                     <PublicButton
                         type="submit">
                         Submit

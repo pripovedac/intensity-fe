@@ -2,7 +2,7 @@ import {call, put, takeLatest} from 'redux-saga/effects'
 import * as actions from '../actions/auth.action'
 import {login, register} from '../../services/api/auth'
 import {push} from 'react-router-redux'
-import {setToken} from '../../services/localstorage'
+import {removeToken, setToken} from '../../services/localstorage'
 
 export function* loginSaga(action) {
     const response = yield call(login, action.payload)
@@ -19,6 +19,7 @@ export function* loginSaga(action) {
 
 export function* logoutSaga(action) {
     yield put(actions.accomplishLogout())
+    removeToken()
     yield put(push('/login'))
 }
 
