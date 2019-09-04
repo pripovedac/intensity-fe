@@ -51,35 +51,29 @@ function RegisterPage(props) {
                 </div>
 
                 <form onSubmit={handleSubmit}>
-
                     <LabeledInput
                         label="Name"
                         value={name}
                         type="text"
                         handleInput={setName}/>
-
                     <LabeledInput
                         label="Lastname"
                         value={lastname}
                         type="text"
                         handleInput={setLastname}/>
-
                     <LabeledInput
                         label="Email"
                         value={email}
                         type="email"
                         handleInput={setEmail}/>
-
                     <LabeledInput
                         label="Password"
                         value={password}
                         type="password"
                         handleInput={setPassword}/>
-
                     <PublicButton>
                         Submit
                     </PublicButton>
-
                 </form>
 
                 <p>

@@ -8,12 +8,13 @@ import persistedReducer from './store/reducers/index.reducer'
 import {Provider} from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './store/sagas/index.saga'
-import {composeWithDevTools} from 'redux-devtools-extension';
+import {composeWithDevTools} from 'redux-devtools-extension'
 import {Router} from 'react-router-dom'
 import {createBrowserHistory} from 'history'
-import Routes from './routes/routes'
+import PublicRoutes from './routes/public-routes'
+import PrivateRoutes from './routes/private-routes'
 import * as serviceWorker from './serviceWorker'
-import './index.css';
+import './index.css'
 
 const history = createBrowserHistory()
 
@@ -39,7 +40,8 @@ function IntensityApp() {
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                     <Router history={history}>
-                        <Routes/>
+                        <PublicRoutes/>
+                        <PrivateRoutes />
                     </Router>
             </PersistGate>
         </Provider>

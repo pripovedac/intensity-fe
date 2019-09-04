@@ -5,6 +5,7 @@ const initialState = {
     wodMode: 'regular',
     trainingId: '',
     isUpdate: false,
+    memberFilter: 'all'
 }
 // Possible wodMode, i.e. modes for page Wod, are:
 // [wod, exercise, regular].
@@ -80,6 +81,13 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isUpdate: false
+            }
+        }
+
+        case actions.MEMBER_FILTER_UPDATE: {
+            return {
+                ...state,
+                memberFilter: action.payload
             }
         }
 

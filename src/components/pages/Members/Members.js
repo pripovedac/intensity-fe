@@ -3,9 +3,9 @@ import MembersInfoTable from '../../ui/MembersInfoTable/MembersInfoTable'
 import {getAllMembers} from '../../../services/api/user'
 import {useDispatch} from 'react-redux'
 import {setMembers} from '../../../store/actions/members.action'
-import Navigation from '../../ui/Navigation/Navigation'
 import LoadingState from '../../loading-state/LoadingState'
 import './Members.scss'
+import MemberFilters from '../../ui/MemberFilters/MemberFilters'
 
 function Members(props) {
     console.log('Rendering MembersPage component.')
@@ -35,7 +35,7 @@ function Members(props) {
     if (!loading) {
         return (
             <div className="members-page">
-                <Navigation/>
+                <MemberFilters/>
                 <div className="members-data">
                     <MembersInfoTable/>
                 </div>
@@ -44,7 +44,6 @@ function Members(props) {
     } else {
         return (
             <div className="members-page">
-                <Navigation/>
                 <LoadingState/>
             </div>
         )

@@ -8,6 +8,7 @@ export const ACTIVE_TRAINING_ADD = 'ACTIVE_TRAINING_ADD'
 export const ACTIVE_TRAINING_REMOVE = 'ACTIVE_TRAINING_REMOVE'
 export const UPDATE_NOTIFY = 'UPDATE_NOTIFY'
 export const UPDATE_NOTIFICATION_REMOVE = 'UPDATE_NOTIFICATION_REMOVE'
+export const MEMBER_FILTER_UPDATE = 'MEMBER_FILTER_UPDATE'
 
 export function subtractWeek() {
     return {
@@ -67,5 +68,12 @@ export function notifyUpdate() {
 export function removeUpdateNotification() {
     return {
         type: UPDATE_NOTIFICATION_REMOVE
+    }
+}
+
+export function updateMemberFilter(filter) {
+    return {
+        type: MEMBER_FILTER_UPDATE,
+        payload: filter
     }
 }

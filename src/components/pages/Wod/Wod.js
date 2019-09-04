@@ -3,7 +3,6 @@ import {calculateDate} from '../../../services/dates'
 import queryString from 'query-string'
 import {getTraining} from '../../../services/api/training'
 import TrainingForm from '../../ui/TrainingForm/TrainingForm'
-import Navigation from '../../ui/Navigation/Navigation.js'
 import ExerciseForm from '../../ui/ExerciseForm/ExerciseForm'
 import ExerciseList from '../../ui/ExerciseList/ExerciseList'
 import CompleteWod from '../../ui/CompleteWod/CompleteWod'
@@ -112,8 +111,6 @@ function WodPage(props) {
 
     if(!loading) {
         return (
-            <div className="wod-page">
-                <Navigation/>
                 <div className="wod-container">
                     <div className="hulk-container">
                         <img src="./images/hulk.jpg"
@@ -122,12 +119,10 @@ function WodPage(props) {
                     </div>
                     {displayContent()}
                 </div>
-            </div>
         )
     } else {
         return(
             <div className="wod-page">
-                <Navigation/>
                 <LoadingState />
             </div>
         )
