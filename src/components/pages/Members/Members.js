@@ -4,12 +4,12 @@ import {getAllMembers} from '../../../services/api/user'
 import {useDispatch} from 'react-redux'
 import {setMembers} from '../../../store/actions/members.action'
 import Navigation from '../../ui/Navigation/Navigation'
+import LoadingState from '../../loading-state/LoadingState'
 import './Members.scss'
-import StatusButton from '../../ui/Button/StatusButton/StatusButton'
 
 function Members(props) {
     console.log('Rendering MembersPage component.')
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -21,6 +21,7 @@ function Members(props) {
             if (members) {
                 updateRedux(members)
             }
+            setLoading(false)
         }
 
         function updateRedux(members) {
@@ -31,15 +32,23 @@ function Members(props) {
 
     }, [])
 
-    return (
-        <div className="members-page">
-            <Navigation/>
-            <div className="members-data">
-            <MembersInfoTable/>
+    if (!loading) {
+        return (
+            <div className="members-page">
+                <Navigation/>
+                <div className="members-data">
+                    <MembersInfoTable/>
+                </div>
             </div>
-
-        </div>
-    )
+        )
+    } else {
+        return (
+            <div className="members-page">
+                <Navigation/>
+                <LoadingState/>
+            </div>
+        )
+    }
 }
 
 export default Members

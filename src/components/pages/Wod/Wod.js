@@ -22,7 +22,7 @@ import {selectMode, selectUpdateNotification} from '../../../store/selectors/glo
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
 import {connect} from 'react-redux'
 import {useDispatch} from 'react-redux'
-import ReactLoading from 'react-loading';
+import LoadingState from '../../loading-state/LoadingState'
 import './Wod.scss'
 
 function WodPage(props) {
@@ -128,11 +128,8 @@ function WodPage(props) {
         return(
             <div className="wod-page">
                 <Navigation/>
-                <div className="loading-container">
-                <ReactLoading type={"spin"} color={"#53900f"}  className="loading-icon" />
-                </div>
+                <LoadingState />
             </div>
-
         )
     }
 }
