@@ -28,7 +28,9 @@ export function toApiString(date) {
 }
 
 export function toUserDateFormat(date) {
-    const dateObject = moment(date)
-    const dateString = dateObject.format('dddd, MMMM Do YYYY')
-    return dateString
+    return  moment(date).format('dddd, MMMM Do YYYY')
+}
+
+export function toTableFormat(date) {
+    return moment(date).format('MMMM Do YYYY')
 }
