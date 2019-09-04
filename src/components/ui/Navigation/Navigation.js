@@ -10,7 +10,6 @@ function Navigation(props) {
     return (
         <nav className="navigation">
             <LinkButton path="/home" pathname="Home"/>
-            {/*<LinkButton path="/wod" pathname="WOD"/>*/}
             <LinkButton path="/members" pathname="Members"/>
             <LinkButton path="/profile" pathname={props.username}/>
             <button

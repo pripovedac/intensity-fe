@@ -5,14 +5,11 @@
   flex-direction: row;
   justify-content: space-between;
   background-color: #000;
-}
 
-.navigation > a {
-  color: blue;
-}
-
-.navigation > button {
-  color: $grassgreen;
-  outline: none;
+  > button {
+    display: block;
+    color: $grassgreen;
+    outline: none;
+  }
 }
 
