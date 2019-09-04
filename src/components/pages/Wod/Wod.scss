@@ -1,56 +1,54 @@
 @import '../../styles/colors';
 
+.wod-container {
+  display: flex;
+  justify-content: flex-start;
 
-  .wod-container {
+  .hulk-container {
+    max-width: 20em;
+    height: 20em;
     display: flex;
-    justify-content: flex-start;
-
-    .hulk-container {
-      max-width: 20em;
-      height: 20em;
-      display: flex;
-      margin-top: 6em;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-      background: white;
-    }
+    margin-top: 6em;
   }
 
-  .training-form, .exercise-container {
-    margin-top: 3vh;
-
-    h1 {
-      margin-bottom: 1em;
-    }
+  img {
+    display: block;
+    max-width: 100%;
+    background: white;
   }
+}
 
-  .training-form {
-    width: 60%;
+.training-form, .exercise-container {
+  margin-top: 3vh;
+
+  h1 {
+    margin-bottom: 1em;
   }
+}
 
-  .exercise-page {
-    display: flex;
-    flex-direction: column;
-    width: 70%;
+.training-form {
+  width: 60%;
+}
 
-    .text-button {
-      width: 30%;
-    }
+.exercise-page {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
 
+  .text-button {
+    width: 30%;
   }
+}
 
-  .exercise-container {
-    margin-top: 10vh;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+.exercise-container {
+  margin-top: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 
-    > .exercise-list {
-      margin-top: 1.2em;
-      width: 40%;
-    }
+  > .exercise-list {
+    margin-top: 1.2em;
+    width: 40%;
   }
+}
 

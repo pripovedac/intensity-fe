@@ -1,9 +1,9 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
+import Navigation from '../components/ui/Navigation/Navigation'
 import Home from '../components/pages/Home/Home'
 import Wod from '../components/pages/Wod/Wod'
 import Members from '../components/pages/Members/Members'
-import Navigation from "../components/ui/Navigation/Navigation";
 
 function PrivateRoutes() {
     return (

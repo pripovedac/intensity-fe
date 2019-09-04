@@ -3,9 +3,9 @@ import Card from '../../ui/Card/Card'
 import LabeledInput from '../../ui/Input/LabeledInput/LabeledInput'
 import PublicButton from '../../ui/Button/PublicButton/PublicButton'
 import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
 import {registerUser} from '../../../store/actions/auth.action'
 import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 import '../../styles/public-styles/PublicStyles.scss'
 
 function RegisterPage(props) {

@@ -5,7 +5,6 @@ export const ACTIVE_EXERCISES_ADD = 'ACTIVE_EXERCISES_ADD'
 export const ACTIVE_EXERCISES_REMOVE = 'ACTIVE_EXERCISES_REMOVE'
 export const NEW_EXERCISES_REPLACE = 'NEW_EXERCISES_REPLACE'
 
-
 export function addNewExercise(exercise) {
     return {
         type: NEW_EXERCISE_ADD,

@@ -7,8 +7,8 @@ const initialState = {
     isUpdate: false,
     memberFilter: 'all'
 }
-// Possible wodMode, i.e. modes for page Wod, are:
-// [wod, exercise, regular].
+// Possible wodMode values are [wod, exercise, regular]
+// Possible memberFilter values are [all, active, inactive]
 
 export default function (state = initialState, action) {
     switch (action.type) {

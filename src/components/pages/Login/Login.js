@@ -3,9 +3,9 @@ import Card from '../../ui/Card/Card'
 import LabeledInput from '../../ui/Input/LabeledInput/LabeledInput'
 import PublicButton from '../../ui/Button/PublicButton/PublicButton'
 import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
 import {loginUser} from '../../../store/actions/auth.action'
 import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 import '../../styles/public-styles/PublicStyles.scss'
 
 function LoginPage(props) {
@@ -35,7 +35,6 @@ function LoginPage(props) {
             <Card>
 
                 <h1>Intensity Login</h1>
-
                 <div className="funny-text">
                     <p>
                         Feeling strong today?
@@ -43,24 +42,20 @@ function LoginPage(props) {
                 </div>
 
                 <form onSubmit={handleSubmit}>
-
                     <LabeledInput
                         label="Email"
                         value={email}
                         type="email"
                         handleInput={setEmail}/>
-
                     <LabeledInput
                         label="Password"
                         value={password}
                         type="password"
                         handleInput={setPassword}/>
-
                     <PublicButton
                         type="submit">
                         Submit
                     </PublicButton>
-
                 </form>
 
                 <p>

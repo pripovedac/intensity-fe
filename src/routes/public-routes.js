@@ -9,8 +9,8 @@ function PublicRoutes() {
             <Switch>
                 {/*todo: chech if at exists*/}
                 <Redirect exact from='/' to='/login'/>
-                <Route path="/register" component={Register}/>
                 <Route path="/login" component={Login}/>
+                <Route path="/register" component={Register}/>
             </Switch>
         </div>
     )

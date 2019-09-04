@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import MembersInfoTable from '../../ui/MembersInfoTable/MembersInfoTable'
-import {getAllMembers} from '../../../services/api/user'
-import {useDispatch} from 'react-redux'
-import {setMembers} from '../../../store/actions/members.action'
 import LoadingState from '../../loading-state/LoadingState'
-import './Members.scss'
 import MemberFilters from '../../ui/MemberFilters/MemberFilters'
+import {useDispatch} from 'react-redux'
+import {getAllMembers} from '../../../services/api/user'
+import {setMembers} from '../../../store/actions/members.action'
+import './Members.scss'
 
 function Members(props) {
     console.log('Rendering MembersPage component.')
@@ -17,7 +17,6 @@ function Members(props) {
 
         async function fetchAllMembers() {
             const members = await getAllMembers()
-            // console.log('members: ', members)
             if (members) {
                 updateRedux(members)
             }

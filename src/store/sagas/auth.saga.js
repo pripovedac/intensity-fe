@@ -26,7 +26,7 @@ export function* registerSaga(action) {
     const response = yield call(register, action.payload)
     if (response.ok) {
         yield put(actions.accomplishRegistration())
-         yield put(push('/login'))
+        yield put(push('/login'))
     } else {
         const message = yield response.json()
         yield put(actions.abortRegistration(message))

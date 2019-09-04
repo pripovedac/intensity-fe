@@ -39,10 +39,10 @@ function IntensityApp() {
     return (
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
-                    <Router history={history}>
-                        <PublicRoutes/>
-                        <PrivateRoutes />
-                    </Router>
+                <Router history={history}>
+                    <PublicRoutes/>
+                    <PrivateRoutes/>
+                </Router>
             </PersistGate>
         </Provider>
     )

@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react'
-import {calculateDate} from '../../../services/dates'
-import queryString from 'query-string'
-import {getTraining} from '../../../services/api/training'
+import {useDispatch} from 'react-redux'
 import TrainingForm from '../../ui/TrainingForm/TrainingForm'
 import ExerciseForm from '../../ui/ExerciseForm/ExerciseForm'
 import ExerciseList from '../../ui/ExerciseList/ExerciseList'
 import CompleteWod from '../../ui/CompleteWod/CompleteWod'
 import ButtonWithText from '../../ui/Button/ButtonWithText/ButtonWithText'
-import {bindActionCreators} from 'redux'
+import LoadingState from '../../loading-state/LoadingState'
+import {calculateDate} from '../../../services/dates'
+import queryString from 'query-string'
+import {getTraining} from '../../../services/api/training'
 import {
     setWodMode,
     addActiveTraining,
@@ -19,9 +20,8 @@ import {submitWod, addActiveWod, removeActiveWod, cleanNewWod, updateWod} from '
 import {addActiveExercises, removeActiveExercises, cleanNewExercises} from '../../../store/actions/exercise.action'
 import {selectMode, selectUpdateNotification} from '../../../store/selectors/global.selector'
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
+import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {useDispatch} from 'react-redux'
-import LoadingState from '../../loading-state/LoadingState'
 import './Wod.scss'
 
 function WodPage(props) {
@@ -109,21 +109,21 @@ function WodPage(props) {
         }
     }
 
-    if(!loading) {
+    if (!loading) {
         return (
-                <div className="wod-container">
-                    <div className="hulk-container">
-                        <img src="./images/hulk.jpg"
-                             alt="Hulk"
-                             width={300}/>
-                    </div>
-                    {displayContent()}
+            <div className="wod-container">
+                <div className="hulk-container">
+                    <img src="./images/hulk.jpg"
+                         alt="Hulk"
+                         width={300}/>
                 </div>
+                {displayContent()}
+            </div>
         )
     } else {
-        return(
+        return (
             <div className="wod-page">
-                <LoadingState />
+                <LoadingState/>
             </div>
         )
     }
