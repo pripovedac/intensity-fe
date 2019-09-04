@@ -5,6 +5,7 @@ import {useDispatch} from 'react-redux'
 import {setMembers} from '../../../store/actions/members.action'
 import Navigation from '../../ui/Navigation/Navigation'
 import './Members.scss'
+import StatusButton from '../../ui/Button/StatusButton/StatusButton'
 
 function Members(props) {
     console.log('Rendering MembersPage component.')
@@ -36,6 +37,7 @@ function Members(props) {
             <div className="members-data">
             <MembersInfoTable/>
             </div>
+
         </div>
     )
 }

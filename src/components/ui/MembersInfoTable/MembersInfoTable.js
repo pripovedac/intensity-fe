@@ -1,7 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import './MembersInfoTable.scss'
 import {selectAllMembers} from '../../../store/selectors/members.selector'
-import {connect} from 'react-redux'
+import {connect, useDispatch} from 'react-redux'
+import StatusButton from "../Button/StatusButton/StatusButton";
+import {toTableFormat} from '../../../services/dates'
+import {bindActionCreators} from "redux";
+import {changeMemberStatus} from '../../../store/actions/members.action'
 
 function MembersInfoTable(props) {
     function displayHeaders() {
@@ -17,19 +21,37 @@ function MembersInfoTable(props) {
     }
 
     function displayUsersInfo() {
-        console.log('all of them: ', props.allMembers)
         return props.allMembers.map(member => createSingleRow(member))
     }
 
+    function changeUserStatus(id, isActive) {
+        props.changeMemberStatus({id, isActive})
+    }
+
     function createSingleRow(member) {
+        // todo: members should be sorted by name
         return (
             <tr key={member.id}>
+                {/*todo: should be link*/}
                 <td>{`${member.name} ${member.lastname}`}</td>
                 <td>{member.email}</td>
-                <td>{member.activationDate}</td>
+                <td>{
+                    member.activationDate
+                        ? toTableFormat(member.activationDate)
+                        : ""
+                }</td>
                 <td>{member.trainingNum}</td>
-                {/*todo: add buttons here*/}
-                <td>{member.isActive}</td>
+                <td>{
+                    member.isActive
+                        ? <StatusButton
+                            class="inactive"
+                            text="Deactivate"
+                            onClick={() => changeUserStatus(member.id, false)}/>
+                        : <StatusButton
+                            class="active"
+                            text="Activate"
+                            onClick={() => changeUserStatus(member.id, true)}/>
+                }</td>
             </tr>
         )
     }
@@ -53,6 +75,15 @@ function mapStateToProps(state) {
     }
 }
 
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(
+        {
+            changeMemberStatus
+        }, dispatch)
+}
+
+
 export default connect(
-    mapStateToProps)
-(MembersInfoTable)
+    mapStateToProps,
+    mapDispatchToProps,
+)(MembersInfoTable)
