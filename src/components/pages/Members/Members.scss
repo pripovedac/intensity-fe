@@ -1,0 +1,12 @@
+.members-page {
+  //border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+
+  .members-data {
+    //border: 5px solid green;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}

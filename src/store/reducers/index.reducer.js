@@ -3,6 +3,7 @@ import authReducer from './auth.reducer'
 import globalReducer from './global.reducer'
 import exerciseReducer from './exercise.reducer'
 import wodReducer from './wod.reducer'
+import membersReducer from './members.reducer'
 import storage from 'redux-persist/es/storage'
 import {persistReducer} from 'redux-persist'
 import * as actions from '../actions/auth.action'
@@ -17,6 +18,7 @@ const appReducer = combineReducers({
     global: globalReducer,
     exercises: exerciseReducer,
     wod: wodReducer,
+    allMembers: membersReducer
 })
 
 const rootReducer = function (state, action) {

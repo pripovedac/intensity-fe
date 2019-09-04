@@ -121,7 +121,6 @@ function WodPage(props) {
                              width={300}/>
                     </div>
                     {displayContent()}
-
                 </div>
             </div>
         )
