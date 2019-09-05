@@ -1,14 +1,15 @@
 import React, {useState} from 'react'
 import useCalendarSetup from '../../custom-hooks/useCalendarSetup'
+import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import {Link} from 'react-router-dom'
 import moment from 'moment'
 import {selectWeek} from '../../../store/selectors/global.selector'
 import classNames from 'classnames'
-import {connect} from 'react-redux'
 import './Calendar.scss'
 
-function Calendar(props) {
-    const {loading, weekOffsetText} = useCalendarSetup(props.week)
+export default function Calendar(props) {
+    const week = useSelectorWrapper(selectWeek)
+    const {loading, weekOffsetText} = useCalendarSetup(week)
     const [weekDays] = useState(moment.weekdaysShort())
 
     function getDays() {
@@ -68,7 +69,7 @@ function Calendar(props) {
                         <td key={`${hour}-${day}`}>
                             <Link to={{
                                 pathname: '/wod',
-                                search: `?hour=${hour}&day=${day}&week=${props.week}`
+                                search: `?hour=${hour}&day=${day}&week=${week}`
                             }}>
                                 {trainingType}
                             </Link>
@@ -100,13 +101,3 @@ function Calendar(props) {
 
     )
 }
-
-function mapStateToProps(state) {
-    return {
-        week: selectWeek(state)
-    }
-}
-
-export default connect(
-    mapStateToProps
-)(Calendar)

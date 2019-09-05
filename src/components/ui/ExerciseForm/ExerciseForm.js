@@ -1,16 +1,17 @@
 import React from 'react'
 import useInput from '../../custom-hooks/useInput'
+import {useDispatch} from 'react-redux'
 import LabeledInput from '../Input/LabeledInput/LabeledInput'
 import RoundedButton from '../Button/RoundedButton/RoundedButton'
 import {FaArrowAltCircleLeft, FaCheckCircle} from 'react-icons/fa'
 import {addNewExercise} from '../../../store/actions/exercise.action'
 import {setWodMode} from '../../../store/actions/global.action'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
 import '../../styles/form-styles/FormStyles.scss'
 import './ExerciseForm.scss'
 
-function ExerciseForm(props) {
+export default function ExerciseForm(props) {
+    const dispatch = useDispatch()
+
     const {
         value: name,
         resetValue: resetName,
@@ -42,7 +43,7 @@ function ExerciseForm(props) {
         if (checkForm()) {
             const exercise = createExercise()
             const validatedExercise = validateExercise(exercise)
-            props.addNewExercise(validatedExercise)
+            dispatch(addNewExercise(validatedExercise))
             resetFields()
 
         } else {
@@ -81,9 +82,6 @@ function ExerciseForm(props) {
     }
 
     function resetFields() {
-        console.log('name: ', name)
-        console.log('resetName: ', resetName)
-        console.log('bindName: ', bindName)
         resetName()
         resetReps()
         resetWeight()
@@ -121,7 +119,7 @@ function ExerciseForm(props) {
                 <div className="button-container">
 
                     <RoundedButton
-                        onClick={props.setWodMode}>
+                        onClick={() => dispatch(setWodMode())}>
                         <FaArrowAltCircleLeft
                             className="button-icon"/>
                     </RoundedButton>
@@ -137,17 +135,3 @@ function ExerciseForm(props) {
         </div>
     )
 }
-
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(
-        {
-            addNewExercise,
-            setWodMode
-        }, dispatch)
-}
-
-export default connect(
-    null,
-    mapDispatchToProps
-)(ExerciseForm)

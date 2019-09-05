@@ -1,41 +1,27 @@
 import React from 'react'
+import {useDispatch} from 'react-redux'
 import {FaArrowAltCircleLeft, FaArrowAltCircleRight} from 'react-icons/fa'
 import {IoIosRefresh} from 'react-icons/io'
 import {subtractWeek, addWeek, resetWeek} from '../../../store/actions/global.action'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
 import './WeeklyNavigation.scss'
 
-function WeeklyNavigation(props) {
+export default function WeeklyNavigation() {
+    const dispatch = useDispatch()
+
     return (
         <div className="weekly-navigation">
             <button
-                onClick={props.subtractWeek}>
+                onClick={() => dispatch(subtractWeek())}>
                 <FaArrowAltCircleLeft/>
             </button>
             <button
-                onClick={props.resetWeek}>
+                onClick={() => dispatch(resetWeek())}>
                 <IoIosRefresh/>
             </button>
             <button
-                onClick={props.addWeek}>
+                onClick={() => dispatch(addWeek())}>
                 <FaArrowAltCircleRight/>
             </button>
         </div>
     )
 }
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(
-        {
-            subtractWeek,
-            resetWeek,
-            addWeek
-        }, dispatch)
-}
-
-export default connect(
-    null,
-    mapDispatchToProps
-)(WeeklyNavigation)
-

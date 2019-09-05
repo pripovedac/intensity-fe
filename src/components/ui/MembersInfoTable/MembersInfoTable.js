@@ -1,13 +1,16 @@
 import React from 'react'
+import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import StatusButton from '../Button/StatusButton/StatusButton'
 import {toTableFormat} from '../../../services/dates'
 import {changeMemberStatus} from '../../../store/actions/members.action'
 import {selectAllMembers} from '../../../store/selectors/members.selector'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import './MembersInfoTable.scss'
 
-function MembersInfoTable(props) {
+export default function MembersInfoTable(props) {
+    const allMembers = useSelectorWrapper(selectAllMembers)
+    const dispatch = useDispatch()
+
     function displayHeaders() {
         return (
             <tr>
@@ -21,11 +24,11 @@ function MembersInfoTable(props) {
     }
 
     function displayUsersInfo() {
-        return props.allMembers.map(member => createSingleRow(member))
+        return allMembers.map(member => createSingleRow(member))
     }
 
     function changeUserStatus(id, isActive) {
-        props.changeMemberStatus({id, isActive})
+        dispatch(changeMemberStatus({id, isActive}))
     }
 
     function createSingleRow(member) {
@@ -68,22 +71,3 @@ function MembersInfoTable(props) {
         </table>
     )
 }
-
-function mapStateToProps(state) {
-    return {
-        allMembers: selectAllMembers(state)
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(
-        {
-            changeMemberStatus
-        }, dispatch)
-}
-
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(MembersInfoTable)

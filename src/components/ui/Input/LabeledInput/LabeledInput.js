@@ -1,7 +1,7 @@
 import React from 'react'
 import './LabeledInput.scss'
 
-function LabeledInput(props) {
+export default function LabeledInput(props) {
     return (
         <label className="labeled-input">
             {props.label}
@@ -14,5 +14,3 @@ function LabeledInput(props) {
         </label>
     )
 }
-
-export default LabeledInput

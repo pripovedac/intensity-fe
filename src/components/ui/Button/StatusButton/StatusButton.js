@@ -1,7 +1,7 @@
 import React from 'react'
 import './StatusButton.scss'
 
-function StatusButton(props) {
+export default function StatusButton(props) {
     return (
         <button
             className={`status-button ${props.class}`}
@@ -11,5 +11,3 @@ function StatusButton(props) {
         </button>
     )
 }
-
-export default StatusButton

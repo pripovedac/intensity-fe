@@ -1,7 +1,7 @@
 import React from 'react'
 import './ButtonWithText.scss'
 
-function ButtonWithText(props) {
+export default function ButtonWithText(props) {
     return (
         <button
             className="text-button"
@@ -11,5 +11,3 @@ function ButtonWithText(props) {
         </button>
     )
 }
-
-export default ButtonWithText

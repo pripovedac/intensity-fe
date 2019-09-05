@@ -1,4 +1,6 @@
 import React from 'react'
+import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
+import {useDispatch} from 'react-redux'
 import ButtonWithText from '../Button/ButtonWithText/ButtonWithText'
 import ExerciseList from '../ExerciseList/ExerciseList'
 import RoundedButton from '../Button/RoundedButton/RoundedButton'
@@ -9,20 +11,28 @@ import {toUserDateFormat} from '../../../services/dates'
 import {isEmpty} from 'lodash'
 import {addTrainings} from '../../../store/actions/auth.action'
 import {setWodMode, notifyUpdate} from '../../../store/actions/global.action'
-import {addNewWod, submitWod, addNewMember, removeMember} from '../../../store/actions/wod.action'
+import {addNewWod, addNewMember, removeMember} from '../../../store/actions/wod.action'
 import {replaceNewExercises} from '../../../store/actions/exercise.action'
 import {signForTraining, signOutOfTraining} from '../../../services/api/training'
-import {selectActiveTrainingId, selectMode} from '../../../store/selectors/global.selector'
+import {selectActiveTrainingId} from '../../../store/selectors/global.selector'
 import {selectActiveWod, selectMembers} from '../../../store/selectors/wod.selector'
 import {selectActiveExercises} from '../../../store/selectors/exercise.selector'
 import {selectUser} from '../../../store/selectors/auth.selector'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
 import './CompleteWod.scss'
 
-function CompleteWod(props) {
+export default function CompleteWod(props) {
+    const trainingId = useSelectorWrapper(selectActiveTrainingId)
+    const wod = useSelectorWrapper(selectActiveWod)
+    const exercises = useSelectorWrapper(selectActiveExercises)
+    const user = useSelectorWrapper(selectUser)
+    const members = useSelectorWrapper(selectMembers)
+    
+    console.log('setWodMODE: ', setWodMode)
+
+    const dispatch = useDispatch()
+
     function displayEditButton() {
-        if (props.user.role === 'user') {
+        if (user.role === 'user') {
             return (
                 <button className="pen-button"
                         onClick={prepareWodForEditing}>
@@ -33,42 +43,42 @@ function CompleteWod(props) {
     }
 
     function prepareWodForEditing() {
-        props.addNewWod(props.wod)
-        props.replaceNewExercises(props.exercises)
-        props.notifyUpdate()
-        props.setWodMode()
+        dispatch(addNewWod(wod))
+        dispatch(replaceNewExercises(exercises))
+        dispatch(notifyUpdate())
+        dispatch(setWodMode())
     }
 
     function displayWodInfo() {
-        const wordRound = props.wod.roundNumber > 1 ?
+        const wordRound = wod.roundNumber > 1 ?
             'rounds' :
             'round'
 
-        const wodName = props.wod.name
+        const wodName = wod.name
         let title
         if (wodName !== 'crossfit' && wodName !== 'lightfit') {
             title = <div className="title-container">
                 <h1>{`${wodName}`}</h1>
-                <h2>{`${props.wod.trainingType} ${props.wod.globalType} workout of the Day`}</h2>
+                <h2>{`${wod.trainingType} ${wod.globalType} workout of the Day`}</h2>
             </div>
         } else {
             title = <h1>
-                {`${props.wod.trainingType} ${props.wod.globalType} workout of the Day`}
+                {`${wod.trainingType} ${wod.globalType} workout of the Day`}
             </h1>
         }
         return (
             <div className="wod-info">
                 {title}
                 {/*todo: fix date and add time} */}
-                <p>{`${toUserDateFormat(props.wod.date)}`}</p>
+                <p>{`${toUserDateFormat(wod.date)}`}</p>
                 <p>
                     {
                         `${
-                            props.wod.roundNumber
-                                ? `${props.wod.roundNumber} ${wordRound}`
+                            wod.roundNumber
+                                ? `${wod.roundNumber} ${wordRound}`
                                 : ''
-                            } for ${props.wod.duration
-                            } minutes with ${props.wod.trainer}`
+                            } for ${wod.duration
+                            } minutes with ${wod.trainer}`
                     }
                 </p>
             </div>
@@ -77,12 +87,12 @@ function CompleteWod(props) {
 
     function displayExerciseList() {
         return (
-            <ExerciseList exercises={props.exercises}/>
+            <ExerciseList exercises={exercises}/>
         )
     }
 
     function displaySubmitButton() {
-        if (!checkIfSignedIn(props.user.id)) {
+        if (!checkIfSignedIn(user.id)) {
             return (
                 <RoundedButton onClick={signIn}>
                     <FaCheckCircle className="button-icon"/>
@@ -98,9 +108,9 @@ function CompleteWod(props) {
     }
 
     function displayAddButton() {
-        if (props.user.role === 'user') {
+        if (user.role === 'user') {
             return (
-                <ButtonWithText onClick={props.setWodMode}>
+                <ButtonWithText onClick={() => dispatch(setWodMode())}>
                     Add wod
                 </ButtonWithText>
             )
@@ -126,8 +136,8 @@ function CompleteWod(props) {
 
 
     function checkIfSignedIn(id) {
-        if (props.members) {
-            return props.members
+        if (members) {
+            return members
                 .map(({id}) => id)
                 .includes(id)
         }
@@ -140,24 +150,24 @@ function CompleteWod(props) {
     }
 
     async function signIn() {
-        const response = await signForTraining(props.user.id, props.trainingId)
+        const response = await signForTraining(user.id, trainingId)
         if (!response.errorStatus) {
-            props.addTrainings(response)
-            const id = props.user.id
-            const name = `${props.user.name} ${props.user.lastname}`
-            props.addNewMember({id, name})
+            dispatch(addTrainings(response))
+            const id = user.id
+            const name = `${user.name} ${user.lastname}`
+            dispatch(addNewMember({id, name}))
         }
     }
 
     async function signOut() {
-        const response = await signOutOfTraining(props.user.id, props.trainingId)
+        const response = await signOutOfTraining(user.id, trainingId)
         if (!response.errorStatus) {
-            props.addTrainings(response)
-            props.removeMember(props.user.id)
+            dispatch(addTrainings(response))
+            dispatch(removeMember(user.id))
         }
     }
 
-    if (!isEmpty(props.wod)) {
+    if (!isEmpty(wod)) {
         return (
             <div className="complete-wod">
                 <div className="content-container">
@@ -181,34 +191,3 @@ function CompleteWod(props) {
         )
     }
 }
-
-function mapStateToProps(state) {
-    return {
-        mode: selectMode(state),
-        trainingId: selectActiveTrainingId(state),
-        wod: selectActiveWod(state),
-        exercises: selectActiveExercises(state),
-        user: selectUser(state),
-        members: selectMembers(state)
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(
-        {
-            addNewWod,
-            replaceNewExercises,
-            notifyUpdate,
-            addTrainings,
-            setWodMode,
-            submitWod,
-            addNewMember,
-            removeMember
-        }, dispatch)
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(CompleteWod)
-

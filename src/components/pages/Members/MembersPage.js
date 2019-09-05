@@ -5,7 +5,7 @@ import LoadingState from '../../loading-state/LoadingState'
 import MemberFilters from '../../ui/MemberFilters/MemberFilters'
 import './MembersPage.scss'
 
-function MembersPage(props) {
+export default function MembersPage(props) {
     console.log('Rendering MembersPage component.')
     const loading = useMembersPageSetup()
 
@@ -26,5 +26,3 @@ function MembersPage(props) {
         )
     }
 }
-
-export default MembersPage

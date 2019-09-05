@@ -1,11 +1,13 @@
 import React from 'react'
+import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import {selectMembers} from '../../../store/selectors/wod.selector'
-import {connect} from 'react-redux'
 import './MemberList.scss'
 
-function MemberList(props) {
+export default function MemberList(props) {
+    const members = useSelectorWrapper(selectMembers)
+
     function displayContent() {
-        if (props.members && props.members.length) {
+        if (members && members.length) {
             return (
                 <ul>
                     {displayMembers()}
@@ -19,7 +21,7 @@ function MemberList(props) {
     }
 
     function displayMembers() {
-        return props.members.map(member => <li key={member.id}>{member.name}</li>)
+        return members.map(member => <li key={member.id}>{member.name}</li>)
     }
 
     return (
@@ -29,14 +31,3 @@ function MemberList(props) {
         </div>
     )
 }
-
-function mapStateToProps(state) {
-    return {
-        members: selectMembers(state),
-    }
-}
-
-export default connect(
-    mapStateToProps
-)(MemberList)
-

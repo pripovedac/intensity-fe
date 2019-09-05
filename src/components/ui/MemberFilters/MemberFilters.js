@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux'
 import {updateMemberFilter} from '../../../store/actions/global.action'
 import './MemberFilters.scss'
 
-function MemberFilters() {
+export default function MemberFilters() {
     const [filter, setFilter] = useState('all')
     const dispatch = useDispatch()
 
@@ -29,5 +29,3 @@ function MemberFilters() {
         </div>
     )
 }
-
-export default MemberFilters

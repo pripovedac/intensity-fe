@@ -1,7 +1,7 @@
 import React from 'react'
 import './PublicButton.scss'
 
-function PublicButton(props) {
+export default function PublicButton(props) {
     return (
         <button
             className="public-button"
@@ -10,5 +10,3 @@ function PublicButton(props) {
         </button>
     )
 }
-
-export default PublicButton

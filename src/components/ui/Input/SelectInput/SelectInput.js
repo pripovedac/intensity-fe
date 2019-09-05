@@ -1,7 +1,7 @@
 import React from 'react'
 import './SelectInput.scss'
 
-function SelectInput(props) {
+export default function SelectInput(props) {
     function displayOptions() {
         const options = props.options
         return options.map(option => {
@@ -28,5 +28,3 @@ function SelectInput(props) {
         </label>
     )
 }
-
-export default SelectInput

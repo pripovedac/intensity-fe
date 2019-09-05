@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import useInput from '../../custom-hooks/useInput'
+import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
+import {useDispatch} from 'react-redux'
 import LabeledInput from '../Input/LabeledInput/LabeledInput'
 import RadioButton from '../Input/RadioButton/RadioButton'
 import SelectInput from '../Input/SelectInput/SelectInput'
@@ -10,13 +12,14 @@ import {calculateDate} from '../../../services/dates'
 import {addNewWod} from '../../../store/actions/wod.action'
 import {setExerciseMode, setRegularMode} from '../../../store/actions/global.action'
 import {selectNewWod} from '../../../store/selectors/wod.selector'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import '../../styles/form-styles/FormStyles.scss'
 
 function TrainingForm(props) {
-    const [globalType, setGlobaltype] = useState(calculateTrainingType())
+    const {search} = props.location
+    const [globalType, setGlobaltype] = useState(calculateTrainingType(search))
+    const wod = useSelectorWrapper(selectNewWod)
+    const dispatch = useDispatch()
 
     const {
         value: date,
@@ -26,29 +29,29 @@ function TrainingForm(props) {
     const {
         value: name,
         bind: bindName,
-    } = useInput(props.wod.name)
+    } = useInput(wod.name)
 
     const {
         value: duration,
         bind: bindDuration,
-    } = useInput(props.wod.duration)
+    } = useInput(wod.duration)
 
     const {
         value: roundNumber,
         bind: bindRounds
-    } = useInput(props.wod.roundNumber)
+    } = useInput(wod.roundNumber)
 
     // todo: this should be taken from DB
     const trainingOptions = ['custom', 'emom', 'amrap',
         'rft', 'chipper', 'ladder', 'tabata']
-    const [trainingType, setTrainingType] = useState(props.wod.trainingType ?
-        props.wod.trainingType :
+    const [trainingType, setTrainingType] = useState(wod.trainingType ?
+        wod.trainingType :
         trainingOptions[0])
 
     // todo: this should be taken from DB
     const trainerOptions = ['Dusan Arandjelovic', 'Milan Spasic', 'Nemanja Sutanovac']
-    const [trainer, setTrainer] = useState(props.wod.trainer ?
-        props.wod.trainer :
+    const [trainer, setTrainer] = useState(wod.trainer ?
+        wod.trainer :
         trainerOptions[0])
 
     function calculateInitDate() {
@@ -59,8 +62,8 @@ function TrainingForm(props) {
         return dateParts[0]
     }
 
-    function calculateTrainingType() {
-        const queryParams = queryString.parse(props.location.search)
+    function calculateTrainingType(search) {
+        const queryParams = queryString.parse(search)
         // This is only temporary.
         return queryParams.hour % 2
             ? 'crossfit'
@@ -72,8 +75,8 @@ function TrainingForm(props) {
         if (checkForm()) {
             const wod = createWod()
             const validatedWod = validateWod(wod)
-            props.addNewWod(validatedWod)
-            props.setExerciseMode()
+            dispatch(addNewWod(validatedWod))
+            dispatch(setExerciseMode())
         } else {
             alert('WOD is not intense if it does not have a name.')
         }
@@ -168,7 +171,7 @@ function TrainingForm(props) {
 
                 <div className="button-container">
                     <RoundedButton
-                        onClick={props.setRegularMode}>
+                        onClick={() => dispatch(setRegularMode())}>
                         <FaArrowAltCircleLeft
                             className="button-icon"/>
                     </RoundedButton>
@@ -184,22 +187,4 @@ function TrainingForm(props) {
     )
 }
 
-function mapStateToProps(state) {
-    return {
-        wod: selectNewWod(state)
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(
-        {
-            addNewWod,
-            setExerciseMode,
-            setRegularMode,
-        }, dispatch)
-}
-
-export default withRouter(connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(TrainingForm))
+export default withRouter(TrainingForm)

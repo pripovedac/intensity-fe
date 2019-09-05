@@ -1,11 +1,12 @@
 import React from 'react'
+import {useDispatch} from 'react-redux'
 import {IoMdRemoveCircleOutline} from 'react-icons/io'
 import {removeNewExercise} from '../../../store/actions/exercise.action'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
 import './Exercise.scss'
 
-function Exercise(props) {
+export default function Exercise(props) {
+    const dispatch = useDispatch()
+
     function displayExerciseData() {
         const exercise = props.exercise
         //todo: see if this can be do better
@@ -33,7 +34,7 @@ function Exercise(props) {
     }
 
     function handleClick() {
-        props.removeNewExercise(props.exercise.name)
+        dispatch(removeNewExercise(props.exercise.name))
     }
 
     return (
@@ -43,13 +44,3 @@ function Exercise(props) {
         </li>
     )
 }
-
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({removeNewExercise}, dispatch)
-}
-
-export default connect(
-    null,
-    mapDispatchToProps
-)(Exercise)

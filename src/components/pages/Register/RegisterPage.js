@@ -1,16 +1,18 @@
 import React from 'react'
+import {useDispatch} from 'react-redux'
 import Card from '../../ui/Card/Card'
 import LabeledInput from '../../ui/Input/LabeledInput/LabeledInput'
 import PublicButton from '../../ui/Button/PublicButton/PublicButton'
 import useInput from '../../custom-hooks/useInput'
 import {Link} from 'react-router-dom'
 import {registerUser} from '../../../store/actions/auth.action'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
 import '../../styles/public-styles/PublicStyles.scss'
 
-function RegisterPage(props) {
+export default function RegisterPage(props) {
     console.log('Rendering register page.')
+
+    const dispatch = useDispatch()
+
     const {
         value: name,
         bind: bindName,
@@ -41,7 +43,7 @@ function RegisterPage(props) {
                 email,
                 password
             }
-            props.registerUser(newUser)
+            dispatch(registerUser(newUser))
         } else {
             alert('Please, fill in the data.')
         }
@@ -100,12 +102,3 @@ function RegisterPage(props) {
         </div>
     )
 }
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({registerUser}, dispatch)
-}
-
-export default connect(
-    null,
-    mapDispatchToProps
-)(RegisterPage)

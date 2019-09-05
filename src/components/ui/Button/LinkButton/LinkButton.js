@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import './LinkButton.scss'
 
-function LinkButton(props) {
+export default function LinkButton(props) {
     return (
         <Link
             to={props.path}
@@ -15,4 +15,4 @@ function LinkButton(props) {
     )
 }
 
-export default LinkButton
+

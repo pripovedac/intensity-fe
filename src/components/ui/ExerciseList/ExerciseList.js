@@ -1,22 +1,25 @@
 import React from 'react'
+import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import Exercise from '../Exercise/Exercise'
 import {selectName} from '../../../store/selectors/auth.selector'
 import {selectMode} from '../../../store/selectors/global.selector'
-import {connect} from 'react-redux'
 import './ExerciseList.scss'
 
-function ExerciseList(props) {
+export default function ExerciseList(props) {
+    const name = useSelectorWrapper(selectName)
+    const mode = useSelectorWrapper(selectMode)
+
     function displayExercises() {
         if (props.exercises.length) {
             return props.exercises.map(e => {
                 return <Exercise
                     exercise={e}
                     key={e.name}
-                    mode={props.mode}
+                    mode={mode}
                 />
             })
         } else {
-            return <p>{`${props.name}, you haven't added any exercises yet.
+            return <p>{`${name}, you haven't added any exercises yet.
             Fill in the intense form for today's wod.`}</p>
         }
     }
@@ -30,15 +33,3 @@ function ExerciseList(props) {
         </div>
     )
 }
-
-function mapStateToProps(state) {
-    return {
-        name: selectName(state),
-        mode: selectMode(state)
-    }
-}
-
-export default connect(
-    mapStateToProps
-)(ExerciseList)
-

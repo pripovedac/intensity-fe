@@ -1,7 +1,7 @@
 import React from 'react'
 import './RoundedButton.scss'
 
-function RoundedButton(props) {
+export default function RoundedButton(props) {
     return (
         <button
             className="rounded-button"
@@ -12,4 +12,3 @@ function RoundedButton(props) {
     )
 }
 
-export default RoundedButton

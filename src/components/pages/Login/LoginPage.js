@@ -1,16 +1,17 @@
 import React from 'react'
+import {useDispatch} from 'react-redux'
 import Card from '../../ui/Card/Card'
 import LabeledInput from '../../ui/Input/LabeledInput/LabeledInput'
 import PublicButton from '../../ui/Button/PublicButton/PublicButton'
 import {Link} from 'react-router-dom'
 import useInput from '../../custom-hooks/useInput'
 import {loginUser} from '../../../store/actions/auth.action'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
 import '../../styles/public-styles/PublicStyles.scss'
 
-function LoginPage(props) {
+export default function LoginPage(props) {
     console.log('Rendering loading page.')
+    const dispatch = useDispatch()
+
     const {
         value: email,
         bind: bindEmail
@@ -26,7 +27,7 @@ function LoginPage(props) {
 
         if (checkForm()) {
             const user = {email, password}
-            props.loginUser(user)
+            dispatch(loginUser(user))
         } else {
             alert('Please, fill in the data.')
         }
@@ -77,12 +78,3 @@ function LoginPage(props) {
         </div>
     )
 }
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({loginUser}, dispatch)
-}
-
-export default connect(
-    null,
-    mapDispatchToProps
-)(LoginPage)
