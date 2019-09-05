@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux'
 import {getAllMembers} from '../../services/api/user'
 import {setMembers} from '../../store/actions/members.action'
 
-export default function useMembersPageSetup(week) {
+export default function useMembersPageSetup() {
     const [loading, setLoading] = useState(true)
     const dispatch = useDispatch()
 
