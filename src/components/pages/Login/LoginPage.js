@@ -14,12 +14,12 @@ function LoginPage(props) {
     const {
         value: email,
         bind: bindEmail
-    } = useInput('wile.e.coyote@acme.com');
+    } = useInput('wile.e.coyote@acme.com')
 
     const {
         value: password,
         bind: bindPassword
-    } = useInput('wilespassword');
+    } = useInput('wilespassword')
 
     async function handleSubmit(event) {
         event.preventDefault()

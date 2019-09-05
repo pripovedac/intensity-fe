@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import useMembersPageSetup from '../../custom-hooks/useMembersPageSetup'
 import MembersInfoTable from '../../ui/MembersInfoTable/MembersInfoTable'
 import LoadingState from '../../loading-state/LoadingState'

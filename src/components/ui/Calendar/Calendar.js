@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
+import useCalendarSetup from '../../custom-hooks/useCalendarSetup'
 import {Link} from 'react-router-dom'
 import moment from 'moment'
-import useCalendarSetup from '../../custom-hooks/useCalendarSetup'
 import {selectWeek} from '../../../store/selectors/global.selector'
 import classNames from 'classnames'
 import {connect} from 'react-redux'

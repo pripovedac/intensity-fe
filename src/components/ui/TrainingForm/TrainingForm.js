@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import useInput from '../../custom-hooks/useInput'
 import LabeledInput from '../Input/LabeledInput/LabeledInput'
 import RadioButton from '../Input/RadioButton/RadioButton'
 import SelectInput from '../Input/SelectInput/SelectInput'
@@ -16,10 +17,26 @@ import '../../styles/form-styles/FormStyles.scss'
 
 function TrainingForm(props) {
     const [globalType, setGlobaltype] = useState(calculateTrainingType())
-    const [date, setDate] = useState(calculateInitDate())
-    const [name, setName] = useState(props.wod.name)
-    const [duration, setDuration] = useState(props.wod.duration)
-    const [roundNumber, setRounds] = useState(props.wod.roundNumber)
+
+    const {
+        value: date,
+        bind: bindDate,
+    } = useInput(calculateInitDate())
+
+    const {
+        value: name,
+        bind: bindName,
+    } = useInput(props.wod.name)
+
+    const {
+        value: duration,
+        bind: bindDuration,
+    } = useInput(props.wod.duration)
+
+    const {
+        value: roundNumber,
+        bind: bindRounds
+    } = useInput(props.wod.roundNumber)
 
     // todo: this should be taken from DB
     const trainingOptions = ['custom', 'emom', 'amrap',
@@ -119,30 +136,25 @@ function TrainingForm(props) {
                 <LabeledInput
                     type="date"
                     label="Date"
-                    value={date}
-                    handleInput={setDate}/>
+                    {...bindDate}/>
 
                 <LabeledInput
                     label="Name"
                     type="text"
-                    value={name}
                     placeholder="Dangerous name"
-                    handleInput={setName}
-                />
+                    {...bindName}/>
 
                 <LabeledInput
                     type="number"
                     label="Duration"
-                    value={duration}
                     placeholder="0"
-                    handleInput={setDuration}/>
+                    {...bindDuration}/>
 
                 <LabeledInput
                     type="number"
                     label="Rounds"
-                    value={roundNumber}
                     placeholder="0"
-                    handleInput={setRounds}/>
+                    {...bindRounds}/>
 
                 <SelectInput className="custom-input"
                              label="Training type"

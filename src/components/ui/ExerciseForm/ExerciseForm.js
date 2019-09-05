@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import useInput from '../../custom-hooks/useInput'
 import LabeledInput from '../Input/LabeledInput/LabeledInput'
 import RoundedButton from '../Button/RoundedButton/RoundedButton'
 import {FaArrowAltCircleLeft, FaCheckCircle} from 'react-icons/fa'
@@ -10,10 +11,30 @@ import '../../styles/form-styles/FormStyles.scss'
 import './ExerciseForm.scss'
 
 function ExerciseForm(props) {
-    const [name, setName] = useState('bench')
-    const [repsNumber, setReps] = useState('')
-    const [weight, setWeight] = useState('')
-    const [duration, setDuration] = useState('')
+    const {
+        value: name,
+        resetValue: resetName,
+        bind: bindName,
+    } = useInput('bench')
+
+    const {
+        value: repsNumber,
+        resetValue: resetReps,
+        bind: bindReps,
+    } = useInput('')
+
+    const {
+        value: weight,
+        resetValue: resetWeight,
+        bind: bindWeight,
+    } = useInput('')
+
+    const {
+        value: duration,
+        resetValue: resetDuration,
+        bind: bindDuration
+    } = useInput('')
+
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -60,10 +81,13 @@ function ExerciseForm(props) {
     }
 
     function resetFields() {
-        setName('')
-        setReps('')
-        setWeight('')
-        setDuration('')
+        console.log('name: ', name)
+        console.log('resetName: ', resetName)
+        console.log('bindName: ', bindName)
+        resetName()
+        resetReps()
+        resetWeight()
+        resetDuration()
     }
 
     return (
@@ -73,31 +97,26 @@ function ExerciseForm(props) {
                 <LabeledInput
                     label="Name"
                     type="text"
-                    value={name}
                     placeholder="Simple name"
-                    handleInput={setName}
-                />
+                    {...bindName}/>
 
                 <LabeledInput
                     type="number"
                     label="Reps"
-                    value={repsNumber}
                     placeholder="1"
-                    handleInput={setReps}/>
+                    {...bindReps}/>
 
                 <LabeledInput
                     type="number"
                     label="Weight"
-                    value={weight}
                     placeholder="0"
-                    handleInput={setWeight}/>
+                    {...bindWeight}/>
 
                 <LabeledInput
                     type="number"
                     label="Duration"
-                    value={duration}
                     placeholder="0"
-                    handleInput={setDuration}/>
+                    {...bindDuration}/>
 
                 <div className="button-container">
 
