@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import {useDispatch} from 'react-redux'
+import React from 'react'
+import useWodPageSetup from '../../custom-hooks/useWodPageSetup'
 import TrainingForm from '../../ui/TrainingForm/TrainingForm'
 import ExerciseForm from '../../ui/ExerciseForm/ExerciseForm'
 import ExerciseList from '../../ui/ExerciseList/ExerciseList'
@@ -8,16 +8,8 @@ import ButtonWithText from '../../ui/Button/ButtonWithText/ButtonWithText'
 import LoadingState from '../../loading-state/LoadingState'
 import {calculateDate} from '../../../services/dates'
 import queryString from 'query-string'
-import {getTraining} from '../../../services/api/training'
-import {
-    setWodMode,
-    addActiveTraining,
-    removeActiveTraining,
-    setRegularMode,
-    removeUpdateNotification
-} from '../../../store/actions/global.action'
-import {submitWod, addActiveWod, removeActiveWod, cleanNewWod, updateWod} from '../../../store/actions/wod.action'
-import {addActiveExercises, removeActiveExercises, cleanNewExercises} from '../../../store/actions/exercise.action'
+import {setWodMode} from '../../../store/actions/global.action'
+import {submitWod, updateWod} from '../../../store/actions/wod.action'
 import {selectMode, selectUpdateNotification} from '../../../store/selectors/global.selector'
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
 import {bindActionCreators} from 'redux'
@@ -26,54 +18,8 @@ import './WodPage.scss'
 
 function WodPage(props) {
     console.log('Rendering Wod Page.')
-    const [search] = useState(props.location.search)
-    const dispatch = useDispatch()
-    const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        console.log('Effect running!')
-        setLoading(true)
-
-        async function fetchTraining(search) {
-            const queryParams = queryString.parse(search)
-            // todo: This was necessary as the hours would be lost.
-            // todo: Should be found better way, or, preferably,
-            // todo: remove updating the date.
-            const date = calculateDate(queryParams)
-            const training = await getTraining(date)
-            if (!training.errorStatus) {
-                // re-renders!
-                updateRedux(training)
-            }
-            setLoading(false)
-        }
-
-        function updateRedux(training) {
-            dispatch(addActiveTraining(training.id))
-            const wodPayload = {
-                ...training.wod,
-                members: training.members
-            }
-            dispatch(addActiveWod(wodPayload))
-            dispatch(addActiveExercises(training.exercises))
-        }
-
-
-        function cleanRedux() {
-            console.log('Cleaning...')
-            dispatch(removeActiveTraining())
-            dispatch(removeActiveWod())
-            dispatch(removeActiveExercises())
-            dispatch(cleanNewWod())
-            dispatch(cleanNewExercises())
-            dispatch(removeUpdateNotification())
-            dispatch(setRegularMode())
-        }
-
-        fetchTraining(search)
-
-        return cleanRedux
-    }, [search, dispatch])
+    const {search} = props.location
+    const loading = useWodPageSetup(search)
 
     function displayContent() {
         // todo: Think about using MAP object.
