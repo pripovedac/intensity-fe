@@ -1,0 +1,15 @@
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .profile-picture {
+    width: 25%;
+  }
+
+  input {
+    width: 50%;
+    border: 2px solid blue;
+  }
+}
