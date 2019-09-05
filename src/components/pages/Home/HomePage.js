@@ -2,7 +2,7 @@ import React from 'react'
 import Calendar from '../../ui/Calendar/Calendar'
 import WeeklyNavigation from '../../ui/WeeklyNavigation/WeeklyNavigation'
 
-function Home() {
+function HomePage() {
     return (
         <div>
             <Calendar title="Intensity calendar"/>
@@ -11,4 +11,4 @@ function Home() {
     )
 }
 
-export default Home
+export default HomePage

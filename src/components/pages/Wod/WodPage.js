@@ -22,7 +22,7 @@ import {selectMode, selectUpdateNotification} from '../../../store/selectors/glo
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import './Wod.scss'
+import './WodPage.scss'
 
 function WodPage(props) {
     console.log('Rendering Wod Page.')

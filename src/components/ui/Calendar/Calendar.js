@@ -1,35 +1,15 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import moment from 'moment'
-import {calculateWeek} from '../../../services/dates'
+import useCalendarSetup from '../../custom-hooks/useCalendarSetup'
 import {selectWeek} from '../../../store/selectors/global.selector'
 import classNames from 'classnames'
 import {connect} from 'react-redux'
 import './Calendar.scss'
 
 function Calendar(props) {
-    const [loading, setLoading] = useState(false)
+    const {loading, weekOffsetText} = useCalendarSetup(props.week)
     const [weekDays] = useState(moment.weekdaysShort())
-    const [weekOffsetText, setWeekOffsetText] = useState(calculateWeek(props.week))
-    const weekOffset = props.week
-
-    useEffect(() => {
-        function displayWeek() {
-            return calculateWeek(weekOffset)
-        }
-
-        // Everytime component state is changed, tje component will re-render.
-        setLoading(true)
-
-        const timer = setTimeout(() => {
-            setWeekOffsetText(displayWeek())
-            setLoading(false)
-        }, 200);
-
-        return () => clearTimeout(timer);
-
-    }, [weekOffset])
-
 
     function getDays() {
         let days = weekDays.map(day => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Switch, Route, Redirect} from 'react-router-dom'
-import Login from '../components/pages/Login/Login'
-import Register from '../components/pages/Register/Register'
+import Login from '../components/pages/Login/LoginPage'
+import Register from '../components/pages/Register/RegisterPage'
 
 function PublicRoutes() {
     return (

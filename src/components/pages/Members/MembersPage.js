@@ -5,9 +5,9 @@ import MemberFilters from '../../ui/MemberFilters/MemberFilters'
 import {useDispatch} from 'react-redux'
 import {getAllMembers} from '../../../services/api/user'
 import {setMembers} from '../../../store/actions/members.action'
-import './Members.scss'
+import './MembersPage.scss'
 
-function Members(props) {
+function MembersPage(props) {
     console.log('Rendering MembersPage component.')
     const [loading, setLoading] = useState(true)
     const dispatch = useDispatch()
@@ -49,4 +49,4 @@ function Members(props) {
     }
 }
 
-export default Members
+export default MembersPage
