@@ -1,35 +1,13 @@
 import React, {useState, useEffect} from 'react'
+import useMembersPageSetup from '../../custom-hooks/useMembersPageSetup'
 import MembersInfoTable from '../../ui/MembersInfoTable/MembersInfoTable'
 import LoadingState from '../../loading-state/LoadingState'
 import MemberFilters from '../../ui/MemberFilters/MemberFilters'
-import {useDispatch} from 'react-redux'
-import {getAllMembers} from '../../../services/api/user'
-import {setMembers} from '../../../store/actions/members.action'
 import './MembersPage.scss'
 
 function MembersPage(props) {
     console.log('Rendering MembersPage component.')
-    const [loading, setLoading] = useState(true)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        setLoading(true)
-
-        async function fetchAllMembers() {
-            const members = await getAllMembers()
-            if (members) {
-                updateRedux(members)
-            }
-            setLoading(false)
-        }
-
-        function updateRedux(members) {
-            dispatch(setMembers(members))
-        }
-
-        fetchAllMembers()
-
-    }, [dispatch])
+    const loading = useMembersPageSetup()
 
     if (!loading) {
         return (
