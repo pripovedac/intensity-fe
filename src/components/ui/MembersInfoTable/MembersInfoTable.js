@@ -3,7 +3,7 @@ import StatusButton from '../Button/StatusButton/StatusButton'
 import {toTableFormat} from '../../../services/dates'
 import {changeMemberStatus} from '../../../store/actions/members.action'
 import {selectAllMembers} from '../../../store/selectors/members.selector'
-import {bindActionCreators} from "redux";
+import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import './MembersInfoTable.scss'
 

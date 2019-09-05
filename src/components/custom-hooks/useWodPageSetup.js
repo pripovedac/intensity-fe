@@ -8,7 +8,7 @@ import {
     removeActiveTraining,
     removeUpdateNotification,
     setRegularMode
-} from "../../store/actions/global.action";
+} from '../../store/actions/global.action'
 import {addActiveWod, cleanNewWod, removeActiveWod} from '../../store/actions/wod.action'
 import {addActiveExercises, cleanNewExercises, removeActiveExercises} from '../../store/actions/exercise.action'
 

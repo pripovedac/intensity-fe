@@ -71,7 +71,7 @@ export default function (state = initialState, action) {
 
         case actions.MEMBER_REMOVE: {
             const activeMembers = [...state.active.members]
-            const modifiedMembers = activeMembers.filter(({id}) => id != action.payload)
+            const modifiedMembers = activeMembers.filter(({id}) => id !== action.payload)
 
             return {
                 ...state,
