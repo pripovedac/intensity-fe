@@ -2,6 +2,10 @@ export function selectUser(state) {
     return state.user
 }
 
+export function selectUserId(state) {
+    return state.user.id
+}
+
 export function selectUsername(state) {
     return `${state.user.name} ${state.user.lastname}`
 }
