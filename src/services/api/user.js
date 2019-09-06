@@ -26,7 +26,7 @@ export async function uploadAvatar(userId, avatar) {
 }
 
 export async function getAvatar(userId, setPictureUrl) {
-    const reader = await fetch(`${path}/user/${userId}/avatar`, {method: 'GET'})
+    await fetch(`${path}/user/${userId}/avatar`, {method: 'GET'})
         .then(response => {
             return response.body.getReader()
         })
@@ -52,6 +52,5 @@ export async function getAvatar(userId, setPictureUrl) {
         .then(stream => new Response(stream))
         .then(response => response.blob())
         .then(blob => setPictureUrl(URL.createObjectURL(blob)))
-        .then(url => console.log(url))
-        .catch(err => console.error(err));
+        .catch(err => alert('Image could not be loaded.'));
 }
