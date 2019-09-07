@@ -27,8 +27,6 @@ export default function CompleteWod(props) {
     const user = useSelectorWrapper(selectUser)
     const members = useSelectorWrapper(selectMembers)
     
-    console.log('setWodMODE: ', setWodMode)
-
     const dispatch = useDispatch()
 
     function displayEditButton() {
