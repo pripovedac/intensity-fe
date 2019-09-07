@@ -54,3 +54,7 @@ export async function getAvatar(userId, setPictureUrl) {
         .then(blob => setPictureUrl(URL.createObjectURL(blob)))
         .catch(err => alert('Image could not be loaded.'));
 }
+
+export async function updateUser(user) {
+    return await apiFetch('PUT', `${path}/user`, user)
+}
