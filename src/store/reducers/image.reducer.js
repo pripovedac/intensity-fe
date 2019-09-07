@@ -2,7 +2,7 @@ import * as actions from '../actions/image.action'
 
 const initialState = {
     isLoaded: false,
-    imageUrl: '',
+    url: '',
     mode: 'upload'
 }
 // Possible modes: ['upload', 'submit']
@@ -20,8 +20,8 @@ export default function (state = initialState, action) {
         case actions.IMAGE_URL_SET: {
             return {
                 isLoaded: true,
-                imageUrl: action.payload,
-                mode: 'submit'
+                url: action.payload,
+                mode: 'upload'
             }
         }
 

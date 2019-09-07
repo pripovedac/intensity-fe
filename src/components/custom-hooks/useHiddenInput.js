@@ -1,6 +1,6 @@
 import React, {useState, useRef, useCallback} from 'react'
 import {useDispatch} from 'react-redux'
-import {setImageUrl} from '../../store/actions/image.action'
+import {setImageUrl, setImageMode} from '../../store/actions/image.action'
 
 export default function useHiddenInput() {
     // Relative path from ProfilePicture component.
@@ -31,20 +31,22 @@ export default function useHiddenInput() {
         const image = event.target.files[0]
         const fiveMB = 1024 * 1024 * 5
         if (image.size < fiveMB) {
-            setPictureUrlWrapper(URL.createObjectURL(image))
+            const url = URL.createObjectURL(image)
+            setPictureUrl(url)
+            dispatch(setImageUrl(url))
             setPicture(image)
+            dispatch(setImageMode('submit'))
         } else {
             alert('Image cannot be larger than 5MB.')
         }
     }
 
-    function setPictureUrlWrapper(url) {
-        setPictureUrl(url)
-        dispatch(setImageUrl(url))
-    }
-
     const memoizedPictureUrlWrapper = useCallback(
-        (url) => setPictureUrl(url), []
+        // todo: think if url is depedency
+        (url) => {
+            setPictureUrl(url)
+            dispatch(setImageUrl(url))
+        }, [dispatch]
     )
 
     // todo: Explain this "useCallback" problem in your thesis
@@ -60,6 +62,7 @@ export default function useHiddenInput() {
         HiddenInput,
         onHiddenInputClick,
         inputRef,
+        setPicture,
         setPictureUrl: memoizedPictureUrlWrapper
     }
 }
