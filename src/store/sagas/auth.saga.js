@@ -9,7 +9,7 @@ export function* loginSaga(action) {
     if (response.ok) {
         const user = yield response.json()
         setToken(user.token)
-        yield put(actions.accomplishLogin(user))
+        yield put(actions.persistUser(user))
         yield put(push('/home'))
     } else {
         const message = yield response.json()

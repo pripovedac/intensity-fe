@@ -1,5 +1,5 @@
 export const USER_LOGIN = 'USER_LOGIN'
-export const LOGIN_ACCOMPLISH = 'LOGIN_ACCOMPLISH'
+export const USER_PERSIST = 'USER_PERSIST'
 export const LOGIN_ABORT = 'LOGIN_ABORT'
 export const USER_LOGOUT = 'USER_LOGOUT'
 export const LOGOUT_ACCOMPLISH = 'LOGOUT_ACCOMPLISH'
@@ -15,9 +15,9 @@ export function loginUser(user) {
     }
 }
 
-export function accomplishLogin(user) {
+export function persistUser(user) {
     return {
-        type: LOGIN_ACCOMPLISH,
+        type: USER_PERSIST,
         payload: user
     }
 }

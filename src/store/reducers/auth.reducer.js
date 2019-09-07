@@ -4,7 +4,7 @@ const initialState = {}
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case actions.LOGIN_ACCOMPLISH: {
+        case actions.USER_PERSIST: {
             return action.payload
         }
 
