@@ -1,0 +1,31 @@
+.user-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  font-size: 0.8em;
+
+  .about {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+
+    > textarea {
+      margin-top: 0.2em;
+      padding: 0.5em;
+      width: 100%;
+      font-family: inherit;
+      overflow-y: auto;
+      outline: none;
+      resize: none;
+      border-radius: 20px;
+      text-align: center;
+    }
+  }
+
+  .only-icon-button {
+    margin-top: 1em;
+  }
+}
