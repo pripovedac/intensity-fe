@@ -11,10 +11,10 @@ import rootSaga from './store/sagas/index.saga'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {Router} from 'react-router-dom'
 import {createBrowserHistory} from 'history'
-import PublicRoutes from './routes/public-routes'
-import PrivateRoutes from './routes/private-routes'
+import Routes from './routes/routes'
 import * as serviceWorker from './serviceWorker'
 import './index.css'
+import {getToken} from "./services/localstorage";
 
 const history = createBrowserHistory()
 
@@ -35,13 +35,13 @@ const persistor = persistStore(store)
 sagaMiddleware.run(rootSaga)
 store.runSaga = sagaMiddleware.run
 
+
 function IntensityApp() {
     return (
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <Router history={history}>
-                    <PublicRoutes/>
-                    <PrivateRoutes/>
+                    <Routes />
                 </Router>
             </PersistGate>
         </Provider>
