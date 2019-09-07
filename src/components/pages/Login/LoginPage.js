@@ -9,18 +9,17 @@ import {loginUser} from '../../../store/actions/auth.action'
 import '../../styles/public-styles/PublicStyles.scss'
 
 export default function LoginPage(props) {
-    console.log('Rendering loading page.')
     const dispatch = useDispatch()
 
     const {
         value: email,
         bind: bindEmail
-    } = useInput('wile.e.coyote@acme.com')
+    } = useInput('dule@gmail.com')
 
     const {
         value: password,
         bind: bindPassword
-    } = useInput('wilespassword')
+    } = useInput('dule')
 
     async function handleSubmit(event) {
         event.preventDefault()
