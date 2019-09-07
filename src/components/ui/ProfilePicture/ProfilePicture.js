@@ -3,6 +3,7 @@ import useHiddenInput from '../../custom-hooks/useHiddenInput'
 import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import useProfilePictureSetup from '../../custom-hooks/useProfilePictureSetup'
 import {useDispatch} from 'react-redux'
+import OnlyIconButton from '../Button/OnlyIconButton/OnlyIconButton'
 import {FiUpload, FiCheck} from 'react-icons/fi'
 import {setImageMode} from '../../../store/actions/image.action'
 import {selectUserId} from '../../../store/selectors/auth.selector'
@@ -42,17 +43,22 @@ export default function ProfilePicture(props) {
     function displayButton() {
         // todo: Check which user is logged in.
 
-        if (imageMode === 'submit') {
+        if (imageMode === 'upload') {
             return (
-                <button type="submit">
-                    <FiCheck/>
-                </button>
+                <OnlyIconButton type="button" onClick={onHiddenInputClick}>
+                    <FiUpload/>
+                </OnlyIconButton>
             )
         } else {
             return (
-                <button type="button" onClick={onHiddenInputClick}>
+                <div className="button-container">
+                <OnlyIconButton type="button" onClick={onHiddenInputClick}>
                     <FiUpload/>
-                </button>
+                </OnlyIconButton>
+                <OnlyIconButton type="submit">
+                    <FiCheck/>
+                </OnlyIconButton>
+                </div>
             )
         }
     }
