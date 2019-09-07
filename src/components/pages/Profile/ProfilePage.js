@@ -12,19 +12,21 @@ export default function ProfilePage() {
     const [loading, setLoading] = useState(false)
 
     function displayUneditableInfo(user) {
-        if (user.isActive) {
-            return (
-                <div className="uneditable-info">
-                    <p>{`Remained trainings: ${user.trainingNum}`}</p>
-                    <p>{`Activation date: ${toUserDateFormat(user.activationDate)}`}</p>
-                </div>
-            )
-        } else {
-            return (
-                <div className="uneditable-info">
-                    <p>Account is not activated</p>
-                </div>
-            )
+        if(user.role == 'user') {
+            if (user.isActive) {
+                return (
+                    <div className="uneditable-info">
+                        <p>{`Remained trainings: ${user.trainingNum}`}</p>
+                        <p>{`Activation date: ${toUserDateFormat(user.activationDate)}`}</p>
+                    </div>
+                )
+            } else {
+                return (
+                    <div className="uneditable-info">
+                        <p>Account is not activated</p>
+                    </div>
+                )
+            }
         }
     }
 
