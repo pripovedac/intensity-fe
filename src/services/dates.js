@@ -34,3 +34,7 @@ export function toUserDateFormat(date) {
 export function toTableFormat(date) {
     return moment(date).format('MMMM Do YYYY')
 }
+
+export function isDateOld(date) {
+    return moment().isAfter(date);
+}

@@ -73,7 +73,7 @@
       align-self: center;
     }
 
-    .rounded-button:hover {
+    .rounded-button:hover:enabled {
       background-color: #000;
       color: $lightocher;
     }

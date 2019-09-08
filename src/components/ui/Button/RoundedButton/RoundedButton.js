@@ -6,7 +6,8 @@ export default function RoundedButton(props) {
         <button
             className="rounded-button"
             type={props.type}
-            onClick={props.onClick}>
+            onClick={props.onClick}
+            disabled={props.disabled}>
             {props.children}
         </button>
     )

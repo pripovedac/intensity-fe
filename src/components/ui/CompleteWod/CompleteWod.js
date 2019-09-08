@@ -7,7 +7,7 @@ import RoundedButton from '../Button/RoundedButton/RoundedButton'
 import {FaCheckCircle, FaTimesCircle} from 'react-icons/fa'
 import MemberList from '../MemberList/MemberList'
 import {FaPencilAlt} from 'react-icons/fa'
-import {toUserDateFormat} from '../../../services/dates'
+import {isDateOld, toUserDateFormat} from '../../../services/dates'
 import {isEmpty} from 'lodash'
 import {addTrainings} from '../../../store/actions/auth.action'
 import {setWodMode, notifyUpdate} from '../../../store/actions/global.action'
@@ -20,13 +20,13 @@ import {selectActiveExercises} from '../../../store/selectors/exercise.selector'
 import {selectUser} from '../../../store/selectors/auth.selector'
 import './CompleteWod.scss'
 
-export default function CompleteWod(props) {
+export default function CompleteWod() {
     const trainingId = useSelectorWrapper(selectActiveTrainingId)
     const wod = useSelectorWrapper(selectActiveWod)
     const exercises = useSelectorWrapper(selectActiveExercises)
     const user = useSelectorWrapper(selectUser)
     const members = useSelectorWrapper(selectMembers)
-    
+
     const dispatch = useDispatch()
 
     function displayEditButton() {
@@ -90,15 +90,21 @@ export default function CompleteWod(props) {
     }
 
     function displaySubmitButton() {
+        const isOld = isDateOld(wod.date)
+        console.log('isOld: ', isDateOld(wod.date))
         if (!checkIfSignedIn(user.id)) {
             return (
-                <RoundedButton onClick={signIn}>
+                <RoundedButton
+                    onClick={signIn}
+                    disabled={isOld}>
                     <FaCheckCircle className="button-icon"/>
                 </RoundedButton>
             )
         } else {
             return (
-                <RoundedButton onClick={signOut}>
+                <RoundedButton
+                    onClick={signOut}
+                    disabled={isOld}>
                     <FaTimesCircle className="button-icon"/>
                 </RoundedButton>
             )
