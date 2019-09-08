@@ -21,6 +21,7 @@ export default function (state = initialState, action) {
         }
 
         case actions.REGISTRATION_ABORT: {
+            alert(action.payload)
             return state
         }
 
