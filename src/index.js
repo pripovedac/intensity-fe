@@ -14,7 +14,6 @@ import {createBrowserHistory} from 'history'
 import Routes from './routes/routes'
 import * as serviceWorker from './serviceWorker'
 import './index.css'
-import {getToken} from "./services/localstorage";
 
 const history = createBrowserHistory()
 

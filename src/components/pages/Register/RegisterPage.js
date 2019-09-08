@@ -7,6 +7,7 @@ import useInput from '../../custom-hooks/useInput'
 import {Link} from 'react-router-dom'
 import {registerUser} from '../../../store/actions/auth.action'
 import '../../styles/public-styles/PublicStyles.scss'
+import './RegisterPage.scss'
 
 export default function RegisterPage(props) {
     console.log('Rendering register page.')
@@ -33,15 +34,24 @@ export default function RegisterPage(props) {
         bind: bindPassword
     } = useInput('john123');
 
+    const {
+        value: isTrainer,
+        bind: bindTrainerFlag
+    } = useInput(false)
+
     async function handleSubmit(event) {
         event.preventDefault()
 
         if (checkForm()) {
+            const role = isTrainer
+                ? 'trainer'
+                : 'user'
             const newUser = {
                 name,
                 lastname,
                 email,
-                password
+                password,
+                role
             }
             dispatch(registerUser(newUser))
         } else {
@@ -65,7 +75,6 @@ export default function RegisterPage(props) {
                 <h1>Intensity Register</h1>
 
                 <div className="funny-text">
-                    <p>Welcome to Intensity app! </p>
                     <p> Feeling ready to enter the chamber of strength?</p>
                 </div>
 
@@ -86,6 +95,11 @@ export default function RegisterPage(props) {
                         label="Password"
                         type="password"
                         {...bindPassword}/>
+                    <label className="label-checkbox">
+                        Will you be trainer?
+                        <input type="checkbox"
+                               {...bindTrainerFlag}/>
+                    </label>
                     <PublicButton>
                         Submit
                     </PublicButton>
@@ -95,7 +109,7 @@ export default function RegisterPage(props) {
                     Already have an account? Just
                     <Link to="/login/">
                         login
-                    </Link>.
+                    </Link>
                 </p>
 
             </Card>

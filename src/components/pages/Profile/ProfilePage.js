@@ -12,7 +12,7 @@ export default function ProfilePage() {
     const [loading, setLoading] = useState(false)
 
     function displayUneditableInfo(user) {
-        if(user.role == 'user') {
+        if (user.role === 'member') {
             if (user.isActive) {
                 return (
                     <div className="uneditable-info">
@@ -39,7 +39,7 @@ export default function ProfilePage() {
         <div className={classes}>
 
             <h1>{`${user.name} ${user.lastname}`}</h1>
-            <h2>{user.role == 'user' ? 'Member' : `${user.role}`}</h2>
+            <h2>{`${user.role}`}</h2>
 
             <div className="editable-info">
                 <UserForm setLoading={setLoading}/>

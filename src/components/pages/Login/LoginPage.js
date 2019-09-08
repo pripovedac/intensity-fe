@@ -70,7 +70,7 @@ export default function LoginPage(props) {
                     Feel free to
                     <Link to="/register/">
                         register
-                    </Link>.
+                    </Link>
                 </p>
 
             </Card>
