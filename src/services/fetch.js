@@ -24,7 +24,10 @@ function apiFetchFactory({fetch}) {
         if (responseType === "json" && res.status >= 200 && res.status < 300) {
             return res.json()
         } else {
-            return {errorStatus: res.status}
+            return {
+                errorStatus: res.status,
+                exception: await res.json()
+            }
         }
     }
 }

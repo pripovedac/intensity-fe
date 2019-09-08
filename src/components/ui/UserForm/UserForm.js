@@ -32,7 +32,7 @@ export default function UserForm(props) {
     const {
         value: about,
         bind: bindAbout,
-    } = useInput(user.about)
+    } = useInput(user.about ? user.about : '')
 
     async function handleSubmit(event) {
         event.preventDefault()

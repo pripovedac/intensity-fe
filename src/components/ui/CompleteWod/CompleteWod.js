@@ -154,6 +154,8 @@ export default function CompleteWod(props) {
             const id = user.id
             const name = `${user.name} ${user.lastname}`
             dispatch(addNewMember({id, name}))
+        } else {
+            alert(response.exception.message)
         }
     }
 

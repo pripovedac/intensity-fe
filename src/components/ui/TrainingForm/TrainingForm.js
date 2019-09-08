@@ -113,7 +113,6 @@ function TrainingForm(props) {
         return wod
     }
 
-
     return (
         <div className="training-form">
             <h1>Workout of the Day</h1>
