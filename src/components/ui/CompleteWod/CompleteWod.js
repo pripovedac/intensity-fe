@@ -9,6 +9,7 @@ import MemberList from '../MemberList/MemberList'
 import {FaPencilAlt} from 'react-icons/fa'
 import {isDateOld, toUserDateFormat} from '../../../services/dates'
 import {isEmpty} from 'lodash'
+import {userRoles} from '../../../services/enums'
 import {addTrainings} from '../../../store/actions/auth.action'
 import {setWodMode, notifyUpdate} from '../../../store/actions/global.action'
 import {addNewWod, addNewMember, removeMember} from '../../../store/actions/wod.action'
@@ -91,7 +92,7 @@ export default function CompleteWod() {
 
     function displaySubmitButton() {
         const isOld = isDateOld(wod.date)
-        console.log('isOld: ', isDateOld(wod.date))
+
         if (!checkIfSignedIn(user.id)) {
             return (
                 <RoundedButton
@@ -112,7 +113,7 @@ export default function CompleteWod() {
     }
 
     function displayAddButton() {
-        if (user.role === 'user') {
+        if (user.role === userRoles.trainer) {
             return (
                 <ButtonWithText onClick={() => dispatch(setWodMode())}>
                     Add wod
@@ -123,9 +124,13 @@ export default function CompleteWod() {
 
     function displayEmptyWod() {
         return (
+            <div>
             <p>
                 WOD hasn't been posted yet.
             </p>
+                <img src={require("./nothing here.jpg")}
+                     alt="Nothing here." />
+            </div>
         )
     }
 
@@ -192,7 +197,6 @@ export default function CompleteWod() {
             <div className="empty-wod">
                 {displayAddButton()}
                 {displayEmptyWod()}
-                {displaySignButtons()}
             </div>
         )
     }

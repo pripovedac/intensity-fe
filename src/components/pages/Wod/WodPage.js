@@ -62,9 +62,7 @@ export default function WodPage(props) {
         return (
             <div className="wod-container">
                 <div className="hulk-container">
-                    <img src="./images/hulk.jpg"
-                         alt="Hulk"
-                         width={300}/>
+                    <img src="./images/hulk.jpg" alt="Hulk"/>
                 </div>
                 {displayContent()}
             </div>
