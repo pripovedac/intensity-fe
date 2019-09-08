@@ -16,10 +16,9 @@ function Routes() {
     const publicRoutes =
         <div>
             <Switch>
-                {/*todo: chech if at exists*/}
-                <Redirect exact from='/' to='/login'/>
                 <Route path="/login" component={Login}/>
                 <Route path="/register" component={Register}/>
+                <Redirect from='*' to='/login'/>
             </Switch>
         </div>
 
@@ -32,6 +31,7 @@ function Routes() {
                 <Route path="/wod" component={Wod}/>
                 <Route path="/members" component={MembersPage}/>
                 <Route path="/profile" component={ProfilePage}/>
+                <Redirect from='*' to='/home'/>
             </Switch>
         </div>
 
