@@ -8,3 +8,7 @@ export function selectAllMembers(state) {
         return state.allMembers.filter(({isActive}) => !isActive)
     }
 }
+
+export function selectMembersLength(state) {
+    return state.allMembers.length
+}
