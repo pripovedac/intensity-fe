@@ -116,7 +116,6 @@ function TrainingForm(props) {
     }
 
     function displayTrainingType() {
-        console.log('isUpdate: ', isUpdate)
         if (isUpdate) {
             return (
                 <h2 className={"no-radio"}>

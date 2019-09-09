@@ -77,8 +77,13 @@ export default function CompleteWod() {
                             wod.roundNumber
                                 ? `${wod.roundNumber} ${wordRound}`
                                 : ''
-                            } for ${wod.duration}
-                             minutes with ${wod.trainer}`
+                            }
+                            ${
+                            wod.duration
+                                ? `for ${wod.duration} minutes`
+                                : ''
+                            } with ${wod.trainer}
+                        `
                     }
                 </p>
             </div>
@@ -129,7 +134,7 @@ export default function CompleteWod() {
                 <p>
                     WOD hasn't been posted yet.
                 </p>
-                <img src={require("./nothing here.jpg")}
+                <img src={require("./nothing-here.jpg")}
                      alt="Nothing here."/>
             </div>
         )
