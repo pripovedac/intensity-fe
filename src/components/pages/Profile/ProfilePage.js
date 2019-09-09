@@ -4,6 +4,7 @@ import ProfilePicture from '../../ui/ProfilePicture/ProfilePicture'
 import UserForm from '../../ui/UserForm/UserForm'
 import {selectUser} from '../../../store/selectors/auth.selector'
 import {toUserDateFormat} from '../../../services/dates'
+import {userRoles} from '../../../services/enums'
 import classNames from 'classnames'
 import './ProfilePage.scss'
 
@@ -12,7 +13,7 @@ export default function ProfilePage() {
     const [loading, setLoading] = useState(false)
 
     function displayUneditableInfo(user) {
-        if (user.role === 'member') {
+        if (user.role === userRoles.member) {
             if (user.isActive) {
                 return (
                     <div className="uneditable-info">

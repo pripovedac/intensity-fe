@@ -8,12 +8,12 @@ import {FiUpload, FiCheck} from 'react-icons/fi'
 import {setImageMode} from '../../../store/actions/image.action'
 import {selectUserId} from '../../../store/selectors/auth.selector'
 import {uploadAvatar} from '../../../services/api/user'
+import {imageModes} from '../../../services/enums'
 import './ProfilePicture.scss'
 import {selectImageMode} from '../../../store/selectors/image.selector'
 
 export default function ProfilePicture(props) {
     console.log('Rendering ProfilePicture component.')
-    // const [loading, setLoading] = useState(false)
     const imageMode = useSelectorWrapper(selectImageMode)
     const dispatch = useDispatch()
 
@@ -43,7 +43,7 @@ export default function ProfilePicture(props) {
     function displayButton() {
         // todo: Check which user is logged in.
 
-        if (imageMode === 'upload') {
+        if (imageMode === imageModes.update) {
             return (
                 <OnlyIconButton type="button" onClick={onHiddenInputClick}>
                     <FiUpload/>

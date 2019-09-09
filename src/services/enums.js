@@ -3,3 +3,8 @@ export const userRoles = {
     trainer: 'trainer',
     admin: 'admin'
 }
+
+export const imageModes = {
+    update: 'update',
+    submit: 'submit',
+}
