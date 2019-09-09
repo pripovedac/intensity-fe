@@ -9,6 +9,8 @@ export default function LabeledInput(props) {
                 value={props.value}
                 type={props.type}
                 placeholder={props.placeholder}
+                spellCheck={false}
+                disabled={props.disabled}
                 onChange={props.onChange}
             />
         </label>

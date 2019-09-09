@@ -12,6 +12,7 @@ import {calculateDate} from '../../../services/dates'
 import {addNewWod} from '../../../store/actions/wod.action'
 import {setExerciseMode, setRegularMode} from '../../../store/actions/global.action'
 import {selectNewWod} from '../../../store/selectors/wod.selector'
+import {selectUpdateNotification} from '../../../store/selectors/global.selector'
 import {withRouter} from 'react-router-dom'
 import '../../styles/form-styles/FormStyles.scss'
 
@@ -19,6 +20,7 @@ function TrainingForm(props) {
     const {search} = props.location
     const [globalType, setGlobaltype] = useState(calculateTrainingType(search))
     const wod = useSelectorWrapper(selectNewWod)
+    const isUpdate = useSelectorWrapper(selectUpdateNotification)
     const dispatch = useDispatch()
 
     const {
@@ -113,10 +115,16 @@ function TrainingForm(props) {
         return wod
     }
 
-    return (
-        <div className="training-form">
-            <h1>Workout of the Day</h1>
-            <form onSubmit={handleSubmit}>
+    function displayTrainingType() {
+        console.log('isUpdate: ', isUpdate)
+        if (isUpdate) {
+            return (
+                <h2 className={"no-radio"}>
+                    {globalType}
+                </h2>
+            )
+        } else {
+            return (
                 <div className="radio-container">
                     <p>WOD</p>
                     <RadioButton
@@ -134,10 +142,20 @@ function TrainingForm(props) {
                         handleInput={() => setGlobaltype('lightfit')}
                     />
                 </div>
+            )
+        }
+    }
+
+    return (
+        <div className="training-form">
+            <h1>Workout of the Day</h1>
+            <form onSubmit={handleSubmit}>
+                {displayTrainingType()}
 
                 <LabeledInput
                     type="date"
                     label="Date"
+                    disabled={isUpdate}
                     {...bindDate}/>
 
                 <LabeledInput

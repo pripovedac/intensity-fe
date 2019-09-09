@@ -36,5 +36,7 @@ export function toTableFormat(date) {
 }
 
 export function isDateOld(date) {
-    return moment().isAfter(date);
+    return moment(new Date())
+        .add(-1, 'days')
+        .isAfter(date)
 }

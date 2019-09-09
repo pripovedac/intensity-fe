@@ -6,6 +6,7 @@ import PublicButton from '../../ui/Button/PublicButton/PublicButton'
 import useInput from '../../custom-hooks/useInput'
 import {Link} from 'react-router-dom'
 import {registerUser} from '../../../store/actions/auth.action'
+import {userRoles} from '../../../services/enums'
 import '../../styles/public-styles/PublicStyles.scss'
 import './RegisterPage.scss'
 
@@ -44,8 +45,8 @@ export default function RegisterPage(props) {
 
         if (checkForm()) {
             const role = isTrainer
-                ? 'trainer'
-                : 'user'
+                ? userRoles.trainer
+                : userRoles.member
             const newUser = {
                 name,
                 lastname,

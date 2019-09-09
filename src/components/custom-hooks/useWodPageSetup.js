@@ -11,6 +11,7 @@ import {
 } from '../../store/actions/global.action'
 import {addActiveWod, cleanNewWod, removeActiveWod} from '../../store/actions/wod.action'
 import {addActiveExercises, cleanNewExercises, removeActiveExercises} from '../../store/actions/exercise.action'
+import removeLoadingState from '../../services/timeout'
 
 export default function useWodPageSetup(search) {
     const dispatch = useDispatch()
@@ -31,7 +32,6 @@ export default function useWodPageSetup(search) {
                 // re-renders!
                 updateRedux(training)
             }
-            setLoading(false)
         }
 
         function updateRedux(training) {
@@ -43,7 +43,6 @@ export default function useWodPageSetup(search) {
             dispatch(addActiveWod(wodPayload))
             dispatch(addActiveExercises(training.exercises))
         }
-
 
         function cleanRedux() {
             console.log('Cleaning...')
@@ -57,6 +56,7 @@ export default function useWodPageSetup(search) {
         }
 
         fetchTraining(search)
+        removeLoadingState(setLoading)
 
         return cleanRedux
     }, [search, dispatch])

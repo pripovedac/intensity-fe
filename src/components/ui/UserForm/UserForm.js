@@ -8,6 +8,7 @@ import {FiCheck} from 'react-icons/fi'
 import {selectUser} from '../../../store/selectors/auth.selector'
 import {persistUser} from '../../../store/actions/auth.action'
 import {updateUser} from '../../../services/api/user'
+import removeLoadingState from '../../../services/timeout'
 import './UserForm.scss'
 
 export default function UserForm(props) {
@@ -53,11 +54,7 @@ export default function UserForm(props) {
             dispatch(persistUser(updatedUser))
         }
 
-        const timer = setTimeout(() => {
-            props.setLoading(false)
-        }, 200);
-
-        return () => clearTimeout(timer);
+        removeLoadingState(props.setLoading)
     }
 
     return (

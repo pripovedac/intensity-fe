@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import {useDispatch} from 'react-redux'
 import ButtonWithText from '../Button/ButtonWithText/ButtonWithText'
@@ -19,9 +19,11 @@ import {selectActiveTrainingId} from '../../../store/selectors/global.selector'
 import {selectActiveWod, selectMembers} from '../../../store/selectors/wod.selector'
 import {selectActiveExercises} from '../../../store/selectors/exercise.selector'
 import {selectUser} from '../../../store/selectors/auth.selector'
+import removeLoadingState from '../../../services/timeout'
 import './CompleteWod.scss'
 
 export default function CompleteWod() {
+    const [loading, setLoading] = useState(false)
     const trainingId = useSelectorWrapper(selectActiveTrainingId)
     const wod = useSelectorWrapper(selectActiveWod)
     const exercises = useSelectorWrapper(selectActiveExercises)
@@ -31,7 +33,7 @@ export default function CompleteWod() {
     const dispatch = useDispatch()
 
     function displayEditButton() {
-        if (user.role === 'user') {
+        if (user.role === userRoles.trainer) {
             return (
                 <button className="pen-button"
                         onClick={prepareWodForEditing}>
@@ -68,7 +70,6 @@ export default function CompleteWod() {
         return (
             <div className="wod-info">
                 {title}
-                {/*todo: fix date and add time} */}
                 <p>{`${toUserDateFormat(wod.date)}`}</p>
                 <p>
                     {
@@ -76,8 +77,8 @@ export default function CompleteWod() {
                             wod.roundNumber
                                 ? `${wod.roundNumber} ${wordRound}`
                                 : ''
-                            } for ${wod.duration
-                            } minutes with ${wod.trainer}`
+                            } for ${wod.duration}
+                             minutes with ${wod.trainer}`
                     }
                 </p>
             </div>
@@ -90,7 +91,7 @@ export default function CompleteWod() {
         )
     }
 
-    function displaySubmitButton() {
+    function displaySigningButton() {
         const isOld = isDateOld(wod.date)
 
         if (!checkIfSignedIn(user.id)) {
@@ -125,24 +126,14 @@ export default function CompleteWod() {
     function displayEmptyWod() {
         return (
             <div>
-            <p>
-                WOD hasn't been posted yet.
-            </p>
+                <p>
+                    WOD hasn't been posted yet.
+                </p>
                 <img src={require("./nothing here.jpg")}
-                     alt="Nothing here." />
+                     alt="Nothing here."/>
             </div>
         )
     }
-
-    function displaySignButtons() {
-        // todo: Display button according to user's trainings.
-        return (
-            <RoundedButton>
-                <FaCheckCircle className="button-icon"/>
-            </RoundedButton>
-        )
-    }
-
 
     function checkIfSignedIn(id) {
         if (members) {
@@ -154,11 +145,12 @@ export default function CompleteWod() {
 
     function displayMemberList() {
         return (
-            <MemberList/>
+            <MemberList loading={loading}/>
         )
     }
 
     async function signIn() {
+        setLoading(true)
         const response = await signForTraining(user.id, trainingId)
         if (!response.errorStatus) {
             dispatch(addTrainings(response))
@@ -168,13 +160,16 @@ export default function CompleteWod() {
         } else {
             alert(response.exception.message)
         }
+        removeLoadingState(setLoading)
     }
 
     async function signOut() {
+        setLoading(true)
         const response = await signOutOfTraining(user.id, trainingId)
         if (!response.errorStatus) {
             dispatch(addTrainings(response))
             dispatch(removeMember(user.id))
+            removeLoadingState(setLoading)
         }
     }
 
@@ -185,7 +180,7 @@ export default function CompleteWod() {
                     {displayEditButton()}
                     {displayWodInfo()}
                     {displayExerciseList()}
-                    {displaySubmitButton()}
+                    {displaySigningButton()}
                 </div>
                 <div>
                     {displayMemberList()}

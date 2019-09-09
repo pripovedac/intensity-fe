@@ -1,6 +1,7 @@
 import React from 'react'
 import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import {selectMembers} from '../../../store/selectors/wod.selector'
+import classNames from 'classnames'
 import './MemberList.scss'
 
 export default function MemberList(props) {
@@ -24,8 +25,13 @@ export default function MemberList(props) {
         return members.map(member => <li key={member.id}>{member.name}</li>)
     }
 
+    const classes = classNames({
+        'member-list': true,
+        'loading-members': props.loading
+    })
+
     return (
-        <div className="member-list">
+        <div className={classes}>
             <h2>Members</h2>
             {displayContent()}
         </div>
