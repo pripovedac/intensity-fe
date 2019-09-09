@@ -5,6 +5,6 @@ export const userRoles = {
 }
 
 export const imageModes = {
-    update: 'update',
+    update: 'upload',
     submit: 'submit',
 }

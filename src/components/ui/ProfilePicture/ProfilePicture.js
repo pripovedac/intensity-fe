@@ -36,7 +36,7 @@ export default function ProfilePicture(props) {
         if (res.errorStatus) {
             alert('Something went wrong with your upload.')
         } else {
-            dispatch(setImageMode('upload'))
+            dispatch(setImageMode(imageModes.update))
         }
     }
 
@@ -45,17 +45,23 @@ export default function ProfilePicture(props) {
 
         if (imageMode === imageModes.update) {
             return (
-                <OnlyIconButton type="button" onClick={onHiddenInputClick}>
+                <OnlyIconButton
+                    type="button"
+                    onClick={onHiddenInputClick}>
                     <FiUpload/>
                 </OnlyIconButton>
             )
         } else {
             return (
                 <div className="button-container">
-                    <OnlyIconButton type="button" onClick={onHiddenInputClick}>
+                    <OnlyIconButton
+                        type="button"
+                        onClick={onHiddenInputClick}>
                         <FiUpload/>
                     </OnlyIconButton>
-                    <OnlyIconButton type="submit">
+
+                    <OnlyIconButton
+                        type="submit">
                         <FiCheck/>
                     </OnlyIconButton>
                 </div>
