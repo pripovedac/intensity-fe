@@ -46,15 +46,15 @@ function TrainingForm(props) {
     // todo: this should be taken from DB
     const trainingOptions = ['custom', 'emom', 'amrap',
         'rft', 'chipper', 'ladder', 'tabata']
-    const [trainingType, setTrainingType] = useState(wod.trainingType ?
-        wod.trainingType :
-        trainingOptions[0])
+    const [trainingType, setTrainingType] = useState(wod.trainingType
+        ? wod.trainingType
+        : trainingOptions[0])
 
     // todo: this should be taken from DB
     const trainerOptions = ['Dusan Arandjelovic', 'Milan Spasic', 'Nemanja Sutanovac']
-    const [trainer, setTrainer] = useState(wod.trainer ?
-        wod.trainer :
-        trainerOptions[0])
+    const [trainer, setTrainer] = useState(wod.trainer
+        ? wod.trainer
+        : trainerOptions[0])
 
     function calculateInitDate() {
         const queryParams = queryString.parse(props.location.search)
@@ -177,11 +177,13 @@ function TrainingForm(props) {
 
                 <SelectInput className="custom-input"
                              label="Training type"
+                             value={trainingType}
                              options={trainingOptions}
                              handleInput={setTrainingType}/>
 
                 <SelectInput className="custom-input"
                              label="Trainer"
+                             value={trainer}
                              options={trainerOptions}
                              handleInput={setTrainer}/>
 

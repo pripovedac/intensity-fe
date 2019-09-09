@@ -22,7 +22,9 @@ export default function SelectInput(props) {
     return (
         <label className="select-input">
             {props.label}
-            <select onChange={handleChange}>
+            <select
+                value={props.value}
+                onChange={handleChange}>
                 {displayOptions()}
             </select>
         </label>

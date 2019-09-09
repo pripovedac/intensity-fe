@@ -16,7 +16,7 @@ export default function ExerciseForm(props) {
         value: name,
         resetValue: resetName,
         bind: bindName,
-    } = useInput('bench')
+    } = useInput('')
 
     const {
         value: repsNumber,
