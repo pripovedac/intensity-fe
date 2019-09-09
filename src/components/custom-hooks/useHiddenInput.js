@@ -4,7 +4,7 @@ import {setImageUrl, setImageMode} from '../../store/actions/image.action'
 
 export default function useHiddenInput() {
     // Relative path from ProfilePicture component.
-    const [pictureUrl, setPictureUrl] = useState("../../../../images/no-avatar.png")
+    const [pictureUrl, setPictureUrl] = useState('../../../../images/no-avatar.png')
     const [picture, setPicture] = useState()
     const inputRef = useRef(null)
     const dispatch = useDispatch()

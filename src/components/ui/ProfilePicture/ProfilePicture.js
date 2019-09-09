@@ -52,22 +52,23 @@ export default function ProfilePicture(props) {
         } else {
             return (
                 <div className="button-container">
-                <OnlyIconButton type="button" onClick={onHiddenInputClick}>
-                    <FiUpload/>
-                </OnlyIconButton>
-                <OnlyIconButton type="submit">
-                    <FiCheck/>
-                </OnlyIconButton>
+                    <OnlyIconButton type="button" onClick={onHiddenInputClick}>
+                        <FiUpload/>
+                    </OnlyIconButton>
+                    <OnlyIconButton type="submit">
+                        <FiCheck/>
+                    </OnlyIconButton>
                 </div>
             )
         }
     }
-        return (
-            <form onSubmit={handleSubmit}
-                  className="profile-picture">
-                <img src={pictureUrl} alt="Avatar"/>
-                <HiddenInput/>
-                {displayButton()}
-            </form>
-        )
+
+    return (
+        <form onSubmit={handleSubmit}
+              className="profile-picture">
+            <img src={pictureUrl} alt="Avatar"/>
+            <HiddenInput/>
+            {displayButton()}
+        </form>
+    )
 }

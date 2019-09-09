@@ -25,36 +25,6 @@ export async function uploadAvatar(userId, avatar) {
     return await fetch(`${path}/user/${userId}/avatar`, provideData(formData))
 }
 
-export async function getAvatar(userId, setPictureUrl) {
-    await fetch(`${path}/user/${userId}/avatar`, {method: 'GET'})
-        .then(response => {
-            return response.body.getReader()
-        })
-        .then(reader => new ReadableStream({
-                start(controller) {
-                    return pump();
-
-                    function pump() {
-                        return reader.read().then(({done, value}) => {
-                            // When no more data needs to be consumed, close the stream
-                            if (done) {
-                                controller.close();
-                                return;
-                            }
-                            // Enqueue the next data chunk into our target stream
-                            controller.enqueue(value);
-                            return pump();
-                        });
-                    }
-                }
-            })
-        )
-        .then(stream => new Response(stream))
-        .then(response => response.blob())
-        .then(blob => setPictureUrl(URL.createObjectURL(blob)))
-        .catch(err => alert('Image could not be loaded.'));
-}
-
 export async function updateUser(user) {
     return await apiFetch('PUT', `${path}/user`, user)
 }
