@@ -65,7 +65,8 @@ export default function ProfilePage(props) {
         } else {
             return (
                 <div className="editable-info">
-                    <UserInfo member={member}/>
+                    <UserInfo setLoading={setLoadingStyle}
+                    />
                     <ProfilePicture id={urlId}/>
                 </div>
             )

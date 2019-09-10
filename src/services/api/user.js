@@ -37,3 +37,7 @@ export async function updateUser(user) {
 export async function deleteUser(id) {
     return await apiFetch('DELETE', `${path}/user/${id}`)
 }
+
+export async function addUserPayment(id) {
+    return await apiFetch('PUT', `${path}/user/${id}/payment`)
+}
