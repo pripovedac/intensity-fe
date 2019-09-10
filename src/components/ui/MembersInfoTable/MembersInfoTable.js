@@ -2,14 +2,11 @@ import React from 'react'
 import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import StatusButton from '../Button/StatusButton/StatusButton'
 import {Link} from 'react-router-dom'
-import {FiCheck} from 'react-icons/fi'
 import {toTableFormat} from '../../../services/dates'
 import {changeMemberStatus} from '../../../store/actions/members.action'
 import {selectAllMembers} from '../../../store/selectors/members.selector'
 import {useDispatch} from 'react-redux'
 import './MembersInfoTable.scss'
-import OnlyIconButton from "../Button/OnlyIconButton/OnlyIconButton";
-import RoundedButton from "../Button/RoundedButton/RoundedButton";
 
 export default function MembersInfoTable(props) {
     const allMembers = useSelectorWrapper(selectAllMembers)
