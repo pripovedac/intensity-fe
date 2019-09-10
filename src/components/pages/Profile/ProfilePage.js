@@ -72,6 +72,15 @@ export default function ProfilePage(props) {
         }
     }
 
+    function displayDeleteButton(user, member) {
+        if (user.id === member.id)
+            return (
+                <OnlyIconButton onClick={deleteAccount}>
+                    <FiTrash2 className="trash-button"/>
+                </OnlyIconButton>
+            )
+    }
+
     async function deleteAccount() {
         if (window.confirm(
             `${user.name}, are you sure you want to delete your account?\nWe will sure miss you.`)
@@ -97,10 +106,7 @@ export default function ProfilePage(props) {
 
                 {displayEditableInfo()}
                 {displayUneditableInfo(user)}
-
-                <OnlyIconButton onClick={deleteAccount}>
-                    <FiTrash2 className="trash-button"/>
-                </OnlyIconButton>
+                {displayDeleteButton(user, member)}
 
             </div>
         )
