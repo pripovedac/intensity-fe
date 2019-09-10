@@ -6,7 +6,7 @@ import ExerciseList from '../ExerciseList/ExerciseList'
 import RoundedButton from '../Button/RoundedButton/RoundedButton'
 import {FaCheckCircle, FaTimesCircle} from 'react-icons/fa'
 import MemberList from '../MemberList/MemberList'
-import {FiEdit, FiDelete} from 'react-icons/fi'
+import {FiEdit, FiTrash2} from 'react-icons/fi'
 import {isDateOld, toUserDateFormat} from '../../../services/dates'
 import {isEmpty} from 'lodash'
 import {userRoles} from '../../../services/enums'
@@ -43,7 +43,7 @@ export default function CompleteWod(props) {
                     </button>
                     <button
                         onClick={removeWod}>
-                        <FiDelete/>
+                        <FiTrash2/>
                     </button>
                 </div>
             )
