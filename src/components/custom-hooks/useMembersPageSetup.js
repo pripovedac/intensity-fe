@@ -24,8 +24,7 @@ export default function useMembersPageSetup() {
             dispatch(setMembers(members))
         }
 
-        if (!membersNumber)
-            fetchAllMembers()
+        fetchAllMembers()
 
     }, [dispatch, membersNumber])
 
