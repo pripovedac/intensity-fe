@@ -14,7 +14,7 @@ export default function LoginPage(props) {
     const {
         value: email,
         bind: bindEmail
-    } = useInput('dule@gmail.com')
+    } = useInput('thefirstpresenter@gmail.com')
 
     const {
         value: password,

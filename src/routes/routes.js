@@ -26,7 +26,6 @@ function Routes() {
         <div>
             <Navigation/>
             <Switch>
-                <Redirect exact from='/' to='/home'/>
                 <Route path="/home" component={HomePage}/>
                 <Route path="/wod" component={Wod}/>
                 <Route path="/members" component={MembersPage}/>

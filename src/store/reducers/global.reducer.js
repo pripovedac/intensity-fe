@@ -5,7 +5,8 @@ const initialState = {
     wodMode: 'regular',
     trainingId: '',
     isUpdate: false,
-    memberFilter: 'all'
+    memberFilter: 'all',
+    activeMember: {}
 }
 // Possible wodMode values are [wod, exercise, regular]
 // Possible memberFilter values are [all, active, inactive]
@@ -88,6 +89,20 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 memberFilter: action.payload
+            }
+        }
+
+        case actions.ACTIVE_MEMBER_SET: {
+            return {
+                ...state,
+                activeMember: action.payload
+            }
+        }
+
+        case actions.ACTIVE_MEMBER_REMOVE: {
+            return {
+                ...state,
+                activeMember: {}
             }
         }
 

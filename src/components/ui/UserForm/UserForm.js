@@ -55,11 +55,14 @@ export default function UserForm(props) {
         }
 
         removeLoadingState(props.setLoading)
+        console.log('azurirao')
     }
 
     return (
         <form onSubmit={handleSubmit}
-              className="user-form">
+              className="user-form"
+            autoComplete="off"
+        >
             <LabeledInput
                 label="Name"
                 type="text"

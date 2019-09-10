@@ -7,12 +7,14 @@ import OnlyIconButton from '../Button/OnlyIconButton/OnlyIconButton'
 import {FiUpload, FiCheck} from 'react-icons/fi'
 import {setImageMode} from '../../../store/actions/image.action'
 import {selectUserId} from '../../../store/selectors/auth.selector'
+import {selectImageMode} from '../../../store/selectors/image.selector'
 import {uploadAvatar} from '../../../services/api/user'
 import {imageModes} from '../../../services/enums'
+import {withRouter} from 'react-router-dom'
+import queryString from 'query-string'
 import './ProfilePicture.scss'
-import {selectImageMode} from '../../../store/selectors/image.selector'
 
-export default function ProfilePicture(props) {
+function ProfilePicture(props) {
     console.log('Rendering ProfilePicture component.')
     const imageMode = useSelectorWrapper(selectImageMode)
     const dispatch = useDispatch()
@@ -27,8 +29,11 @@ export default function ProfilePicture(props) {
     } = useHiddenInput()
 
     const userId = useSelectorWrapper(selectUserId)
+    const {search} = props.location
+    const urlId = queryString.parse(search).id
+    const parameter = urlId ? urlId : userId
 
-    useProfilePictureSetup(userId, setPictureUrl, setPicture)
+    useProfilePictureSetup(parameter, setPictureUrl, setPicture)
 
     async function handleSubmit(event) {
         event.preventDefault()
@@ -40,32 +45,33 @@ export default function ProfilePicture(props) {
         }
     }
 
-    function displayButton() {
-        // todo: Check which user is logged in.
 
-        if (imageMode === imageModes.update) {
-            return (
-                <OnlyIconButton
-                    type="button"
-                    onClick={onHiddenInputClick}>
-                    <FiUpload/>
-                </OnlyIconButton>
-            )
-        } else {
-            return (
-                <div className="button-container">
+    function displayButton() {
+        if (!props.id) {
+            if (imageMode === imageModes.update) {
+                return (
                     <OnlyIconButton
                         type="button"
                         onClick={onHiddenInputClick}>
                         <FiUpload/>
                     </OnlyIconButton>
+                )
+            } else {
+                return (
+                    <div className="button-container">
+                        <OnlyIconButton
+                            type="button"
+                            onClick={onHiddenInputClick}>
+                            <FiUpload/>
+                        </OnlyIconButton>
 
-                    <OnlyIconButton
-                        type="submit">
-                        <FiCheck/>
-                    </OnlyIconButton>
-                </div>
-            )
+                        <OnlyIconButton
+                            type="submit">
+                            <FiCheck/>
+                        </OnlyIconButton>
+                    </div>
+                )
+            }
         }
     }
 
@@ -78,3 +84,5 @@ export default function ProfilePicture(props) {
         </form>
     )
 }
+
+export default withRouter(ProfilePicture)

@@ -30,6 +30,10 @@
     color: #404040;
     font-weight: bold;
     transition: all 0.3s ease 0s;
+
+    a {
+      text-decoration: underline;
+    }
   }
 
   td, th {
@@ -39,6 +43,11 @@
     align-items: center;
     text-align: center;
     overflow: hidden;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
   }
 
   .status-button {

@@ -1,0 +1,11 @@
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+
+  > p {
+    text-align: center;
+  }
+}

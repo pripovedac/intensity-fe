@@ -7,6 +7,11 @@ export async function getAllMembers() {
     return await apiFetch('GET', `${path}/user`)
 }
 
+export async function getSingleMember(id) {
+    console.log('Getting single user...')
+    return await apiFetch('GET', `${path}/user/${id}`)
+}
+
 export async function changeMemberStatus(user) {
     return await apiFetch('PUT', `${path}/user/status`, user)
 }

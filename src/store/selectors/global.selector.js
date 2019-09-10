@@ -13,3 +13,7 @@ export function selectActiveTrainingId(state) {
 export function selectUpdateNotification(state) {
     return state.global.isUpdate
 }
+
+export function selectActiveMember(state) {
+    return state.global.activeMember
+}

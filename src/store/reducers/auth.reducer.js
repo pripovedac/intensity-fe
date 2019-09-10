@@ -5,7 +5,10 @@ const initialState = {}
 export default function (state = initialState, action) {
     switch (action.type) {
         case actions.USER_PERSIST: {
-            return action.payload
+            return {
+                ...state,
+                ...action.payload
+            }
         }
 
         case actions.LOGIN_ABORT: {
