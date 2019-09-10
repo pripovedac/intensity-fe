@@ -10,7 +10,9 @@ import './Navigation.scss'
 function Navigation(props) {
     const username = useSelectorWrapper(selectUsername)
     const dispatch = useDispatch()
-    const pathName = props.location.pathname
+    const pathName = props.location.search
+        ? ''
+        : props.location.pathname
 
     return (
         <nav className="navigation">
