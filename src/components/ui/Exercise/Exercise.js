@@ -12,7 +12,7 @@ export default function Exercise(props) {
         //todo: see if this can be do better
         if (!exercise.duration && exercise.weight)
             return `${exercise.name} for ${exercise.repsNumber} reps, ${exercise.weight} kilos`
-        else if (exercise.duration && !exercise.weight)
+        else if (exercise.duration && !exercise.weight && exercise.repsNumber)
             return `${exercise.duration} mins of ${exercise.name} for ${exercise.repsNumber} reps`
         else if (exercise.duration && exercise.weight)
             return `${exercise.duration} mins of ${exercise.name} for ${exercise.repsNumber} reps, ${exercise.weight} kilos`

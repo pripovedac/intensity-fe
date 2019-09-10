@@ -37,7 +37,7 @@ export default function MembersInfoTable(props) {
     }
 
     function displayStatus(member) {
-        if (mainRole != userRoles.member) {
+        if (mainRole !== userRoles.member) {
             return (
                 <td>{
                     member.isActive

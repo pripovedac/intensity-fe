@@ -33,7 +33,7 @@ export default function CompleteWod(props) {
 
     const dispatch = useDispatch()
 
-    function displayEditButton() {
+    function displayControlButtons() {
         if (user.role !== userRoles.member) {
             return (
                 <div className="control-buttons">
@@ -122,24 +122,26 @@ export default function CompleteWod(props) {
     }
 
     function displaySigningButton() {
-        const isOld = isDateOld(wod.date)
+        if (user.role === userRoles.member) {
+            const isOld = isDateOld(wod.date)
 
-        if (!checkIfSignedIn(user.id)) {
-            return (
-                <RoundedButton
-                    onClick={signIn}
-                    disabled={isOld}>
-                    <FaCheckCircle className="button-icon"/>
-                </RoundedButton>
-            )
-        } else {
-            return (
-                <RoundedButton
-                    onClick={signOut}
-                    disabled={isOld}>
-                    <FaTimesCircle className="button-icon"/>
-                </RoundedButton>
-            )
+            if (!checkIfSignedIn(user.id)) {
+                return (
+                    <RoundedButton
+                        onClick={signIn}
+                        disabled={isOld}>
+                        <FaCheckCircle className="button-icon"/>
+                    </RoundedButton>
+                )
+            } else {
+                return (
+                    <RoundedButton
+                        onClick={signOut}
+                        disabled={isOld}>
+                        <FaTimesCircle className="button-icon"/>
+                    </RoundedButton>
+                )
+            }
         }
     }
 
@@ -207,9 +209,9 @@ export default function CompleteWod(props) {
         return (
             <div className="complete-wod">
                 <div className="content-container">
-                    {displayEditButton()}
                     {displayWodInfo()}
                     {displayExerciseList()}
+                    {displayControlButtons()}
                     {displaySigningButton()}
                 </div>
                 <div>
