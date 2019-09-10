@@ -1,10 +1,12 @@
 import React, {useState, useRef, useCallback} from 'react'
 import {useDispatch} from 'react-redux'
 import {setImageUrl, setImageMode} from '../../store/actions/image.action'
+import {imageModes} from '../../services/enums'
 
 export default function useHiddenInput() {
     // Relative path from ProfilePicture component.
-    const [pictureUrl, setPictureUrl] = useState('../../../../images/no-avatar.png')
+    const [pictureUrl, setPictureUrl] = useState()
+    const [originalPictureUrl, setOriginalPictureUrl] = useState()
     const [picture, setPicture] = useState()
     const inputRef = useRef(null)
     const dispatch = useDispatch()
@@ -35,7 +37,7 @@ export default function useHiddenInput() {
             setPictureUrl(url)
             dispatch(setImageUrl(url))
             setPicture(image)
-            dispatch(setImageMode('submit'))
+            dispatch(setImageMode(imageModes.submit))
         } else {
             alert('Image cannot be larger than 5MB.')
         }
@@ -63,6 +65,8 @@ export default function useHiddenInput() {
         onHiddenInputClick,
         inputRef,
         setPicture,
-        setPictureUrl: memoizedPictureUrlWrapper
+        setPictureUrl: memoizedPictureUrlWrapper,
+        originalPictureUrl,
+        setOriginalPictureUrl
     }
 }

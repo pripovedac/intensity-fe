@@ -4,7 +4,7 @@ import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import useProfilePictureSetup from '../../custom-hooks/useProfilePictureSetup'
 import {useDispatch} from 'react-redux'
 import OnlyIconButton from '../Button/OnlyIconButton/OnlyIconButton'
-import {FiUpload, FiCheck} from 'react-icons/fi'
+import {FiUpload, FiCheck, FiRefreshCcw} from 'react-icons/fi'
 import {setImageMode} from '../../../store/actions/image.action'
 import {selectUserId} from '../../../store/selectors/auth.selector'
 import {selectImageMode} from '../../../store/selectors/image.selector'
@@ -25,7 +25,8 @@ function ProfilePicture(props) {
         picture,
         pictureUrl,
         setPictureUrl,
-        setPicture
+        originalPictureUrl,
+        setOriginalPictureUrl
     } = useHiddenInput()
 
     const userId = useSelectorWrapper(selectUserId)
@@ -33,7 +34,7 @@ function ProfilePicture(props) {
     const urlId = queryString.parse(search).id
     const parameter = urlId ? urlId : userId
 
-    useProfilePictureSetup(parameter, setPictureUrl, setPicture)
+    useProfilePictureSetup(parameter, setPictureUrl, setOriginalPictureUrl)
 
     async function handleSubmit(event) {
         event.preventDefault()
@@ -41,14 +42,18 @@ function ProfilePicture(props) {
         if (res.errorStatus) {
             alert('Something went wrong with your upload.')
         } else {
-            dispatch(setImageMode(imageModes.update))
+            dispatch(setImageMode(imageModes.upload))
         }
     }
 
+    function reverseChanges() {
+        setPictureUrl(originalPictureUrl)
+        dispatch(setImageMode(imageModes.upload))
+    }
 
     function displayButton() {
         if (!props.id) {
-            if (imageMode === imageModes.update) {
+            if (imageMode === imageModes.upload) {
                 return (
                     <OnlyIconButton
                         type="button"
@@ -63,6 +68,12 @@ function ProfilePicture(props) {
                             type="button"
                             onClick={onHiddenInputClick}>
                             <FiUpload/>
+                        </OnlyIconButton>
+
+                        <OnlyIconButton
+                            type="button"
+                            onClick={reverseChanges}>
+                            <FiRefreshCcw/>
                         </OnlyIconButton>
 
                         <OnlyIconButton
