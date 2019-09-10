@@ -10,3 +10,7 @@ export async function updateWod(wodWithExercises) {
     console.log('Updating...')
     return await apiFetch('PUT', `${path}/wod`, wodWithExercises)
 }
+
+export async function deleteWod(id) {
+    return await apiFetch('DELETE', `${path}/wod/${id}`)
+}

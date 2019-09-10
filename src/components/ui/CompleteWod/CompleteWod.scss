@@ -13,18 +13,21 @@
     align-items: center;
     width: 100%;
 
-    .pen-button {
+    .control-buttons {
       align-self: flex-end;
+    }
+
+    .control-buttons > button {
       color: $grassgreen;
       background: #fff;
       border-radius: 50%;
-      font-size: 1.2em;
+      font-size: 1.3em;
       border: none;
       outline: none;
       cursor: pointer;
     }
 
-    > .pen-button:hover {
+    .control-buttons > button:hover {
       color: #000;
     }
 
@@ -96,8 +99,8 @@
     width: 20%;
   }
 
-   p {
-   text-align: center;
+  p {
+    text-align: center;
   }
 
   img {

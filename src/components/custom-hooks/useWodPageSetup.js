@@ -65,5 +65,5 @@ export default function useWodPageSetup(search, history) {
         }
     }, [search, history, dispatch])
 
-    return loading
+    return [loading, setLoading]
 }

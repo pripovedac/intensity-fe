@@ -19,7 +19,7 @@ export default function WodPage(props) {
     console.log('Rendering Wod Page.')
     const {search} = props.location
     const {history} = props
-    const loading = useWodPageSetup(search, history)
+    const [loading, setLoading] = useWodPageSetup(search, history)
     const mode = useSelectorWrapper(selectMode)
     const wodWithExercises = useSelectorWrapper(selectNewWodWithExercises)
     const isUpdate = useSelectorWrapper(selectUpdateNotification)
@@ -28,7 +28,7 @@ export default function WodPage(props) {
     function displayContent() {
         // todo: Think about using MAP object.
         if (mode === 'regular') {
-            return <CompleteWod/>
+            return <CompleteWod setWodLoading={setLoading}/>
         } else if (mode === 'wod') {
             return <TrainingForm/>
         } else if (mode === 'exercise') {

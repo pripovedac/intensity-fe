@@ -6,15 +6,16 @@ import ExerciseList from '../ExerciseList/ExerciseList'
 import RoundedButton from '../Button/RoundedButton/RoundedButton'
 import {FaCheckCircle, FaTimesCircle} from 'react-icons/fa'
 import MemberList from '../MemberList/MemberList'
-import {FaPencilAlt} from 'react-icons/fa'
+import {FiEdit, FiDelete} from 'react-icons/fi'
 import {isDateOld, toUserDateFormat} from '../../../services/dates'
 import {isEmpty} from 'lodash'
 import {userRoles} from '../../../services/enums'
 import {addTrainings} from '../../../store/actions/auth.action'
 import {setWodMode, notifyUpdate} from '../../../store/actions/global.action'
-import {addNewWod, addNewMember, removeMember} from '../../../store/actions/wod.action'
-import {replaceNewExercises} from '../../../store/actions/exercise.action'
+import {addNewWod, addNewMember, removeMember, removeActiveWod} from '../../../store/actions/wod.action'
+import {removeActiveExercises, replaceNewExercises} from '../../../store/actions/exercise.action'
 import {signForTraining, signOutOfTraining} from '../../../services/api/training'
+import {deleteWod} from '../../../services/api/wod'
 import {selectActiveTrainingId} from '../../../store/selectors/global.selector'
 import {selectActiveWod, selectMembers} from '../../../store/selectors/wod.selector'
 import {selectActiveExercises} from '../../../store/selectors/exercise.selector'
@@ -22,7 +23,7 @@ import {selectUser} from '../../../store/selectors/auth.selector'
 import removeLoadingState from '../../../services/timeout'
 import './CompleteWod.scss'
 
-export default function CompleteWod() {
+export default function CompleteWod(props) {
     const [loading, setLoading] = useState(false)
     const trainingId = useSelectorWrapper(selectActiveTrainingId)
     const wod = useSelectorWrapper(selectActiveWod)
@@ -33,12 +34,18 @@ export default function CompleteWod() {
     const dispatch = useDispatch()
 
     function displayEditButton() {
-        if (user.role === userRoles.trainer) {
+        if (user.role !== userRoles.member) {
             return (
-                <button className="pen-button"
+                <div className="control-buttons">
+                    <button
                         onClick={prepareWodForEditing}>
-                    <FaPencilAlt/>
-                </button>
+                        <FiEdit/>
+                    </button>
+                    <button
+                        onClick={removeWod}>
+                        <FiDelete/>
+                    </button>
+                </div>
             )
         }
     }
@@ -48,6 +55,24 @@ export default function CompleteWod() {
         dispatch(replaceNewExercises(exercises))
         dispatch(notifyUpdate())
         dispatch(setWodMode())
+    }
+
+    async function removeWod() {
+        if (window.confirm(
+            'You are going to going to delete complete WOD.\n' +
+            'Do you want to procede?')
+        ) {
+            props.setWodLoading(true)
+            const res = await deleteWod(wod.id)
+            if (!res.errorStatus) {
+                dispatch(removeActiveWod())
+                dispatch(removeActiveExercises())
+            } else {
+                alert('There was a problem with wod deletion.')
+            }
+
+            removeLoadingState(props.setWodLoading)
+        }
     }
 
     function displayWodInfo() {
