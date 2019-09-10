@@ -48,7 +48,7 @@ export default function UserInfo(props) {
             alert('Something went wrong with the payment.')
         }
 
-        removeLoadingState(props.setLoading)
+        removeLoadingState(props.setLoading, 200)
     }
 
     return (

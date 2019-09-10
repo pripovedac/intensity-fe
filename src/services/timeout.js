@@ -1,5 +1,5 @@
-export default function removeLoadingState(setLoading) {
+export default function removeLoadingState(setLoading, time) {
     setTimeout(() => {
         setLoading(false)
-    }, 200)
+    }, time)
 }

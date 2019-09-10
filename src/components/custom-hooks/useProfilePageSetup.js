@@ -24,7 +24,7 @@ export default function useProfilePageSetup(urlId, user, history) {
         }
 
         getMemberInfo()
-        removeLoadingState(setLoading)
+        removeLoadingState(setLoading, 200)
 
         function cleanRedux() {
             dispatch(removeActiveMember())

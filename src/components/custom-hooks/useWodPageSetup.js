@@ -57,7 +57,7 @@ export default function useWodPageSetup(search, history) {
 
         if (search) {
             fetchTraining(search)
-            removeLoadingState(setLoading)
+            removeLoadingState(setLoading, 350)
 
             return cleanRedux
         } else {

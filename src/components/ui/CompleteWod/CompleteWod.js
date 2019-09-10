@@ -71,7 +71,7 @@ export default function CompleteWod(props) {
                 alert('There was a problem with wod deletion.')
             }
 
-            removeLoadingState(props.setWodLoading)
+            removeLoadingState(props.setWodLoading, 200)
         }
     }
 
@@ -190,7 +190,7 @@ export default function CompleteWod(props) {
         } else {
             alert(response.exception.message)
         }
-        removeLoadingState(setLoading)
+        removeLoadingState(setLoading, 200)
     }
 
     async function signOut() {
@@ -199,7 +199,7 @@ export default function CompleteWod(props) {
         if (!response.errorStatus) {
             dispatch(addTrainings(response))
             dispatch(removeMember(user.id))
-            removeLoadingState(setLoading)
+            removeLoadingState(setLoading, 200)
         }
     }
 

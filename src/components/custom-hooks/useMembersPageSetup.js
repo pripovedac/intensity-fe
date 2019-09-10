@@ -4,6 +4,7 @@ import {getAllMembers} from '../../services/api/user'
 import {useSelectorWrapper} from './useReduxHooks'
 import {setMembers} from '../../store/actions/members.action'
 import {selectMembersLength} from '../../store/selectors/members.selector'
+import removeLoadingState from '../../services/timeout'
 
 export default function useMembersPageSetup() {
     const membersNumber = useSelectorWrapper(selectMembersLength)
@@ -17,7 +18,8 @@ export default function useMembersPageSetup() {
             if (members) {
                 updateRedux(members)
             }
-            setLoading(false)
+
+            removeLoadingState(setLoading, 200)
         }
 
         function updateRedux(members) {

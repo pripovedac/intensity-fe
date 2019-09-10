@@ -54,7 +54,7 @@ export default function UserForm(props) {
             dispatch(persistUser(updatedUser))
         }
 
-        removeLoadingState(props.setLoading)
+        removeLoadingState(props.setLoading, 200)
     }
 
     return (
