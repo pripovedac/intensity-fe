@@ -38,7 +38,7 @@ export default function ProfilePage(props) {
                         <p>Account is not activated</p>
                         <p>{member.activationDate
                             ? `Last activation date: ${toUserDateFormat(member.activationDate)}`
-                            : 'This account has never been activated.'
+                            : 'This account has never been activated'
                         }</p>
                     </div>
                 )

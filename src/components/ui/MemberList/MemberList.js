@@ -3,6 +3,7 @@ import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import {selectMembers} from '../../../store/selectors/wod.selector'
 import classNames from 'classnames'
 import './MemberList.scss'
+import {Link} from "react-router-dom";
 
 export default function MemberList(props) {
     const members = useSelectorWrapper(selectMembers)
@@ -22,7 +23,15 @@ export default function MemberList(props) {
     }
 
     function displayMembers() {
-        return members.map(member => <li key={member.id}>{member.name}</li>)
+        return members.map(member =>
+            <li key={member.id}>
+                <Link to={{
+                    pathname: '/profile',
+                    search: `?id=${member.id}`
+                }}>
+                    {member.name}
+                </Link>
+            </li>)
     }
 
     const classes = classNames({

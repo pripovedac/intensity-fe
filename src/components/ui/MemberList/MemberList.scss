@@ -23,6 +23,15 @@
   p {
     text-align: center;
   }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
 .loading-members {
