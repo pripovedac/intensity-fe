@@ -7,8 +7,11 @@ import {changeMemberStatus} from '../../../store/actions/members.action'
 import {selectAllMembers} from '../../../store/selectors/members.selector'
 import {useDispatch} from 'react-redux'
 import './MembersInfoTable.scss'
+import {selectUserRole} from '../../../store/selectors/auth.selector'
+import {userRoles} from "../../../services/enums";
 
 export default function MembersInfoTable(props) {
+    const mainRole = useSelectorWrapper(selectUserRole)
     const allMembers = useSelectorWrapper(selectAllMembers)
     const dispatch = useDispatch()
 
@@ -33,6 +36,35 @@ export default function MembersInfoTable(props) {
         dispatch(changeMemberStatus({id, isActive}))
     }
 
+    function displayStatus(member) {
+        if (mainRole != userRoles.member) {
+            return (
+                <td>{
+                    member.isActive
+                        ? <StatusButton
+                            class="inactive"
+                            text="Deactivate"
+                            onClick={() => changeUserStatus(member.id, false)}/>
+                        : <StatusButton
+                            class="active"
+                            text="Activate"
+                            onClick={() => changeUserStatus(member.id, true)}/>
+                }</td>
+            )
+        } else {
+            return (
+                <td>
+                    {
+                        member.isActive
+                            ? 'Active'
+                            : 'Inactive'
+                    }
+                </td>
+            )
+
+        }
+    }
+
     function createSingleRow(member) {
         // todo: members should be sorted by name
         return (
@@ -53,17 +85,7 @@ export default function MembersInfoTable(props) {
                 }</td>
                 <td>{member.trainingNum}</td>
                 <td>{member.role}</td>
-                <td>{
-                    member.isActive
-                        ? <StatusButton
-                            class="inactive"
-                            text="Deactivate"
-                            onClick={() => changeUserStatus(member.id, false)}/>
-                        : <StatusButton
-                            class="active"
-                            text="Activate"
-                            onClick={() => changeUserStatus(member.id, true)}/>
-                }</td>
+                {displayStatus(member)}
             </tr>
         )
     }
