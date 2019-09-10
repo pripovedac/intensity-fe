@@ -26,3 +26,9 @@
     color: #000;
   }
 }
+
+.active-page, .active-page:hover {
+  > span {
+    color: $grassgreen;
+  }
+}

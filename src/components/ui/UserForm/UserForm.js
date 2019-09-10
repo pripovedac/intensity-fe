@@ -55,7 +55,6 @@ export default function UserForm(props) {
         }
 
         removeLoadingState(props.setLoading)
-        console.log('azurirao')
     }
 
     return (

@@ -13,7 +13,7 @@ import {addActiveWod, cleanNewWod, removeActiveWod} from '../../store/actions/wo
 import {addActiveExercises, cleanNewExercises, removeActiveExercises} from '../../store/actions/exercise.action'
 import removeLoadingState from '../../services/timeout'
 
-export default function useWodPageSetup(search) {
+export default function useWodPageSetup(search, history) {
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true)
 
@@ -55,11 +55,15 @@ export default function useWodPageSetup(search) {
             dispatch(setRegularMode())
         }
 
-        fetchTraining(search)
-        removeLoadingState(setLoading)
+        if (search) {
+            fetchTraining(search)
+            removeLoadingState(setLoading)
 
-        return cleanRedux
-    }, [search, dispatch])
+            return cleanRedux
+        } else {
+            history.push('/home')
+        }
+    }, [search, history, dispatch])
 
     return loading
 }

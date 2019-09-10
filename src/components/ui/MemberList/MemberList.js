@@ -1,9 +1,9 @@
 import React from 'react'
 import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import {selectMembers} from '../../../store/selectors/wod.selector'
+import {Link} from 'react-router-dom'
 import classNames from 'classnames'
 import './MemberList.scss'
-import {Link} from "react-router-dom";
 
 export default function MemberList(props) {
     const members = useSelectorWrapper(selectMembers)

@@ -21,6 +21,7 @@ export function calculateDate(date) {
         .second(0)
 
     return toApiString(calculatedDate)
+
 }
 
 export function toApiString(date) {
@@ -28,7 +29,7 @@ export function toApiString(date) {
 }
 
 export function toUserDateFormat(date) {
-    return  moment(date).format('dddd, MMMM Do YYYY')
+    return moment(date).format('dddd, MMMM Do YYYY')
 }
 
 export function toTableFormat(date) {

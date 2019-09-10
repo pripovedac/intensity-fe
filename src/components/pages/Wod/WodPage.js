@@ -18,7 +18,8 @@ import './WodPage.scss'
 export default function WodPage(props) {
     console.log('Rendering Wod Page.')
     const {search} = props.location
-    const loading = useWodPageSetup(search)
+    const {history} = props
+    const loading = useWodPageSetup(search, history)
     const mode = useSelectorWrapper(selectMode)
     const wodWithExercises = useSelectorWrapper(selectNewWodWithExercises)
     const isUpdate = useSelectorWrapper(selectUpdateNotification)
@@ -74,4 +75,5 @@ export default function WodPage(props) {
             </div>
         )
     }
+
 }

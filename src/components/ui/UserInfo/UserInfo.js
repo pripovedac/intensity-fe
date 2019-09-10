@@ -1,6 +1,6 @@
 import React from 'react'
-import {useSelectorWrapper} from "../../custom-hooks/useReduxHooks";
-import {selectActiveMember} from "../../../store/selectors/global.selector";
+import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
+import {selectActiveMember} from '../../../store/selectors/global.selector'
 import './UserInfo.scss'
 
 export default function UserInfo() {

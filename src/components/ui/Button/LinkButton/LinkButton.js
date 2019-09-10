@@ -1,12 +1,18 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import './LinkButton.scss'
+import classNames from 'classnames'
 
 export default function LinkButton(props) {
+    const classes = classNames({
+        'link-button': true,
+        'active-page': props.path === props.activePath
+    })
+
     return (
         <Link
             to={props.path}
-            className="link-button">
+            className={classes}>
             <span>
                 {props.pathname}
             </span>
