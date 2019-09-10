@@ -8,7 +8,7 @@ import removeLoadingState from '../../services/timeout'
 
 export default function useMembersPageSetup() {
     const membersNumber = useSelectorWrapper(selectMembersLength)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const dispatch = useDispatch()
 
     useEffect(() => {

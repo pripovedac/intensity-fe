@@ -13,6 +13,7 @@ import queryString from 'query-string'
 import {submitWod, updateWod} from '../../../store/actions/wod.action'
 import {selectMode, selectUpdateNotification} from '../../../store/selectors/global.selector'
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
+import Hulk from './hulk.jpg'
 import './WodPage.scss'
 
 export default function WodPage(props) {
@@ -63,7 +64,7 @@ export default function WodPage(props) {
         return (
             <div className="wod-container">
                 <div className="hulk-container">
-                    <img src={require("./hulk.jpg")} alt="Hulk"/>
+                    <img src={Hulk} alt="Hulk"/>
                 </div>
                 {displayContent()}
             </div>

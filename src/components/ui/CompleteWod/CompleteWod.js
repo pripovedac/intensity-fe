@@ -21,6 +21,7 @@ import {selectActiveWod, selectMembers} from '../../../store/selectors/wod.selec
 import {selectActiveExercises} from '../../../store/selectors/exercise.selector'
 import {selectUser} from '../../../store/selectors/auth.selector'
 import removeLoadingState from '../../../services/timeout'
+import NothingHere from './nothing-here.jpg'
 import './CompleteWod.scss'
 
 export default function CompleteWod(props) {
@@ -161,7 +162,7 @@ export default function CompleteWod(props) {
                 <p>
                     WOD hasn't been posted yet.
                 </p>
-                <img src={require("./nothing-here.jpg")}
+                <img src={NothingHere}
                      alt="Nothing here."/>
             </div>
         )
