@@ -1,14 +1,19 @@
 import React, {useState} from 'react'
 import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import useProfilePageSetup from '../../custom-hooks/useProfilePageSetup'
+import {useDispatch} from 'react-redux'
 import UserForm from '../../ui/UserForm/UserForm'
 import UserInfo from '../../ui/UserInfo/UserInfo'
 import ProfilePicture from '../../ui/ProfilePicture/ProfilePicture'
+import OnlyIconButton from '../../ui/Button/OnlyIconButton/OnlyIconButton'
+import {FiTrash2} from 'react-icons/fi'
 import LoadingState from '../../loading-state/LoadingState'
+import {logoutUser} from '../../../store/actions/auth.action'
 import {selectUser} from '../../../store/selectors/auth.selector'
 import {selectActiveMember} from '../../../store/selectors/global.selector'
 import {toUserDateFormat} from '../../../services/dates'
 import {userRoles} from '../../../services/enums'
+import {deleteUser} from '../../../services/api/user'
 import queryString from 'query-string'
 import classNames from 'classnames'
 import './ProfilePage.scss'
@@ -16,6 +21,7 @@ import './ProfilePage.scss'
 export default function ProfilePage(props) {
     const user = useSelectorWrapper(selectUser)
     const [loadingStyle, setLoadingStyle] = useState(false)
+    const dispatch = useDispatch()
 
     const {search} = props.location
     const urlId = queryString.parse(search).id
@@ -66,6 +72,17 @@ export default function ProfilePage(props) {
         }
     }
 
+    async function deleteAccount() {
+        if (window.confirm(
+            `${user.name}, are you sure you want to delete your account?\nWe will sure miss you.`)
+        ) {
+            const response = await deleteUser(user.id)
+            if (!response.errorStatus) {
+                dispatch(logoutUser())
+            }
+        }
+    }
+
     const classes = classNames({
         'profile-page': true,
         'loading-profile': loadingStyle
@@ -80,6 +97,10 @@ export default function ProfilePage(props) {
 
                 {displayEditableInfo()}
                 {displayUneditableInfo(user)}
+
+                <OnlyIconButton onClick={deleteAccount}>
+                    <FiTrash2 className="trash-button"/>
+                </OnlyIconButton>
 
             </div>
         )

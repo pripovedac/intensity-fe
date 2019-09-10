@@ -33,3 +33,7 @@ export async function uploadAvatar(userId, avatar) {
 export async function updateUser(user) {
     return await apiFetch('PUT', `${path}/user`, user)
 }
+
+export async function deleteUser(id) {
+    return await apiFetch('DELETE', `${path}/user/${id}`)
+}
