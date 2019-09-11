@@ -15,12 +15,12 @@ import {selectMode, selectUpdateNotification} from '../../../store/selectors/glo
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
 import Hulk from './hulk.jpg'
 import './WodPage.scss'
+import {Link} from "react-router-dom";
 
 export default function WodPage(props) {
     const {search} = props.location
     const {history} = props
     const [loading, setLoading] = useWodPageSetup(search, history)
-    const [isHulkLoaded] = useState(true)
     const mode = useSelectorWrapper(selectMode)
     const wodWithExercises = useSelectorWrapper(selectNewWodWithExercises)
     const isUpdate = useSelectorWrapper(selectUpdateNotification)
@@ -61,18 +61,13 @@ export default function WodPage(props) {
     }
 
     function displayHulk() {
-        if (isHulkLoaded) {
             return (
-                <div className="hulk-container">
+                <Link to={{
+                    pathname: '/home',
+                }} className="hulk-container">
                     <img src={Hulk} alt="Hulk"/>
-                </div>
+                </Link>
             )
-        } else {
-            return (
-                <div className="hulk-container">
-                </div>
-            )
-        }
     }
 
     if (!loading) {
