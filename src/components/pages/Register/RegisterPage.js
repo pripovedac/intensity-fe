@@ -1,9 +1,9 @@
 import React from 'react'
+import useInput from '../../custom-hooks/useInput'
 import {useDispatch} from 'react-redux'
 import Card from '../../ui/Card/Card'
 import LabeledInput from '../../ui/Input/LabeledInput/LabeledInput'
 import PublicButton from '../../ui/Button/PublicButton/PublicButton'
-import useInput from '../../custom-hooks/useInput'
 import {Link} from 'react-router-dom'
 import {registerUser} from '../../../store/actions/auth.action'
 import {userRoles} from '../../../services/enums'
@@ -47,6 +47,7 @@ export default function RegisterPage(props) {
             const role = isTrainer
                 ? userRoles.trainer
                 : userRoles.member
+
             const newUser = {
                 name,
                 lastname,
@@ -54,7 +55,9 @@ export default function RegisterPage(props) {
                 password,
                 role
             }
+
             dispatch(registerUser(newUser))
+
         } else {
             alert('Please, fill in the data.')
         }

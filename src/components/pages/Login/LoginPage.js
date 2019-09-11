@@ -1,10 +1,10 @@
 import React from 'react'
+import useInput from '../../custom-hooks/useInput'
 import {useDispatch} from 'react-redux'
 import Card from '../../ui/Card/Card'
 import LabeledInput from '../../ui/Input/LabeledInput/LabeledInput'
 import PublicButton from '../../ui/Button/PublicButton/PublicButton'
 import {Link} from 'react-router-dom'
-import useInput from '../../custom-hooks/useInput'
 import {loginUser} from '../../../store/actions/auth.action'
 import '../../styles/public-styles/PublicStyles.scss'
 

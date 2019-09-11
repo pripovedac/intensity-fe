@@ -8,3 +8,8 @@ export const imageModes = {
     upload: 'upload',
     submit: 'submit',
 }
+
+export const globalTypes = {
+    crossfit: 'Crossfit',
+    lightfit: 'Lightfit'
+}

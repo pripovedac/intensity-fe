@@ -1,8 +1,8 @@
 import React from 'react'
 import useMembersPageSetup from '../../custom-hooks/useMembersPageSetup'
+import MemberFilters from '../../ui/MemberFilters/MemberFilters'
 import MembersInfoTable from '../../ui/MembersInfoTable/MembersInfoTable'
 import LoadingState from '../../loading-state/LoadingState'
-import MemberFilters from '../../ui/MemberFilters/MemberFilters'
 import './MembersPage.scss'
 
 export default function MembersPage(props) {

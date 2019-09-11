@@ -1,21 +1,21 @@
-import React, {useState} from 'react'
+import React from 'react'
 import useWodPageSetup from '../../custom-hooks/useWodPageSetup'
 import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import {useDispatch} from 'react-redux'
+import {Link} from 'react-router-dom'
+import CompleteWod from '../../ui/CompleteWod/CompleteWod'
 import TrainingForm from '../../ui/TrainingForm/TrainingForm'
 import ExerciseForm from '../../ui/ExerciseForm/ExerciseForm'
 import ExerciseList from '../../ui/ExerciseList/ExerciseList'
-import CompleteWod from '../../ui/CompleteWod/CompleteWod'
 import ButtonWithText from '../../ui/Button/ButtonWithText/ButtonWithText'
 import LoadingState from '../../loading-state/LoadingState'
-import {calculateDate} from '../../../services/dates'
-import queryString from 'query-string'
 import {submitWod, updateWod} from '../../../store/actions/wod.action'
 import {selectMode, selectUpdateNotification} from '../../../store/selectors/global.selector'
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
+import {calculateDate} from '../../../services/dates'
+import queryString from 'query-string'
 import Hulk from './hulk.jpg'
 import './WodPage.scss'
-import {Link} from "react-router-dom";
 
 export default function WodPage(props) {
     const {search} = props.location

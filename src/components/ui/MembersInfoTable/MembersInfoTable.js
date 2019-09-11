@@ -1,14 +1,14 @@
 import React from 'react'
 import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
+import {useDispatch} from 'react-redux'
 import StatusButton from '../Button/StatusButton/StatusButton'
 import {Link} from 'react-router-dom'
 import {toTableFormat} from '../../../services/dates'
 import {changeMemberStatus} from '../../../store/actions/members.action'
 import {selectAllMembers} from '../../../store/selectors/members.selector'
-import {useDispatch} from 'react-redux'
-import './MembersInfoTable.scss'
 import {selectUserRole} from '../../../store/selectors/auth.selector'
-import {userRoles} from "../../../services/enums";
+import {userRoles} from '../../../services/enums'
+import './MembersInfoTable.scss'
 
 export default function MembersInfoTable(props) {
     const mainRole = useSelectorWrapper(selectUserRole)
@@ -32,8 +32,29 @@ export default function MembersInfoTable(props) {
         return allMembers.map(member => createSingleRow(member))
     }
 
-    function changeUserStatus(id, isActive) {
-        dispatch(changeMemberStatus({id, isActive}))
+    function createSingleRow(member) {
+        // todo: members should be sorted by name
+        return (
+            <tr key={member.id}>
+                <td>
+                    <Link to={{
+                        pathname: '/profile',
+                        search: `?id=${member.id}`
+                    }}>
+                        {`${member.name} ${member.lastname}`}
+                    </Link>
+                </td>
+                <td>{member.email}</td>
+                <td>{
+                    member.activationDate
+                        ? toTableFormat(member.activationDate)
+                        : ""
+                }</td>
+                <td>{member.trainingNum}</td>
+                <td>{member.role}</td>
+                {displayStatus(member)}
+            </tr>
+        )
     }
 
     function displayStatus(member) {
@@ -65,29 +86,8 @@ export default function MembersInfoTable(props) {
         }
     }
 
-    function createSingleRow(member) {
-        // todo: members should be sorted by name
-        return (
-            <tr key={member.id}>
-                <td>
-                    <Link to={{
-                        pathname: '/profile',
-                        search: `?id=${member.id}`
-                    }}>
-                        {`${member.name} ${member.lastname}`}
-                    </Link>
-                </td>
-                <td>{member.email}</td>
-                <td>{
-                    member.activationDate
-                        ? toTableFormat(member.activationDate)
-                        : ""
-                }</td>
-                <td>{member.trainingNum}</td>
-                <td>{member.role}</td>
-                {displayStatus(member)}
-            </tr>
-        )
+    function changeUserStatus(id, isActive) {
+        dispatch(changeMemberStatus({id, isActive}))
     }
 
     return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import './LinkButton.scss'
 import classNames from 'classnames'
+import './LinkButton.scss'
 
 export default function LinkButton(props) {
     const classes = classNames({

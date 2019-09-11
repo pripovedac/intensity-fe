@@ -2,8 +2,9 @@ import React, {useState} from 'react'
 import useCalendarSetup from '../../custom-hooks/useCalendarSetup'
 import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import {Link} from 'react-router-dom'
-import moment from 'moment'
 import {selectWeek} from '../../../store/selectors/global.selector'
+import {globalTypes} from '../../../services/enums'
+import moment from 'moment'
 import classNames from 'classnames'
 import './Calendar.scss'
 
@@ -51,7 +52,7 @@ export default function Calendar(props) {
     }
 
     function createSingleRow(hour) {
-        const trainingType = hour % 2 ? 'Crossfit' : 'Lightfit'
+        const trainingType = hour % 2 ? globalTypes.crossfit : globalTypes.lightfit
         return (
             <tr key={hour}>
                 <th scope="row">

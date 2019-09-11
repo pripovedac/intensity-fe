@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react'
 import {useDispatch} from 'react-redux'
 import queryString from 'query-string'
-import {calculateDate} from '../../services/dates'
 import {getTraining} from '../../services/api/training'
 import {
     addActiveTraining,
@@ -11,6 +10,7 @@ import {
 } from '../../store/actions/global.action'
 import {addActiveWod, cleanNewWod, removeActiveWod} from '../../store/actions/wod.action'
 import {addActiveExercises, cleanNewExercises, removeActiveExercises} from '../../store/actions/exercise.action'
+import {calculateDate} from '../../services/dates'
 import removeLoadingState from '../../services/timeout'
 
 export default function useWodPageSetup(search, history) {
@@ -29,7 +29,6 @@ export default function useWodPageSetup(search, history) {
             const date = calculateDate(queryParams)
             const training = await getTraining(date)
             if (!training.errorStatus) {
-                // re-renders!
                 updateRedux(training)
             }
         }

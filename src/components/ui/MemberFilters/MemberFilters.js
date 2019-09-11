@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import StatusButton from '../Button/StatusButton/StatusButton'
 import {useDispatch} from 'react-redux'
+import StatusButton from '../Button/StatusButton/StatusButton'
 import {updateMemberFilter} from '../../../store/actions/global.action'
 import './MemberFilters.scss'
 
