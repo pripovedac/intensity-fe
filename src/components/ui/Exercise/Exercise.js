@@ -10,21 +10,35 @@ export default function Exercise(props) {
     function displayExerciseData() {
         const exercise = props.exercise
         //todo: see if this can be do better
-        if (!exercise.duration && exercise.weight)
+
+        if (exercise.repsNumber && !exercise.duration && !exercise.weight)
+            return `${exercise.name} for ${exercise.repsNumber} reps`
+
+        else if (!exercise.repsNumber && exercise.weight && !exercise.duration)
+            return `${exercise.name}, ${exercise.weight} kilos`
+
+        else if (!exercise.repsNumber && !exercise.weight && exercise.duration)
+            return `${exercise.name} for ${exercise.duration} mins`
+
+        else if (exercise.repsNumber && !exercise.duration && exercise.weight)
             return `${exercise.name} for ${exercise.repsNumber} reps, ${exercise.weight} kilos`
-        else if (exercise.duration && !exercise.weight && exercise.repsNumber)
+
+        else if (exercise.repsNumber && !exercise.weight && exercise.duration)
             return `${exercise.duration} mins of ${exercise.name} for ${exercise.repsNumber} reps`
-        else if (exercise.duration && exercise.weight)
+
+        else if (!exercise.repsNumber && exercise.weight && exercise.duration)
+            return `${exercise.duration} mins of ${exercise.name}, ${exercise.weight} kilos`
+
+        else if (exercise.repsNumber && exercise.weight && exercise.duration)
             return `${exercise.duration} mins of ${exercise.name} for ${exercise.repsNumber} reps, ${exercise.weight} kilos`
-        else if (exercise.duration && !exercise.weight && !exercise.reps)
-            return `${exercise.duration} mins of ${exercise.name}`
+
         else
             return exercise.name
     }
 
     function displayRemoveButton() {
         if (props.mode !== 'regular') {
-            return(
+            return (
                 <button onClick={handleClick}>
                     <IoMdRemoveCircleOutline
                         className="remove-circle"/>

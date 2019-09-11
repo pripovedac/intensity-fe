@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import useWodPageSetup from '../../custom-hooks/useWodPageSetup'
 import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import {useDispatch} from 'react-redux'
@@ -17,10 +17,10 @@ import Hulk from './hulk.jpg'
 import './WodPage.scss'
 
 export default function WodPage(props) {
-    console.log('Rendering Wod Page.')
     const {search} = props.location
     const {history} = props
     const [loading, setLoading] = useWodPageSetup(search, history)
+    const [isHulkLoaded] = useState(true)
     const mode = useSelectorWrapper(selectMode)
     const wodWithExercises = useSelectorWrapper(selectNewWodWithExercises)
     const isUpdate = useSelectorWrapper(selectUpdateNotification)
@@ -60,12 +60,25 @@ export default function WodPage(props) {
         }
     }
 
-    if (!loading) {
-        return (
-            <div className="wod-container">
+    function displayHulk() {
+        if (isHulkLoaded) {
+            return (
                 <div className="hulk-container">
                     <img src={Hulk} alt="Hulk"/>
                 </div>
+            )
+        } else {
+            return (
+                <div className="hulk-container">
+                </div>
+            )
+        }
+    }
+
+    if (!loading) {
+        return (
+            <div className="wod-container">
+                {displayHulk()}
                 {displayContent()}
             </div>
         )
