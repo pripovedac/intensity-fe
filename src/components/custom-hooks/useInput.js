@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
 export default function useInput(initialValue) {
-    const [value, setValue] = useState(initialValue);
+    const [value, setValue] = useState(initialValue)
 
     return {
         value,
@@ -9,8 +9,8 @@ export default function useInput(initialValue) {
         bind: {
             value,
             onChange: event => {
-                setValue(event.target.value);
+                setValue(event.target.value)
             }
         }
-    };
-};
+    }
+}

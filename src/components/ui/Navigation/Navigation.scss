@@ -8,8 +8,12 @@
 
   > button {
     display: block;
-    color: $darkred;
+    color: #fff;
     outline: none;
+  }
+
+  > button:hover {
+    color: $darkred
   }
 }
 

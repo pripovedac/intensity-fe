@@ -20,15 +20,14 @@
 }
 
 .link-button:hover {
-  background: #fff;
-
   > span {
-    color: #000;
+    color: $grassgreen;
   }
 }
 
 .active-page, .active-page:hover {
   > span {
     color: $grassgreen;
+    border-bottom: 2px solid $grassgreen;
   }
 }

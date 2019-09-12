@@ -6,6 +6,7 @@ import removeLoadingState from '../../services/timeout'
 
 export default function useProfilePageSetup(urlId, user, history) {
     const [loading, setLoading] = useState(true)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
