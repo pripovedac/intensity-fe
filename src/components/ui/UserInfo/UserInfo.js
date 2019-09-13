@@ -4,12 +4,14 @@ import {useDispatch}  from 'react-redux'
 import StatusButton from '../Button/StatusButton/StatusButton'
 import {addUserPayment} from  '../../../services/api/user'
 import {selectActiveMember} from '../../../store/selectors/global.selector'
+import {selectUserRole} from '../../../store/selectors/auth.selector'
 import {setActiveMember} from  '../../../store/actions/global.action'
 import removeLoadingState from '../../../services/timeout'
 import {userRoles} from '../../../services/enums'
 import './UserInfo.scss'
 
 export default function UserInfo(props) {
+    const userRole = useSelectorWrapper(selectUserRole)
     const member = useSelectorWrapper(selectActiveMember)
     const dispatch = useDispatch()
 
@@ -26,7 +28,7 @@ export default function UserInfo(props) {
     }
     
     function addPaymentButton() {
-        if(member.role === userRoles.member) {
+        if(userRole === userRoles.trainer && member.role === userRoles.member) {
             return (
                 <StatusButton
                     type="button"
