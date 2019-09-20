@@ -1,0 +1,32 @@
+.wod-type-picker {
+  margin: 0 auto;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  label:hover {
+    color: #404040;
+    font-weight: bold;
+    transition: all 0.3s ease 0s;
+  }
+
+  button {
+    padding: 0;
+    background-color: #fff;
+    width: 80%;
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+
+}

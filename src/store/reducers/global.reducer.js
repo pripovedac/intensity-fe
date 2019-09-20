@@ -8,7 +8,7 @@ const initialState = {
     memberFilter: 'all',
     activeMember: {}
 }
-// Possible wodMode values are [wod, exercise, regular]
+// Possible wodMode values are [no-selected, wod, exercise, regular]
 // Possible memberFilter values are [all, active, inactive]
 
 export default function (state = initialState, action) {
@@ -54,6 +54,13 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 wodMode: 'regular'
+            }
+        }
+
+        case actions.NO_SELECTED_MODE_SET: {
+            return {
+                ...state,
+                wodMode: 'no-selected'
             }
         }
 

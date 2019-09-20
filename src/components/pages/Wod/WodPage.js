@@ -4,6 +4,7 @@ import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import {useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import CompleteWod from '../../ui/CompleteWod/CompleteWod'
+import WodTypePicker from '../../ui/WodTypePicker/WodTypePicker'
 import TrainingForm from '../../ui/TrainingForm/TrainingForm'
 import ExerciseForm from '../../ui/ExerciseForm/ExerciseForm'
 import ExerciseList from '../../ui/ExerciseList/ExerciseList'
@@ -28,7 +29,9 @@ export default function WodPage(props) {
 
     function displayContent() {
         // todo: Think about using MAP object.
-        if (mode === 'regular') {
+        if (mode === 'no-selected') {
+            return <WodTypePicker history={history}/>
+        } else if (mode === 'regular') {
             return <CompleteWod setWodLoading={setLoading}/>
         } else if (mode === 'wod') {
             return <TrainingForm/>

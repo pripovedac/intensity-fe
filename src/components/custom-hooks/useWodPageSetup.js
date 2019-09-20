@@ -6,7 +6,8 @@ import {
     addActiveTraining,
     removeActiveTraining,
     removeUpdateNotification,
-    setRegularMode
+    setRegularMode,
+    setNoSelectedMode,
 } from '../../store/actions/global.action'
 import {addActiveWod, cleanNewWod, removeActiveWod} from '../../store/actions/wod.action'
 import {addActiveExercises, cleanNewExercises, removeActiveExercises} from '../../store/actions/exercise.action'
@@ -57,11 +58,12 @@ export default function useWodPageSetup(search, history) {
         if (search) {
             fetchTraining(search)
             removeLoadingState(setLoading, 350)
-
-            return cleanRedux
         } else {
-            history.push('/home')
+            dispatch(setNoSelectedMode())
+            removeLoadingState(setLoading, 200)
         }
+
+        return cleanRedux
     }, [search, history, dispatch])
 
     return [loading, setLoading]

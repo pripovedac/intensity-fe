@@ -1,34 +1,39 @@
 import React from 'react'
-import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import {useDispatch} from 'react-redux'
 import LinkButton from '../Button/LinkButton/LinkButton'
 import {logoutUser} from '../../../store/actions/auth.action'
-import {selectUsername} from '../../../store/selectors/auth.selector'
 import {withRouter} from 'react-router-dom'
 import './Navigation.scss'
 
 function Navigation(props) {
-    const username = useSelectorWrapper(selectUsername)
     const dispatch = useDispatch()
-    const pathName = props.location.search
+    let pathname = props.location.search
         ? ''
         : props.location.pathname
+
+    if (props.location.pathname == '/wod')
+        pathname = '/wod'
 
     return (
         <nav className="navigation">
             <LinkButton
                 path="/home"
-                activePath={pathName}
+                activePath={pathname}
                 pathname="Home"
             />
             <LinkButton
+                path="/wod"
+                activePath={pathname}
+                pathname="Wod"
+            />
+            <LinkButton
                 path="/members"
-                activePath={pathName}
+                activePath={pathname}
                 pathname="Members"/>
             <LinkButton
                 path="/profile"
-                activePath={pathName}
-                pathname={username}/>
+                activePath={pathname}
+                pathname="Profile"/>
             <button
                 className="link-button"
                 onClick={() => dispatch(logoutUser())}>
