@@ -36,6 +36,12 @@ export default function ExerciseForm(props) {
         bind: bindDuration
     } = useInput('')
 
+    const {
+        value: link,
+        resetValue: resetLink,
+        bind: bindLink
+    } = useInput('')
+
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -60,7 +66,8 @@ export default function ExerciseForm(props) {
             name,
             repsNumber,
             weight,
-            duration
+            duration,
+            link
         }
     }
 
@@ -86,6 +93,7 @@ export default function ExerciseForm(props) {
         resetReps()
         resetWeight()
         resetDuration()
+        resetLink()
     }
 
     return (
@@ -115,6 +123,12 @@ export default function ExerciseForm(props) {
                     label="Duration"
                     placeholder="0"
                     {...bindDuration}/>
+
+                <LabeledInput
+                    type="text"
+                    label="Link"
+                    placeholder="Video link"
+                    {...bindLink}/>
 
                 <div className="button-container">
 

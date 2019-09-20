@@ -7,6 +7,20 @@ import './Exercise.scss'
 export default function Exercise(props) {
     const dispatch = useDispatch()
 
+    
+    function wrapInLink() {
+        const link = props.exercise.link
+        if (link)
+            return(
+                <a href={link}
+                   target="_blank">
+                    {displayExerciseData()}
+                </a>
+            )
+        else
+            return displayExerciseData()
+    }
+    
     function displayExerciseData() {
         const exercise = props.exercise
         //todo: see if this can be do better
@@ -53,7 +67,7 @@ export default function Exercise(props) {
 
     return (
         <li className="exercise">
-            {displayExerciseData()}
+            {wrapInLink()}
             {displayRemoveButton()}
         </li>
     )
