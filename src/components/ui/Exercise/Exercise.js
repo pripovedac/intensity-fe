@@ -13,7 +13,8 @@ export default function Exercise(props) {
         if (link)
             return(
                 <a href={link}
-                   target="_blank">
+                   target="_blank"
+                   rel="noopener noreferrer">
                     {displayExerciseData()}
                 </a>
             )
