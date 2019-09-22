@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import useInput from '../../custom-hooks/useInput'
 import {useDispatch} from 'react-redux'
 import LabeledInput from '../Input/LabeledInput/LabeledInput'
@@ -10,6 +10,7 @@ import '../../styles/form-styles/FormStyles.scss'
 import './ExerciseForm.scss'
 
 export default function ExerciseForm(props) {
+    const inputRef = useRef(null)
     const dispatch = useDispatch()
 
     const {
@@ -51,7 +52,7 @@ export default function ExerciseForm(props) {
             const validatedExercise = validateExercise(exercise)
             dispatch(addNewExercise(validatedExercise))
             resetFields()
-
+            inputRef.current.focus()
         } else {
             alert('Exercise is not intense if it does not have a name.')
         }
@@ -104,6 +105,7 @@ export default function ExerciseForm(props) {
                     label="Name"
                     type="text"
                     placeholder="Simple name"
+                    reference={inputRef}
                     {...bindName}/>
 
                 <LabeledInput
@@ -133,16 +135,18 @@ export default function ExerciseForm(props) {
                 <div className="button-container">
 
                     <RoundedButton
+                        type="button"
                         onClick={() => dispatch(setWodMode())}>
                         <FaArrowAltCircleLeft
                             className="button-icon"/>
                     </RoundedButton>
 
-                    <RoundedButton>
+                    <RoundedButton
+                        type="submit">
                         <FaCheckCircle
-                            type="submit"
                             className="button-icon"/>
                     </RoundedButton>
+
 
                 </div>
             </form>

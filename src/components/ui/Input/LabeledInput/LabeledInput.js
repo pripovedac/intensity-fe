@@ -12,6 +12,7 @@ export default function LabeledInput(props) {
                 spellCheck={false}
                 disabled={props.disabled}
                 onChange={props.onChange}
+                ref={props.reference}
                 autoComplete="off"
             />
         </label>

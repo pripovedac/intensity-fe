@@ -189,6 +189,7 @@ function TrainingForm(props) {
 
                 <div className="button-container">
                     <RoundedButton
+                        type="button"
                         onClick={() => dispatch(setRegularMode())}>
                         <FaArrowAltCircleLeft
                             className="button-icon"/>

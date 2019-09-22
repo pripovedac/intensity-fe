@@ -50,7 +50,11 @@ export default function MembersInfoTable(props) {
                         ? toTableFormat(member.activationDate)
                         : ""
                 }</td>
-                <td>{member.trainingNum}</td>
+                <td>{
+                    member.role === userRoles.member
+                    ? member.trainingNum
+                    : '/'
+                }</td>
                 <td>{member.role}</td>
                 {displayStatus(member)}
             </tr>

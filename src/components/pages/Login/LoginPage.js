@@ -14,12 +14,12 @@ export default function LoginPage(props) {
     const {
         value: email,
         bind: bindEmail
-    } = useInput('thefirstpresenter@gmail.com')
+    } = useInput('trener@gmail.com')
 
     const {
         value: password,
         bind: bindPassword
-    } = useInput('dule')
+    } = useInput('trener')
 
     async function handleSubmit(event) {
         event.preventDefault()

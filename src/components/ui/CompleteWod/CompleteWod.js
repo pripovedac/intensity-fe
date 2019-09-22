@@ -8,7 +8,7 @@ import {FaCheckCircle, FaTimesCircle} from 'react-icons/fa'
 import MemberList from '../MemberList/MemberList'
 import {FiEdit, FiTrash2} from 'react-icons/fi'
 import {isDateOld, toUserDateFormat} from '../../../services/dates'
-import {addTrainings} from '../../../store/actions/auth.action'
+import {addTrainings, decrementTrainingNumber, incrementTrainingNumber} from '../../../store/actions/auth.action'
 import {setWodMode, notifyUpdate} from '../../../store/actions/global.action'
 import {addNewWod, addNewMember, removeMember, removeActiveWod} from '../../../store/actions/wod.action'
 import {removeActiveExercises, replaceNewExercises} from '../../../store/actions/exercise.action'
@@ -187,6 +187,7 @@ export default function CompleteWod(props) {
         const response = await signForTraining(user.id, trainingId)
         if (!response.errorStatus) {
             dispatch(addTrainings(response))
+            dispatch(decrementTrainingNumber())
             const id = user.id
             const name = `${user.name} ${user.lastname}`
             dispatch(addNewMember({id, name}))
@@ -201,6 +202,7 @@ export default function CompleteWod(props) {
         const response = await signOutOfTraining(user.id, trainingId)
         if (!response.errorStatus) {
             dispatch(addTrainings(response))
+            dispatch(incrementTrainingNumber())
             dispatch(removeMember(user.id))
             removeLoadingState(setLoading, 200)
         }

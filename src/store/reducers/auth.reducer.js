@@ -35,6 +35,20 @@ export default function (state = initialState, action) {
             }
         }
 
+        case actions.TRAINING_NUMBER_INCREMENT: {
+            return {
+                ...state,
+                trainingNum: state.trainingNum + 1,
+            }
+        }
+
+        case actions.TRAINING_NUMBER_DECREMENT: {
+            return {
+                ...state,
+                trainingNum: state.trainingNum - 1,
+            }
+        }
+
         default: {
             return state
         }

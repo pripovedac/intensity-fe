@@ -7,6 +7,8 @@ export const USER_REGISTER = 'USER_REGISTER'
 export const REGISTRATION_ACCOMPLISH = 'REGISTRATION_ACCOMPLISH'
 export const REGISTRATION_ABORT = 'REGISTRATION_ABORT'
 export const TRAININGS_ADD = 'TRAININGS_ADD'
+export const TRAINING_NUMBER_INCREMENT = 'TRAINING_NUMBER_INCREMENT'
+export const TRAINING_NUMBER_DECREMENT = 'TRAINING_NUMBER_DECREMENT'
 
 export function loginUser(user) {
     return {
@@ -67,6 +69,18 @@ export function addTrainings(trainingIds) {
     return {
         type: TRAININGS_ADD,
         payload: trainingIds
+    }
+}
+
+export function incrementTrainingNumber() {
+    return {
+        type: TRAINING_NUMBER_INCREMENT,
+    }
+}
+
+export function decrementTrainingNumber() {
+    return {
+        type: TRAINING_NUMBER_DECREMENT,
     }
 }
 
