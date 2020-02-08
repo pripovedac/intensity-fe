@@ -8,7 +8,8 @@ export default function useProfilePictureSetup(userId, setPictureUrl, setOrigina
 
     useEffect(() => {
         async function fetchAvatar(userId, setPictureUrl, setOriginalPictureUrl) {
-            const avatarUrl = `${process.env.REACT_APP_BE_URL}/user/${userId}/avatar`
+            const avatarUrl = `${process.env.REACT_APP_BE_URL}/users/${userId}/avatar`
+            // console.log('avatarUrl: ', avatarUrl)
             setPictureUrl(avatarUrl)
             setOriginalPictureUrl(avatarUrl)
         }

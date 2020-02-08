@@ -12,7 +12,7 @@ const newWod = {
 }
 
 const initialState = {
-    active: {},
+    active: { members: []},
     new: {...newWod}
 }
 
@@ -57,27 +57,30 @@ export default function (state = initialState, action) {
         }
 
         case actions.NEW_MEMBER_ADD: {
-            const activeMembers = [...state.active.members]
+            console.log('action.payload: ', action.payload)
+            console.log('STATE.ACTIVE: ', state.active)
+            const activeMembers = [...state.active.users]
             const modifiedMembers = [...activeMembers, action.payload]
 
             return {
                 ...state,
                 active: {
                     ...state.active,
-                    members: [...modifiedMembers]
+                    users: [...modifiedMembers]
                 }
             }
         }
 
         case actions.MEMBER_REMOVE: {
-            const activeMembers = [...state.active.members]
+            const activeMembers = [...state.active.users]
             const modifiedMembers = activeMembers.filter(({id}) => id !== action.payload)
-
+            console.log('activeMembers: ', activeMembers)
+            console.log('modifiedMembers: ', modifiedMembers)
             return {
                 ...state,
                 active: {
                     ...state.active,
-                    members: [...modifiedMembers]
+                    users: [...modifiedMembers]
                 }
             }
         }

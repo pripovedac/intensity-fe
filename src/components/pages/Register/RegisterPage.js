@@ -33,7 +33,7 @@ export default function RegisterPage(props) {
     const {
         value: password,
         bind: bindPassword
-    } = useInput('john123');
+    } = useInput('john1234');
 
     const {
         value: isTrainer,
@@ -50,7 +50,7 @@ export default function RegisterPage(props) {
 
             const newUser = {
                 name,
-                lastname,
+                lastName: lastname,
                 email,
                 password,
                 role

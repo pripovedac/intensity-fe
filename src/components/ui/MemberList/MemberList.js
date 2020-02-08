@@ -29,7 +29,7 @@ export default function MemberList(props) {
                     pathname: '/profile',
                     search: `?id=${member.id}`
                 }}>
-                    {member.name}
+                    {`${member.name}`}
                 </Link>
             </li>)
     }

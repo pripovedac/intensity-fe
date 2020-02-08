@@ -19,7 +19,7 @@ export default function LoginPage(props) {
     const {
         value: password,
         bind: bindPassword
-    } = useInput('trener')
+    } = useInput('trener1234')
 
     async function handleSubmit(event) {
         event.preventDefault()

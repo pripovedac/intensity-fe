@@ -14,6 +14,7 @@ import {submitWod, updateWod} from '../../../store/actions/wod.action'
 import {selectMode, selectUpdateNotification} from '../../../store/selectors/global.selector'
 import {selectNewWodWithExercises} from '../../../store/selectors/wod.selector'
 import {calculateDate} from '../../../services/dates'
+import {globalTypes, trainingTypes} from '../../../services/enums'
 import queryString from 'query-string'
 import Hulk from './hulk.jpg'
 import './WodPage.scss'
@@ -53,13 +54,58 @@ export default function WodPage(props) {
     }
 
     function submitWodForm() {
+        console.log('Submitting code, ma boi!')
         if (isUpdate) {
+            console.log("Update")
             const queryParams = queryString.parse(search)
-            wodWithExercises.date = calculateDate(queryParams)
-            dispatch(updateWod(wodWithExercises))
+            // wodWithExercises.date = calculateDate(queryParams)
+            const date =  calculateDate(queryParams)
+            wodWithExercises.date = new Date(date).toISOString()
+            const adjustedWod = adjustWod(wodWithExercises)
+            dispatch(updateWod(adjustedWod))
         } else {
+            console.log('Creating')
             delete wodWithExercises.id
-            dispatch(submitWod(wodWithExercises))
+            // console.log('Wod with exercises: ', wodWithExercises)
+            const adjustedWod = adjustWod(wodWithExercises)
+            // console.log('Adjusted: ', adjustedWod)
+            dispatch(submitWod(adjustedWod))
+        }
+    }
+
+    function copyObject (object) {
+        return JSON.parse(JSON.stringify(object))
+    }
+
+    function adjustWod() {
+        const wodCopy = copyObject(wodWithExercises)
+        // console.log('wod copy: ', wodCopy)
+        // console.log('trainingType: ', trainingTypes[wodCopy.trainingType])
+
+        const exercisesCopy = wodCopy.exercises.map(exercise => {
+            // delete exercise.link
+
+            return {
+                ...exercise,
+                repsNumber: parseInt(exercise.repsNumber),
+                weight: parseInt(exercise.weight),
+                duration: parseInt(exercise.duration),
+            }
+            // console.log('exercise: ', exercise)
+            // delete exercise.link
+            // console.log('exercise after: ', exercise)
+            // return exercise
+        });
+        // console.log('Exercise copy: ', exercisesCopy)
+
+        return {
+            ...wodCopy,
+            duration: parseInt(wodCopy.duration),
+            date: new Date(wodCopy.date).toISOString(),
+            roundNumber: parseInt(wodCopy.roundNumber),
+            globalType: globalTypes[wodCopy.globalType],
+            trainingType: trainingTypes[wodCopy.trainingType],
+            exercises: exercisesCopy
         }
     }
 

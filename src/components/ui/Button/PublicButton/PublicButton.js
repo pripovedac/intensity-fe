@@ -5,7 +5,8 @@ export default function PublicButton(props) {
     return (
         <button
             className="public-button"
-            type={props.type}>
+            type={props.type}
+            >
             {props.children}
         </button>
     )

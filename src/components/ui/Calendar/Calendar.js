@@ -3,7 +3,7 @@ import useCalendarSetup from '../../custom-hooks/useCalendarSetup'
 import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import {Link} from 'react-router-dom'
 import {selectWeek} from '../../../store/selectors/global.selector'
-import {globalTypes} from '../../../services/enums'
+import {globalTypes, globalTypeFromEnum} from '../../../services/enums'
 import moment from 'moment'
 import classNames from 'classnames'
 import './Calendar.scss'
@@ -52,7 +52,7 @@ export default function Calendar(props) {
     }
 
     function createSingleRow(hour) {
-        const trainingType = hour % 2 ? globalTypes.crossfit : globalTypes.lightfit
+        const trainingType = hour % 2 ? globalTypeFromEnum[globalTypes.crossfit] : globalTypeFromEnum[globalTypes.lightfit]
         return (
             <tr key={hour}>
                 <th scope="row">

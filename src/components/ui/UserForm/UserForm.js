@@ -23,7 +23,7 @@ export default function UserForm(props) {
     const {
         value: lastname,
         bind: bindLastname,
-    } = useInput(user.lastname)
+    } = useInput(user.lastName)
 
     const {
         value: email,
@@ -44,7 +44,7 @@ export default function UserForm(props) {
         const payload = {
             id,
             name,
-            lastname,
+            lastName: lastname,
             email,
             about
         }

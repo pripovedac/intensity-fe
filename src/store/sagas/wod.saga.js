@@ -22,7 +22,10 @@ export function* watchSubmitWodSaga() {
 }
 
 export function* updateWodSaga(action) {
-    const completeWod = yield call(updateWod, action.payload)
+    console.log('Update wod saga: ', action.payload)
+    const {payload} = action
+    const completeWod = yield call(updateWod, payload, payload.id)
+    console.log('complete wod: ', completeWod)
     // todo: same code repeats
     const exercises = [...completeWod.exercises]
     delete completeWod.exercises

@@ -1,13 +1,15 @@
 import React from 'react'
 import {useSelectorWrapper} from '../../custom-hooks/useReduxHooks'
 import Exercise from '../Exercise/Exercise'
-import {selectName} from '../../../store/selectors/auth.selector'
+import {selectName, selectUserRole} from '../../../store/selectors/auth.selector'
 import {selectMode} from '../../../store/selectors/global.selector'
 import './ExerciseList.scss'
+import { userRoles } from '../../../services/enums'
 
 export default function ExerciseList(props) {
     const name = useSelectorWrapper(selectName)
     const mode = useSelectorWrapper(selectMode)
+    const role = useSelectorWrapper(selectUserRole)
 
     function displayExercises() {
         if (props.exercises.length) {
@@ -18,7 +20,7 @@ export default function ExerciseList(props) {
                     mode={mode}
                 />
             })
-        } else {
+        } else  if (role != userRoles.member){
             return <p>{`${name}, you haven't added any exercises yet.
             Fill in the intense form for today's wod.`}</p>
         }

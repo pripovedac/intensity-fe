@@ -1,4 +1,5 @@
 import {getToken} from './localstorage'
+import {push} from 'react-router-redux'
 
 function apiFetchFactory({fetch}) {
     return async function apiFetch(method, url, body, {
@@ -23,6 +24,9 @@ function apiFetchFactory({fetch}) {
 
         if (responseType === "json" && res.status >= 200 && res.status < 300) {
             return res.json()
+        } else if (res.status === 403){
+            alert('Your session has expired.')
+            push('/login')
         } else {
             return {
                 errorStatus: res.status,

@@ -35,6 +35,7 @@ function ProfilePicture(props) {
     const parameter = urlId ? urlId : userId
 
     useProfilePictureSetup(parameter, setPictureUrl, setOriginalPictureUrl)
+    console.log('pictureUrl ', pictureUrl)
 
     async function handleSubmit(event) {
         event.preventDefault()

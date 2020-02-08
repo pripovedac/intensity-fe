@@ -7,10 +7,12 @@ import {toTableFormat} from '../../../services/dates'
 import {changeMemberStatus} from '../../../store/actions/members.action'
 import {selectAllMembers} from '../../../store/selectors/members.selector'
 import {selectUserRole} from '../../../store/selectors/auth.selector'
-import {userRoles} from '../../../services/enums'
+import {userRoles, roleFromEnum} from '../../../services/enums'
 import './MembersInfoTable.scss'
 
 export default function MembersInfoTable(props) {
+    // Some fields are commented due to BE constraints.
+
     const mainRole = useSelectorWrapper(selectUserRole)
     const allMembers = useSelectorWrapper(selectAllMembers)
     const dispatch = useDispatch()
@@ -20,10 +22,10 @@ export default function MembersInfoTable(props) {
             <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Activation date</th>
+                {/* <th>Activation date</th> */}
                 <th>Remained trainings</th>
                 <th>Role</th>
-                <th>Status</th>
+                {/* <th>Status</th> */}
             </tr>
         )
     }
@@ -41,22 +43,23 @@ export default function MembersInfoTable(props) {
                         pathname: '/profile',
                         search: `?id=${member.id}`
                     }}>
-                        {`${member.name} ${member.lastname}`}
+                        {`${member.name} ${member.lastName}`}
                     </Link>
                 </td>
                 <td>{member.email}</td>
-                <td>{
+                {/* <td>{
                     member.activationDate
                         ? toTableFormat(member.activationDate)
                         : ""
-                }</td>
+                }</td> */}
                 <td>{
+
                     member.role === userRoles.member
                     ? member.trainingNum
                     : '/'
                 }</td>
-                <td>{member.role}</td>
-                {displayStatus(member)}
+                <td>{roleFromEnum[member.role]}</td>
+                {/* {displayStatus(member)} */}
             </tr>
         )
     }

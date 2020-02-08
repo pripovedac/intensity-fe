@@ -12,7 +12,8 @@ export default function MembersPage(props) {
     if (!loading) {
         return (
             <div className="members-page">
-                <MemberFilters/>
+                {/* Commented due to BE constraints.
+                <MemberFilters/> */}
                 <div className="members-data">
                     <MembersInfoTable/>
                 </div>

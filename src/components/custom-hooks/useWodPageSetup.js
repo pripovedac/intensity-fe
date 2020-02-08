@@ -29,19 +29,23 @@ export default function useWodPageSetup(search, history) {
             // todo: remove updating the date.
             const date = calculateDate(queryParams)
             const training = await getTraining(date)
+            console.log('training: ', training)
             if (!training.errorStatus) {
+                console.log('no error')
                 updateRedux(training)
             }
+            console.log('done')
+
         }
 
         function updateRedux(training) {
             dispatch(addActiveTraining(training.id))
             const wodPayload = {
                 ...training.wod,
-                members: training.members
+                users: training.users
             }
             dispatch(addActiveWod(wodPayload))
-            dispatch(addActiveExercises(training.exercises))
+            dispatch(addActiveExercises(training.wod.exercises))
         }
 
         function cleanRedux() {

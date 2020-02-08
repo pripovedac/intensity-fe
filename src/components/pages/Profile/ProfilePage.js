@@ -13,7 +13,7 @@ import {selectUser} from '../../../store/selectors/auth.selector'
 import {selectActiveMember} from '../../../store/selectors/global.selector'
 import {deleteUser} from '../../../services/api/user'
 import {toUserDateFormat} from '../../../services/dates'
-import {userRoles} from '../../../services/enums'
+import {userRoles, roleFromEnum} from '../../../services/enums'
 import queryString from 'query-string'
 import classNames from 'classnames'
 import './ProfilePage.scss'
@@ -31,24 +31,24 @@ export default function ProfilePage(props) {
 
     function displayUneditableInfo(user) {
         if (member.role === userRoles.member) {
-            if (member.isActive) {
+            // if (member.isActive) {
                 return (
                     <div className="uneditable-info">
-                        <p>{`Remained trainings: ${member.trainingNum}`}</p>
+                        {/* <p>{`Remained trainings: ${member.trainingNum}`}</p> */}
                         <p>{`Activation date: ${toUserDateFormat(member.activationDate)}`}</p>
                     </div>
                 )
-            } else {
-                return (
-                    <div className="uneditable-info">
-                        <p>Account is not activated</p>
-                        <p>{member.activationDate
-                            ? `Last activation date: ${toUserDateFormat(member.activationDate)}`
-                            : 'This account has never been activated'
-                        }</p>
-                    </div>
-                )
-            }
+            // } else {
+            //     return (
+            //         <div className="uneditable-info">
+            //             <p>Account is not activated</p>
+            //             <p>{member.activationDate
+            //                 ? `Last activation date: ${toUserDateFormat(member.activationDate)}`
+            //                 : 'This account has never been activated'
+            //             }</p>
+            //         </div>
+            //     )
+            // }
         }
     }
 
@@ -102,8 +102,8 @@ export default function ProfilePage(props) {
         return (
             <div className={classes}>
 
-                <h1>{`${member.name} ${member.lastname}`}</h1>
-                <h2>{`${member.role}`}</h2>
+                <h1>{`${member.name} ${member.lastName}`}</h1>
+                <h2>{`${roleFromEnum[member.role]}`}</h2>
 
                 {displayEditableInfo()}
                 {displayUneditableInfo(user)}

@@ -19,6 +19,7 @@ import {selectUser} from '../../../store/selectors/auth.selector'
 import {signForTraining, signOutOfTraining} from '../../../services/api/training'
 import {deleteWod} from '../../../services/api/wod'
 import removeLoadingState from '../../../services/timeout'
+import {globalTypeFromEnum, trainingTypeFromEnum} from '../../../services/enums'
 import {userRoles} from '../../../services/enums'
 import {isEmpty} from 'lodash'
 import NothingHere from './nothing-here.jpg'
@@ -28,10 +29,11 @@ export default function CompleteWod(props) {
     const [loading, setLoading] = useState(false)
     const trainingId = useSelectorWrapper(selectActiveTrainingId)
     const wod = useSelectorWrapper(selectActiveWod)
+    console.log('Active wod: ', wod)
     const exercises = useSelectorWrapper(selectActiveExercises)
     const user = useSelectorWrapper(selectUser)
     const members = useSelectorWrapper(selectMembers)
-
+    // console.log('Signed Members: ', members)
     const dispatch = useDispatch()
 
     function displayControlButtons() {
@@ -61,7 +63,7 @@ export default function CompleteWod(props) {
     async function removeWod() {
         if (window.confirm(
             'You are going to going to delete complete WOD.\n' +
-            'Do you want to procede?')
+            'Do you want to proceede?')
         ) {
             props.setWodLoading(true)
             const res = await deleteWod(wod.id)
@@ -86,7 +88,7 @@ export default function CompleteWod(props) {
         if (wodName !== 'crossfit' && wodName !== 'lightfit') {
             title = <div className="title-container">
                 <h1>{`${wodName}`}</h1>
-                <h2>{`${wod.trainingType} ${wod.globalType} workout of the Day`}</h2>
+                <h2>{`${trainingTypeFromEnum[wod.trainingType]} ${globalTypeFromEnum[wod.globalType]} workout of the Day`}</h2>
             </div>
         } else {
             title = <h1>
@@ -184,12 +186,12 @@ export default function CompleteWod(props) {
 
     async function signIn() {
         setLoading(true)
-        const response = await signForTraining(user.id, trainingId)
+        const response = await signForTraining( trainingId)
         if (!response.errorStatus) {
             dispatch(addTrainings(response))
             dispatch(decrementTrainingNumber())
             const id = user.id
-            const name = `${user.name} ${user.lastname}`
+            const name = `${user.name} ${user.lastName}`
             dispatch(addNewMember({id, name}))
         } else {
             alert(response.exception.message)
@@ -199,7 +201,7 @@ export default function CompleteWod(props) {
 
     async function signOut() {
         setLoading(true)
-        const response = await signOutOfTraining(user.id, trainingId)
+        const response = await signOutOfTraining(trainingId)
         if (!response.errorStatus) {
             dispatch(addTrainings(response))
             dispatch(incrementTrainingNumber())
@@ -209,6 +211,15 @@ export default function CompleteWod(props) {
     }
 
     if (!isEmpty(wod)) {
+
+        if (Object.keys(wod).length == 1 && !wod.members.length) {
+            return (
+                <div className="empty-wod">
+                    {displayAddButton()}
+                    {displayEmptyWod()}
+                </div>
+            )
+        } else {
         return (
             <div className="complete-wod">
                 <div className="content-container">
@@ -221,7 +232,8 @@ export default function CompleteWod(props) {
                     {displayMemberList()}
                 </div>
             </div>
-        )
+        
+        )}
     } else {
         return (
             <div className="empty-wod">

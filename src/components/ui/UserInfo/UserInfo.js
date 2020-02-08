@@ -7,12 +7,13 @@ import {selectActiveMember} from '../../../store/selectors/global.selector'
 import {selectUserRole} from '../../../store/selectors/auth.selector'
 import {setActiveMember} from  '../../../store/actions/global.action'
 import removeLoadingState from '../../../services/timeout'
-import {userRoles} from '../../../services/enums'
+import {userRoles, roleFromEnum} from '../../../services/enums'
 import './UserInfo.scss'
 
 export default function UserInfo(props) {
     const userRole = useSelectorWrapper(selectUserRole)
     const member = useSelectorWrapper(selectActiveMember)
+    // console.log('member: ', member)
     const dispatch = useDispatch()
 
     function displayAbout() {
@@ -21,8 +22,9 @@ export default function UserInfo(props) {
                 <p>{member.about}</p>
             )
         } else {
+            // console.log('member.role: ', member.role)
             return(
-                <p>This {`${member.role}`} is a bit shy, so there is nothing in his about section.</p>
+                <p>This {`${roleFromEnum[member.role]}`} is a bit shy, so there is nothing in his about section.</p>
             )
         }
     }
@@ -45,7 +47,7 @@ export default function UserInfo(props) {
 
         const res = await addUserPayment(id)
         if(!res.errorStatus) {
-            dispatch(setActiveMember(res))
+            // dispatch(setActiveMember(res))
         } else {
             alert('Something went wrong with the payment.')
         }
